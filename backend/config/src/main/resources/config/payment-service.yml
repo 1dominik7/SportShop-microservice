@@ -1,0 +1,191 @@
+application:
+  stripe:
+    secret-key: ${STRIPE_SECRET_KEY}
+    webhook-secret: ${STRIPE_WEBHOOK_SECRET}
+
+spring:
+  datasource:
+    url: jdbc:postgresql://${DB_URL_HOST}:${DB_URL_PORT}/${DB_NAME}
+    username: ${DB_USER}
+    password: ${DB_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+  rabbitmq:
+    host: ${RABBITMQ_HOST}
+    port: ${RABBITMQ_PORT}
+    username: ${RABBITMQ_USERNAME}
+    password: ${RABBITMQ_PASSWORD}
+  cloud:
+    bus:
+      enabled: false
+    stream:
+      defaultBinder: kafka
+      binders:
+        kafka:
+          type: kafka
+          environment:
+            spring:
+              kafka:
+                bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:kafka:9092}
+                properties:
+                  request.timeout.ms: 30000
+                  retries: 5
+                  default.api.timeout.ms: 30000
+                  connections.max.idle.ms: 30000
+                admin:
+                  properties:
+                    request.timeout.ms: 30000
+                    retries: 5
+        rabbit:
+          type: rabbit
+          environment:
+            spring:
+              rabbitmq:
+                host: ${RABBITMQ_HOST}
+                port: ${RABBITMQ_PORT}
+                username: ${RABBITMQ_USERNAME}
+                password: ${RABBITMQ_PASSWORD}
+      bindings:
+        stockUpdate-out-0:
+          destination: stock.update
+          binder: kafka
+          content-type: application/json
+        orderEmail-out-0:
+          destination: order.success.email
+          binder: rabbit
+          content-type: application/json
+          producer:
+            required-groups: marketing-group
+  jpa:
+    database: POSTGRESQL
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    properties:
+      hibernate:
+        format_sql: true
+  zipkin:
+    base-url: http://zipkin:9411
+    enabled: true
+    sender:
+      type: web
+  sleuth:
+    enabled: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    prometheus:
+      enabled: true
+    health:
+      show-details: always
+  health:
+    circuitbreakers:
+      enabled: true
+  tracing:
+    sampling:
+      probability: 1.0
+
+server:
+  port: 8085
+  servlet:
+    context-path: /api/v1
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_URL}
+    register-with-eureka: true
+    fetch-registry: true
+
+logging:
+  file:
+    name: logs/${spring.application.name}.log
+  logback:
+    rollingpolicy:
+      max-file-size: 5MB
+      max-history: 7
+  level:
+    root: INFO
+    org.springframework.web: DEBUG
+
+
+resilience4j:
+  circuitbreaker:
+    instances:
+      userService:
+        registerHealthIndicator: true
+        slidingWindowSize: 10
+        minimumNumberOfCalls: 5
+        permittedNumberOfCallsInHalfOpenState: 3
+        waitDurationInOpenState: 10s
+        failureRateThreshold: 50
+        automaticTransitionFromOpenToHalfOpenEnabled: true
+        slidingWindowType: count_based
+      shopOrderService:
+        registerHealthIndicator: true
+        slidingWindowSize: 10
+        minimumNumberOfCalls: 5
+        permittedNumberOfCallsInHalfOpenState: 3
+        waitDurationInOpenState: 10s
+        failureRateThreshold: 50
+        automaticTransitionFromOpenToHalfOpenEnabled: true
+        slidingWindowType: count_based
+      productService:
+        registerHealthIndicator: true
+        slidingWindowSize: 10
+        minimumNumberOfCalls: 5
+        permittedNumberOfCallsInHalfOpenState: 3
+        waitDurationInOpenState: 10s
+        failureRateThreshold: 50
+        automaticTransitionFromOpenToHalfOpenEnabled: true
+        slidingWindowType: count_based
+  ratelimiter:
+    instances:
+      userService:
+        timeout-duration: 1s
+        limit-refresh-period: 1s
+        limit-for-period: 10
+      shopOrderService:
+        timeout-duration: 2s
+        limit-refresh-period: 500ms
+        limit-for-period: 10
+      productService:
+        timeout-duration: 0s
+        limit-refresh-period: 4s
+        limit-for-period: 2
+  retry:
+    instances:
+      userServiceRetry:
+        maxAttempts: 3
+        waitDuration: 500ms
+      shopOrderServiceRetry:
+        maxAttempts: 6
+        waitDuration: 500ms
+      productServiceRetry:
+        maxAttempts: 2
+        waitDuration: 500ms
+
+
+keycloak:
+  admin:
+    username: ${KEYCLOAK_USERNAME}
+    password: ${KEYCLOAK_PASSWORD}
+    server-url: ${KEYCLOAK_URL}
+    realm: ${KEYCLOAK_REALM}
+    client-id: ${KEYCLOAK_CLIENT_ID}
+    client-uid: ${KEYCLOAK_CLIENT_UID}
+    client-secret: ${KEYCLOAK_CLIENT_SECRET}
+
+feign:
+  client:
+    config:
+      user-service:
+        url: ${USER_SERVICE_URL:http://localhost:8082/api/v1}
+      product-service:
+        url: ${PRODUCT_SERVICE_URL:http://localhost:8083/api/v1}
+      order-service:
+        url: ${ORDER_SERVICE_URL:http://localhost:8084/api/v1}

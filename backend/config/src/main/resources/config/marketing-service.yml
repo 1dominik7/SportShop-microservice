@@ -1,0 +1,165 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://${DB_URL_HOST}:${DB_URL_PORT}/${DB_NAME}
+    username: ${DB_USER}
+    password: ${DB_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        database: marketing
+      database-platform: org.hibernate.dialect.PostgreSQLDialect
+  mail:
+    host: ${MAIL_HOST}
+    port: ${MAIL_PORT}
+    username: ${MAIL_USERNAME}
+    password: ${MAIL_PASSWORD}
+    protocol: smtp
+    default-encoding: UTF-8
+    properties:
+      mail:
+        smtp:
+          trust: "*"
+          ssl:
+            trust: "*"
+          auth: true
+          starttls:
+            enable: true
+          transport:
+            protocol: smtp
+          connectiontimeout: 5000
+          timeout: 3000
+          writetimeout: 5000
+        debug: true
+    thymeleaf:
+      prefix: classpath:/templates/
+      suffix: .html
+      mode: HTML
+      cache: false
+  cloud:
+    function:
+      definition: newsletterEmail;orderEmail
+    stream:
+      defaultBinder: rabbit
+      bindings:
+        orderEmail-in-0:
+          destination: order.success.email
+          content-type: application/json
+          group: marketing-group
+          binder: rabbit
+        newsletterEmail-out-0:
+          destination: newsletter.queue
+          content-type: application/json
+          binder: rabbit
+        newsletterEmail-in-0:
+          destination: newsletter.queue
+          content-type: application/json
+          binder: rabbit
+      binders:
+        rabbit:
+          type: rabbit
+          environment:
+            spring:
+              rabbitmq:
+                host: ${RABBITMQ_HOST}
+                port: ${RABBITMQ_PORT}
+                username: ${RABBITMQ_USERNAME}
+                password: ${RABBITMQ_PASSWORD}
+  zipkin:
+    base-url: http://zipkin:9411
+    enabled: true
+    sender:
+      type: web
+  sleuth:
+    enabled: true
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_URL}
+    register-with-eureka: true
+    fetch-registry: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    prometheus:
+      enabled: true
+    health:
+      show-details: always
+  health:
+    circuitbreakers:
+      enabled: true
+  tracing:
+    sampling:
+      probability: 1.0
+
+server:
+  port: 8086
+  servlet:
+    context-path: /api/v1
+
+mail:
+  sender: ${MAIL_SENDER_EMAIL}
+
+logging:
+  file:
+    name: logs/${spring.application.name}.log
+  logback:
+    rollingpolicy:
+      max-file-size: 5MB
+      max-history: 7
+  level:
+    org.springframework.boot.autoconfigure.jdbc: DEBUG
+    org.springframework.cloud.openfeign: DEBUG
+    org.springframework.cloud.stream: DEBUG
+    org.springframework.amqp: DEBUG
+    org.springframework.context: DEBUG
+    feign: DEBUG
+
+resilience4j:
+  circuitbreaker:
+    instances:
+      userService:
+        registerHealthIndicator: true
+        slidingWindowSize: 10
+        minimumNumberOfCallas: 5
+        permittedNumberOfCallsInHalfOpenState: 3
+        waitDurationInOpenState: 10s
+        failureRateThreshold: 50
+        automaticTransitionFromOpenToHalfOpenEnabled: true
+        slidingWindowType: count_based
+  ratelimiter:
+    instances:
+      userService:
+        timeout-duration: 500ms
+        limit-refresh-period: 1s
+        limit-for-period: 10
+  retry:
+    instances:
+      retryBreaker:
+        maxAttempts: 5
+        waitDuration: 500ms
+
+keycloak:
+  admin:
+    username: ${KEYCLOAK_USERNAME}
+    password: ${KEYCLOAK_PASSWORD}
+    server-url: ${KEYCLOAK_URL}
+    realm: ${KEYCLOAK_REALM}
+    client-id: ${KEYCLOAK_CLIENT_ID}
+    client-uid: ${KEYCLOAK_CLIENT_UID}
+    client-secret: ${KEYCLOAK_CLIENT_SECRET}
+
+feign:
+  client:
+    config:
+      user-service:
+        url: ${USER_SERVICE_URL:http://localhost:8082/api/v1}

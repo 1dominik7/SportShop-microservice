@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: user-service
+  main:
+    allow-circular-references: true
+  config:
+    import: optional:configserver:http://config-service:8888/

@@ -1,0 +1,59 @@
+server:
+  port: 8070
+  servlet:
+    context-path: /api/v1
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_URL}
+    register-with-eureka: true
+    fetch-registry: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    prometheus:
+      enabled: true
+    health:
+      show-details: always
+  tracing:
+    sampling:
+      probability: 1.0
+
+spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: ${OAUTH_ISSUER_URI}
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      retry:
+        enabled: true
+        max-attempts: 5
+        interval: 1s
+        backoff-policy: EXPONENTIAL
+  zipkin:
+    base-url: http://zipkin:9411
+    enabled: true
+    sender:
+      type: web
+  sleuth:
+    enabled: true
+
+cors:
+  allowed-origin: ${CORS_ALLOWED_ORIGIN}
+
+logging:
+  level:
+    org.springframework.security: TRACE
+    org.springframework.cloud.gateway: DEBUG
+    org.springframework.web.reactive: DEBUG
+    reactor.netty.http.client: DEBUG

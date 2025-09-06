@@ -1,0 +1,238 @@
+services:
+  postgres:
+    container_name: postgres-sql-sportshop
+    image: postgres:15
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+      PGDATA: /var/lib/postgresql/data
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - ecommerce-microservice-app
+    restart: unless-stopped
+
+  mysql:
+    image: mysql:8.0
+    container_name: mysql-product-service
+    restart: unless-stopped
+    ports:
+      - "3307:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_DATABASE: ${MYSQL_DB}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - ecommerce-microservice-app
+
+  user-service:
+    container_name: user-service
+    image: dominikdev7/backend-user-service:latest
+    env_file:
+      - ./user/.env
+    ports:
+      - "8082:8082"
+    depends_on:
+      - rabbitmq
+      - config-service
+      - eureka-service
+      - keycloak
+    networks:
+      - ecommerce-microservice-app
+    restart: unless-stopped
+
+  product-service:
+    container_name: product-service
+    image: dominikdev7/backend-product-service:latest
+    env_file:
+      - ./product/.env
+    ports:
+      - "8083:8083"
+    depends_on:
+      - mysql
+      - rabbitmq
+      - config-service
+      - eureka-service
+      - keycloak
+    networks:
+      - ecommerce-microservice-app
+    restart: unless-stopped
+
+  order-service:
+    container_name: order-service
+    image: dominikdev7/backend-order-service:latest
+    env_file:
+      - ./order/.env
+    ports:
+      - "8084:8084"
+    depends_on:
+      - postgres
+      - rabbitmq
+      - config-service
+      - eureka-service
+      - keycloak
+    networks:
+      - ecommerce-microservice-app
+    restart: unless-stopped
+
+  payment-service:
+    container_name: payment-service
+    image: dominikdev7/backend-payment-service:latest
+    env_file:
+      - ./payment/.env
+    ports:
+      - "8085:8085"
+    environment:
+      KAFKA_BOOTSTRAP_SERVERS: kafka:9092
+      SPRING_KAFKA_BOOTSTRAP_SERVERS: kafka:9092
+    depends_on:
+      - postgres
+      - rabbitmq
+      - config-service
+      - eureka-service
+      - keycloak
+      - kafka
+    networks:
+      - ecommerce-microservice-app
+    restart: unless-stopped
+
+  marketing-service:
+    container_name: marketing-service
+    image: dominikdev7/backend-marketing-service:latest
+    env_file:
+      - ./marketing/.env
+    ports:
+      - "8086:8086"
+    depends_on:
+      - postgres
+      - rabbitmq
+      - config-service
+      - eureka-service
+      - keycloak
+    networks:
+      - ecommerce-microservice-app
+    restart: unless-stopped
+
+  config-service:
+    image: dominikdev7/backend-config-service:latest
+    container_name: config-service
+    env_file:
+      - ./config/.env
+    ports:
+      - "8888:8888"
+    volumes:
+      - ./config/src/main/resources/config:/config
+    environment:
+      - SPRING_PROFILES_ACTIVE=native
+    networks:
+      - ecommerce-microservice-app
+
+  gateway-service:
+    image: dominikdev7/backend-gateway-service:latest
+    container_name: gateway-service
+    env_file:
+      - ./gateway/.env
+    ports:
+      - "8070:8070"
+    depends_on:
+      config-service:
+        condition: service_started
+      eureka-service:
+        condition: service_healthy
+      keycloak:
+        condition: service_started
+    networks:
+      - ecommerce-microservice-app
+
+  eureka-service:
+    image: dominikdev7/backend-eureka-service:latest
+    container_name: eureka-service
+    ports:
+      - "8761:8761"
+    healthcheck:
+      test: [ "CMD-SHELL", "wget --spider -S http://localhost:8761/ || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - ecommerce-microservice-app
+
+  keycloak:
+    image: keycloak/keycloak:26.2.5
+    container_name: keycloak
+    command: start-dev
+    environment:
+      KEYCLOAK_ADMIN: ${KEYCLOAK_USERNAME}
+      KEYCLOAK_ADMIN_PASSWORD: ${KEYCLOAK_PASSWORD}
+      KC_DB: postgres
+      KC_DB_DATABASE: ${KEYCLOAK_DB}
+      KC_DB_URL_HOST: ${POSTGRES_URL_HOST}
+      KC_DB_URL_PORT: ${POSTGRES_PORT}
+      KC_DB_USERNAME: ${POSTGRES_USER}
+      KC_DB_PASSWORD: ${POSTGRES_PASSWORD}
+    ports:
+      - "8443:8080"
+    networks:
+      - ecommerce-microservice-app
+    depends_on:
+      - postgres
+
+  zookeeper:
+    image: confluentinc/cp-zookeeper:7.5.0
+    container_name: zookeeper
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+    ports:
+      - "2181:2181"
+    networks:
+      - ecommerce-microservice-app
+    restart: unless-stopped
+
+  kafka:
+    image: confluentinc/cp-kafka:7.5.0
+    container_name: kafka
+    ports:
+      - "9092:9092"
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_AUTO_CREATE_TOPICS_ENABLE: "true"
+    depends_on:
+      - zookeeper
+    networks:
+      - ecommerce-microservice-app
+    restart: unless-stopped
+
+  rabbitmq:
+    container_name: rabbitmq_container
+    image: rabbitmq:3-management
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    networks:
+      - ecommerce-microservice-app
+    restart: unless-stopped
+
+networks:
+  ecommerce-microservice-app:
+    external: true
+
+volumes:
+  postgres_data:
+    driver: local
+  mysql_data:
+    driver: local

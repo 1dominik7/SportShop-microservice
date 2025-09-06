@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: marketing-service
+  config:
+    import: optional:configserver:http://config-service:8888/
+
+logging:
+  level:
+    org.springframework.cloud.config.client: DEBUG

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Order Confirmation - SportShop</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            color: #333333;
+            font-size: 24px;
+        }
+
+        .order-info {
+            margin-top: 20px;
+        }
+
+        .order-info p {
+            margin: 5px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        table thead {
+            background-color: #f4f4f4;
+        }
+
+        table th, table td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        .footer {
+            margin-top: 30px;
+            font-size: 12px;
+            color: #666;
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Thank you for your order, <span th:text="${userName}">Customer</span>!</h1>
+
+    <div class="order-info">
+        <p><strong>Order ID:</strong> <span th:text="${orderId}">123456</span></p>
+        <p><strong>Order Date:</strong> <span th:text="${#temporals.format(orderDate, 'yyyy-MM-dd HH:mm')}">2025-08-06 14:35</span>
+        </p>
+<!--        <span th:text="${totalPrice}">99.99</span>-->
+        <strong>Total Price:</strong> $<span th:text="${#numbers.formatDecimal(totalPrice, 1, 'POINT', 2, 'COMMA')}">99.99</span>
+        </p>
+    </div>
+
+    <h2 style="margin-top: 30px;">Order Summary</h2>
+    <table>
+        <thead>
+        <tr>
+            <th>Product</th>
+            <th>Qty</th>
+            <th>Unit Price</th>
+            <th>Total</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="item : ${orderItems}">
+            <td th:text="${item.productName}">T-shirt</td>
+            <td th:text="${item.qty}">1</td>
+<!--            <td>$<span th:text="${item.price}">29.99</span></td>-->
+<!--            <td>$<span th:text="${item.price * item.qty}">59.98</span></td>-->
+            <td>$<span th:text="${#numbers.formatDecimal(item.price, 1, 'POINT', 2, 'COMMA')}">29.99</span></td>
+            <td>$<span th:text="${#numbers.formatDecimal(item.price * item.qty, 1, 'POINT', 2, 'COMMA')}">59.98</span></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <h2 style="margin-top: 30px;">Shipping Information</h2>
+    <div class="order-info">
+        <p><strong>Shipping Method:</strong> <span th:text="${shippingMethod}">DPD</span></p>
+        <p><strong>Shipping Cost:</strong> $<span th:text="${shippingCost}">12.99</span></p>
+    </div>
+
+    <div class="footer">
+        <p>Your order will be shipped soon. If you have any questions, contact us at support@sportshop.com</p>
+        <p>SportShop &copy; 2025</p>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,92 @@
+name: BSN Backend API Pipeline
+
+on:
+  push:
+    branches:
+      - ci/pipeline
+    paths:
+      - config/**
+      - eureka/**
+      - gateway/**
+      - marketing/**
+      - order/**
+      - payment/**
+      - product/**
+      - user/**
+      - 'docker-compose.yml'
+      - .github/workflows/*-backend.yml
+
+jobs:
+  build-and-push:
+    name: Build & Push Docker Images
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        service: [eureka,config,gateway,marketing,order,payment,product,user]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup JDK
+        uses: actions/setup-jdk@v4
+        with:
+          java-version: 17
+          distribution: 'corretto'
+
+      - name: Run tests
+        run: |
+          cd ${{ matrix.service }}
+          ./mvnw test
+
+      - name: Build project
+        run: |
+          cd ${{ matrix.service }}
+          ./mvnw package
+
+      - name: Extract project version
+        id: extract_version
+        run: |
+          cd ${{ matrix.service }}
+          VERSION=$(./mvnw help:evaluate -Dexpression=project.version -q -DforceStdout)
+          echo "VERSION=$VERSION" >> $GITHUB_OUTPUT
+
+      - name: Login to DockerHub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Build & Push Docker Image
+        uses: docker/build-push-action@v5
+        with:
+          context: ${{ matrix.service }}
+          file: ${{ matrix.service }}/Dockerfile
+          push: true
+          platforms: linux/amd64
+          tags: |
+            ${{ secrets.DOCKERHUB_USERNAME }}/bsn-${{ matrix.service }}:${{ steps.extract_version.outputs.VERSION }}
+            ${{ secrets.DOCKERHUB_USERNAME }}/bsn-${{ matrix.service }}:latest
+
+  deploy:
+    name: Deploy Backend
+    runs-on: ubuntu-latest
+    needs: build-and-push
+    steps:
+      - name: Create deployment folder
+        run: ssh ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_IP }} "mkdir -p ci-cd"
+
+      - name: Copy docker-compose file
+        run: scp docker-compose.yml ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_IP }}:ci-cd/docker-compose.yml
+
+      - name: Set ENV variable and deploy
+        run: |
+          ssh ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_IP }} <<EOF
+          export EMAIL_HOSTNAME=${{ secrets.EMAIL_HOSTNAME }}
+          export EMAIL_USERNAME=${{ secrets.EMAIL_USERNAME }}
+          export EMAIL_PASSWORD=${{ secrets.EMAIL_PASSWORD }}
+          cd ci-cd
+          docker-compose -f docker-compose.yml pull -q
+          docker-compose -f docker-compose.yml up -d
+          EOF

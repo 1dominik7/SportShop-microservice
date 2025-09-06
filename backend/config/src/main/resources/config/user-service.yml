@@ -1,0 +1,173 @@
+spring:
+  data:
+    mongodb:
+      uri: ${MONGO_URI}
+      database: ${MONGO_DATABASE}
+  mail:
+    host: ${MAIL_HOST}
+    port: ${MAIL_PORT}
+    username: ${MAIL_USERNAME}
+    password: ${MAIL_PASSWORD}
+    protocol: smtp
+    default-encoding: UTF-8
+    properties:
+      mail:
+        smtp:
+          trust: "*"
+          ssl:
+            trust: "*"
+          auth: true
+          starttls:
+            enable: true
+          transport:
+            protocol: smtp
+          connectiontimeout: 5000
+          timeout: 3000
+          writetimeout: 5000
+        debug: true
+    thymeleaf:
+      prefix: classpath:/templates/
+      suffix: .html
+      mode: HTML
+      cache: false
+  zipkin:
+    base-url: http://zipkin:9411
+    enabled: true
+    sender:
+      type: web
+  sleuth:
+    enabled: true
+
+application:
+  security:
+    jwt:
+      secret-key: ${JWT_SECRET_KEY}
+      expiration: ${JWT_EXPIRATION}
+  mailing:
+    frontend:
+      activation-url: ${ACTIVATION_URL}
+      restart-password-url: ${RESTART_PASSWORD_URL}
+
+server:
+  port: 8082
+  servlet:
+    context-path: /api/v1
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    prometheus:
+      enabled: true
+    health:
+      show-details: always
+  health:
+    circuitbreakers:
+      enabled: true
+  tracing:
+    sampling:
+      probability: 1.0
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_URL}
+    register-with-eureka: true
+    fetch-registry: true
+
+
+logging:
+  file:
+    name: logs/${spring.application.name}.log
+  logback:
+    rollingpolicy:
+      max-file-size: 5MB
+      max-history: 7
+  level:
+    org.springframework.boot.autoconfigure.jdbc: DEBUG
+    org.springframework.cloud.openfeign: DEBUG
+    feign: DEBUG
+    com.netflix.discovery: DEBUG
+    org.springframework.cloud: DEBUG
+
+resilience4j:
+  circuitbreaker:
+    instances:
+      productService:
+        registerHealthIndicator: true
+        slidingWindowSize: 10
+        minimumNumberOfCalls: 5
+        permittedNumberOfCallsInHalfOpenState: 3
+        waitDurationInOpenState: 10s
+        failureRateThreshold: 50
+        automaticTransitionFromOpenToHalfOpenEnabled: true
+        slidingWindowType: count_based
+      paymentService:
+        registerHealthIndicator: true
+        slidingWindowSize: 10
+        minimumNumberOfCalls: 5
+        permittedNumberOfCallsInHalfOpenState: 3
+        waitDurationInOpenState: 30s
+        failureRateThreshold: 50
+        automaticTransitionFromOpenToHalfOpenEnabled: true
+        slidingWindowType: count_based
+      shopOrderService:
+        registerHealthIndicator: true
+        slidingWindowSize: 10
+        minimumNumberOfCalls: 5
+        permittedNumberOfCallsInHalfOpenState: 3
+        waitDurationInOpenState: 10s
+        failureRateThreshold: 50
+        automaticTransitionFromOpenToHalfOpenEnabled: true
+        slidingWindowType: count_based
+  ratelimiter:
+    instances:
+      productService:
+        timeout-duration: 500ms
+        limit-refresh-period: 4s
+        limit-for-period: 10
+      paymentService:
+        timeout-duration: 500ms
+        limit-refresh-period: 4s
+        limit-for-period: 2
+      shopOrderService:
+        timeout-duration: 500ms
+        limit-refresh-period: 4s
+        limit-for-period: 10
+  retry:
+    instances:
+      productService:
+        maxAttempts: 3
+        waitDuration: 500ms
+        enableExponentialBackoff: true
+        exponentialBackoffMultiplier: 2
+      paymentService:
+        maxAttempts: 3
+        waitDuration: 1s
+        enableExponentialBackoff: true
+      shopOrderService:
+        maxAttempts: 3
+        waitDuration: 1s
+        enableExponentialBackoff: true
+
+keycloak:
+  admin:
+    username: ${KEYCLOAK_USERNAME}
+    password: ${KEYCLOAK_PASSWORD}
+    server-url: ${KEYCLOAK_URL}
+    realm: ${KEYCLOAK_REALM}
+    client-id: ${KEYCLOAK_CLIENT_ID}
+    client-uid: ${KEYCLOAK_CLIENT_UID}
+    client-secret: ${KEYCLOAK_CLIENT_SECRET}
+
+feign:
+  client:
+    config:
+      payment-service:
+        url: ${PAYMENT_SERVICE_URL:http://localhost:8085/api/v1}
+      product-service:
+        url: ${PRODUCT_SERVICE_URL:http://localhost:8083/api/v1}
+      order-service:
+        url: ${ORDER_SERVICE_URL:http://localhost:8084/api/v1}
