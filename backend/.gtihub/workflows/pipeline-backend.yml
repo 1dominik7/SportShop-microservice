@@ -74,8 +74,20 @@ jobs:
     runs-on: ubuntu-latest
     needs: build-and-push
     steps:
-      - name: Create deployment folder
+      - name: Create deployment folder and env
         run: ssh ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_IP }} "mkdir -p ci-cd"
+
+      - name: Copy .env files for all services
+        run: |
+          scp backend/.env ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_IP }}:ci-cd/.env
+          scp backend/user/.env ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_IP }}:ci-cd/user/.env
+          scp backend/order/.env ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_IP }}:ci-cd/order/.env
+          scp backend/payment/.env ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_IP }}:ci-cd/payment/.env
+          scp backend/product/.env ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_IP }}:ci-cd/product/.env
+          scp backend/gateway/.env ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_IP }}:ci-cd/gateway/.env
+          scp backend/config/.env ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_IP }}:ci-cd/config/.env
+          scp backend/eureka/.env ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_IP }}:ci-cd/eureka/.env
+          scp backend/marketing/.env ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_IP }}:ci-cd/marketing/.env
 
       - name: Copy docker-compose file
         run: scp docker-compose.yml ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_IP }}:ci-cd/docker-compose.yml
