@@ -37,18 +37,18 @@ jobs:
 
       - name: Run tests
         run: |
-          cd ${{ matrix.service }}
+          cd backend/${{ matrix.service }}
           ./mvnw test
 
       - name: Build project
         run: |
-          cd ${{ matrix.service }}
+          cd backend/${{ matrix.service }}
           ./mvnw package
 
       - name: Extract project version
         id: extract_version
         run: |
-          cd ${{ matrix.service }}
+          cd backend/${{ matrix.service }}
           VERSION=$(./mvnw help:evaluate -Dexpression=project.version -q -DforceStdout)
           echo "VERSION=$VERSION" >> $GITHUB_OUTPUT
 
@@ -61,8 +61,8 @@ jobs:
       - name: Build & Push Docker Image
         uses: docker/build-push-action@v5
         with:
-          context: ${{ matrix.service }}
-          file: ${{ matrix.service }}/Dockerfile
+          context: backend/${{ matrix.service }}
+          file: backend/${{ matrix.service }}/Dockerfile
           push: true
           platforms: linux/amd64
           tags: |
