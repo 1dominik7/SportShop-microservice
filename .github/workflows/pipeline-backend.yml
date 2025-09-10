@@ -52,8 +52,8 @@ jobs:
       - name: Fetch .env files from VPS
         run: |
           mkdir -p backend
-          scp ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_IP }}:SportShop-microservice/backend/.env backend/.env
-          scp ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_IP }}:SportShop-microservice/backend/${{ matrix.service }}/.env backend/${{ matrix.service }}/.env
+          scp -i ~/.ssh/id_rsa ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_IP }}:SportShop-microservice/backend/.env backend/.env
+          scp -i ~/.ssh/id_rsa ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_IP }}:SportShop-microservice/backend/${{ matrix.service }}/.env backend/${{ matrix.service }}/.env
 
       # - name: Run tests
       #   run: |
