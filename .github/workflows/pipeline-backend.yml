@@ -54,6 +54,8 @@ jobs:
         run: |
           cd backend/${{ matrix.service }}
           ./mvnw package
+        env:
+         EUREKA_URL: ${{ secrets.EUREKA_URL }}
 
       - name: Extract project version
         id: extract_version
