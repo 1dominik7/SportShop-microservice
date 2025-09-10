@@ -29,6 +29,13 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Setup SSH for secure scp
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan ${{ secrets.VPS_IP }} >> ~/.ssh/known_hosts
+
       - name: Setup JDK
         uses: actions/setup-java@v4
         with:
@@ -38,6 +45,12 @@ jobs:
       - name: Make mvnw executable
         run: chmod +x backend/${{ matrix.service }}/mvnw
 
+      - name: Fetch .env files from VPS
+        run: |
+          mkdir -p backend
+          scp ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_IP }}:SportShop-microservice/backend/.env backend/.env
+          scp ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_IP }}:SportShop-microservice/backend/${{ matrix.service }}/.env backend/${{ matrix.service }}/.env
+
       # - name: Run tests
       #   run: |
       #     cd backend/${{ matrix.service }}
@@ -46,16 +59,11 @@ jobs:
       #     else
       #       ./mvnw test
       #     fi
-      - name: Prepare .env files
-        run: |
-          cp backend/${{ matrix.service }}/.env.example backend/${{ matrix.service }}/.env
 
       - name: Build project
         run: |
           cd backend/${{ matrix.service }}
           ./mvnw package
-        env:
-         EUREKA_URL: ${{ secrets.EUREKA_URL }}
 
       - name: Extract project version
         id: extract_version
