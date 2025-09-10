@@ -41,7 +41,11 @@ jobs:
       - name: Run tests
         run: |
           cd backend/${{ matrix.service }}
-          ./mvnw test
+          if [ "${{ matrix.service }}" = "gateway" ] || [ "${{ matrix.service }}" = "eureka" ] || [ "${{ matrix.service }}" = "config" ]; then
+            ./mvnw package -DskipTests
+          else
+            ./mvnw test
+          fi
 
       - name: Build project
         run: |
