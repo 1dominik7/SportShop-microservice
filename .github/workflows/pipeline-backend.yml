@@ -36,6 +36,10 @@ jobs:
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan -H ${{ secrets.VPS_IP }} >> ~/.ssh/known_hosts
 
+      - name: Debug SSH connection
+        run: |
+         ssh -v -i ~/.ssh/id_rsa ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_IP }} hostname || true
+
       - name: Setup JDK
         uses: actions/setup-java@v4
         with:
