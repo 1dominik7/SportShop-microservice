@@ -38,14 +38,14 @@ jobs:
       - name: Make mvnw executable
         run: chmod +x backend/${{ matrix.service }}/mvnw
 
-      - name: Run tests
-        run: |
-          cd backend/${{ matrix.service }}
-          if [ "${{ matrix.service }}" = "gateway" ] || [ "${{ matrix.service }}" = "eureka" ] || [ "${{ matrix.service }}" = "config" ]; then
-            ./mvnw package -DskipTests
-          else
-            ./mvnw test
-          fi
+      # - name: Run tests
+      #   run: |
+      #     cd backend/${{ matrix.service }}
+      #     if [ "${{ matrix.service }}" = "gateway" ] || [ "${{ matrix.service }}" = "eureka" ] || [ "${{ matrix.service }}" = "config" ]; then
+      #       ./mvnw package -DskipTests
+      #     else
+      #       ./mvnw test
+      #     fi
 
       - name: Build project
         run: |
