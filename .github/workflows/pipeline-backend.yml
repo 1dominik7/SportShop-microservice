@@ -46,6 +46,9 @@ jobs:
       #     else
       #       ./mvnw test
       #     fi
+      - name: Prepare .env files
+        run: |
+          cp backend/${{ matrix.service }}/.env.example backend/${{ matrix.service }}/.env
 
       - name: Build project
         run: |
