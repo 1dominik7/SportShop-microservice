@@ -3,7 +3,7 @@ name: SportShop Backend API Pipeline
 on:
   push:
     branches:
-      - ci/pipeline
+      - main
     paths:
       - config/**
       - eureka/**
