@@ -5,15 +5,15 @@ on:
     branches:
       - main
     paths:
-      - config/**
-      - eureka/**
-      - gateway/**
-      - marketing/**
-      - order/**
-      - payment/**
-      - product/**
-      - user/**
-      - 'docker-compose.yml'
+      - backend/config/**
+      - backend/eureka/**
+      - backend/gateway/**
+      - backend/marketing/**
+      - backend/order/**
+      - backend/payment/**
+      - backend/product/**
+      - backend/user/**
+      - backend/docker-compose.yml
       - .github/workflows/*-backend.yml
 
 jobs:
@@ -120,37 +120,21 @@ jobs:
     steps:
      - name: Run deployment script on VPS
        run: |
+         scp backend/.env ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_IP }}:/SportShop-microservice/.env
+
+         cd /SportShop-microservice
+ 
+         scp backend/user/.env ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_IP }}:/SportShop-microservice/backend/user/.env
+         scp backend/order/.env ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_IP }}:/SportShop-microservice/backend/order/.env
+         scp backend/product/.env ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_IP }}:SportShop-microservice/backend/product/.env
+         scp backend/payment/.env ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_IP }}:/SportShop-microservice/backend/payment/.env
+         scp backend/marketing/.env ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_IP }}:/SportShop-microservice/backend/marketing/.env
+         scp backend/gateway/.env ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_IP }}:/SportShop-microservice/backend/gateway/.env
+         scp backend/config/.env ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_IP }}:/SportShop-microservice/backend/config/.env
+ 
          ssh ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_IP }} <<EOF
-         source /path/to/secrets/.env  # Zamiast przesyłać pliki .env, załaduj je bezpośrednio
-         cd /path/to/project
+         source /SportShop-microservice/.env 
+         cd /SportShop-microservice
          docker-compose -f docker-compose.yml pull -q
          docker-compose -f docker-compose.yml up -d
          EOF
-      # - name: Create deployment folder and env
-      #   run: ssh ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_IP }} "mkdir -p ci-cd"
-
-      # - name: Copy .env files for all services
-      #   run: |
-      #     scp backend/.env ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_IP }}:ci-cd/.env
-      #     scp backend/user/.env ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_IP }}:ci-cd/user/.env
-      #     scp backend/order/.env ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_IP }}:ci-cd/order/.env
-      #     scp backend/payment/.env ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_IP }}:ci-cd/payment/.env
-      #     scp backend/product/.env ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_IP }}:ci-cd/product/.env
-      #     scp backend/gateway/.env ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_IP }}:ci-cd/gateway/.env
-      #     scp backend/config/.env ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_IP }}:ci-cd/config/.env
-      #     scp backend/eureka/.env ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_IP }}:ci-cd/eureka/.env
-      #     scp backend/marketing/.env ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_IP }}:ci-cd/marketing/.env
-
-      # - name: Copy docker-compose file
-      #   run: scp docker-compose.yml ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_IP }}:ci-cd/docker-compose.yml
-
-      # - name: Set ENV variable and deploy
-      #   run: |
-      #     ssh ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_IP }} <<EOF
-      #     export EMAIL_HOSTNAME=${{ secrets.EMAIL_HOSTNAME }}
-      #     export EMAIL_USERNAME=${{ secrets.EMAIL_USERNAME }}
-      #     export EMAIL_PASSWORD=${{ secrets.EMAIL_PASSWORD }}
-      #     cd ci-cd
-      #     docker-compose -f docker-compose.yml pull -q
-      #     docker-compose -f docker-compose.yml up -d
-      #     EOF
