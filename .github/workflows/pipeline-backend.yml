@@ -78,7 +78,7 @@ jobs:
      - name: Deploy on VPS
        run: |
          ssh -p 8000 -i ~/.ssh/id_rsa ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_IP }} << 'EOF'
-         cd /SportShop-microservice/backend
+         cd /home/dominik/SportShop-microservice/backend
          
          echo "Pulling latest Docker images..."
          docker-compose pull
