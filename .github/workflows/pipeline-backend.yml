@@ -29,33 +29,6 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Setup SSH with debugging
-        run: |
-          echo "Creating .ssh directory..."
-          mkdir -p ~/.ssh
-          chmod 700 ~/.ssh
-          echo "✓ .ssh directory created"
-
-          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
-          echo "✓ SSH private key created"
-
-          echo "Testing SSH connection..."
-          ssh -o StrictHostKeyChecking=no -o BatchMode=yes -i ~/.ssh/id_rsa -p 8000 ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_IP }} "echo 'SSH test successful'" || true
-
-          echo "Adding VPS to known hosts..."
-          ssh-keyscan -p 8000 -H ${{ secrets.VPS_IP }} >> ~/.ssh/known_hosts 2>&1 || echo "ssh-keyscan completed (ignoring errors)"
-
-          chmod 600 ~/.ssh/known_hosts 2>/dev/null || true
-
-          echo "=== SSH Setup Completed ==="
-          echo "Final directory contents:"
-          ls -la ~/.ssh/
-
-      - name: Debug SSH connection
-        run: |
-          ssh -v -i ~/.ssh/id_rsa -p 8000 ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_IP }} hostname || true
-
       - name: Setup JDK
         uses: actions/setup-java@v4
         with:
@@ -65,32 +38,10 @@ jobs:
       - name: Make mvnw executable
         run: chmod +x backend/${{ matrix.service }}/mvnw
 
-      # - name: Fetch .env files from VPS
-      #   run: |
-      #     mkdir -p backend
-      #     scp -i ~/.ssh/id_rsa ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_IP }}:SportShop-microservice/backend/.env backend/.env
-      #     scp -i ~/.ssh/id_rsa ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_IP }}:SportShop-microservice/backend/${{ matrix.service }}/.env backend/${{ matrix.service }}/.env
-
-      # - name: Run tests
-      #   run: |
-      #     cd backend/${{ matrix.service }}
-      #     if [ "${{ matrix.service }}" = "gateway" ] || [ "${{ matrix.service }}" = "eureka" ] || [ "${{ matrix.service }}" = "config" ]; then
-      #       ./mvnw package -DskipTests
-      #     else
-      #       ./mvnw test
-      #     fi
-
       - name: Build project
         run: |
           cd backend/${{ matrix.service }}
           ./mvnw package -DskipTests
-
-      - name: Extract project version
-        id: extract_version
-        run: |
-          cd backend/${{ matrix.service }}
-          VERSION=$(./mvnw help:evaluate -Dexpression=project.version -q -DforceStdout)
-          echo "VERSION=$VERSION" >> $GITHUB_OUTPUT
 
       - name: Login to DockerHub
         uses: docker/login-action@v3
@@ -106,7 +57,6 @@ jobs:
           push: true
           platforms: linux/amd64
           tags: |
-            ${{ secrets.DOCKERHUB_USERNAME }}/backend-${{ matrix.service }}:${{ steps.extract_version.outputs.VERSION }}
             ${{ secrets.DOCKERHUB_USERNAME }}/backend-${{ matrix.service }}-service:latest
 
   deploy:
@@ -124,9 +74,11 @@ jobs:
      - name: Test SSH connection
        run: |
          ssh -o BatchMode=yes -i ~/.ssh/id_rsa -p 8000 ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_IP }} "echo 'SSH connection test successful'" || exit 1 
+
      - name: Copy docker-compose to VPS
        run: |
          scp -P 8000 -i ~/.ssh/id_rsa backend/docker-compose.yml ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_IP }}:/SportShop-microservice/backend/docker-compose.yml  
+     
      - name: Deploy on VPS
        run: |
          ssh -p 8000 -i ~/.ssh/id_rsa ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_IP }} << 'EOF'
