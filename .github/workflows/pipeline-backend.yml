@@ -75,10 +75,6 @@ jobs:
        run: |
          ssh -o BatchMode=yes -i ~/.ssh/id_rsa -p 8000 ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_IP }} "echo 'SSH connection test successful'" || exit 1 
 
-     - name: Copy docker-compose to VPS
-       run: |
-         scp -P 8000 -i ~/.ssh/id_rsa backend/docker-compose.yml ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_IP }}:/SportShop-microservice/backend/docker-compose.yml  
-     
      - name: Deploy on VPS
        run: |
          ssh -p 8000 -i ~/.ssh/id_rsa ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_IP }} << 'EOF'
