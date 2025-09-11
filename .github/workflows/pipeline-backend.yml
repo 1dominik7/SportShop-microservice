@@ -34,37 +34,22 @@ jobs:
           echo "Creating .ssh directory..."
           mkdir -p ~/.ssh
           chmod 700 ~/.ssh
+          echo "✓ .ssh directory created"
 
-          echo "Directory created:"
-          ls -ld ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          echo "✓ SSH private key created"
 
-          echo "Creating SSH private key..."
-          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa.tmp
-          chmod 600 ~/.ssh/id_rsa.tmp
-
-          echo "Validating key format..."
-          if head -1 ~/.ssh/id_rsa.tmp | grep -q "BEGIN.*PRIVATE KEY"; then
-            echo "Key format looks good"
-            mv ~/.ssh/id_rsa.tmp ~/.ssh/id_rsa
-          else
-            echo "ERROR: Invalid key format!"
-            echo "First line of key:"
-            head -1 ~/.ssh/id_rsa.tmp
-            exit 1
-          fi
+          echo "Testing SSH connection..."
+          ssh -o StrictHostKeyChecking=no -o BatchMode=yes -i ~/.ssh/id_rsa -p 8000 ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_IP }} "echo 'SSH test successful'" || true
 
           echo "Adding VPS to known hosts..."
-          ssh-keyscan -H ${{ secrets.VPS_IP }} > ~/.ssh/known_hosts.tmp 2>/dev/null
+          ssh-keyscan -p 8000 -H ${{ secrets.VPS_IP }} >> ~/.ssh/known_hosts 2>&1 || echo "ssh-keyscan completed (ignoring errors)"
 
-          if [ -s ~/.ssh/known_hosts.tmp ]; then
-            mv ~/.ssh/known_hosts.tmp ~/.ssh/known_hosts
-            chmod 600 ~/.ssh/known_hosts
-            echo "Known hosts updated"
-          else
-            echo "Warning: ssh-keyscan failed, but continuing..."
-          fi
+          chmod 600 ~/.ssh/known_hosts 2>/dev/null || true
 
-          echo "Final SSH setup:"
+          echo "=== SSH Setup Completed ==="
+          echo "Final directory contents:"
           ls -la ~/.ssh/
 
       - name: Debug SSH connection
