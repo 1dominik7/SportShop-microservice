@@ -38,7 +38,7 @@ jobs:
 
       - name: Debug SSH connection
         run: |
-         ssh -v -i ~/.ssh/id_rsa ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_IP }} hostname || true
+          ssh -v -i ~/.ssh/id_rsa -p 8000 ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_IP }} hostname || true
 
       - name: Setup JDK
         uses: actions/setup-java@v4
