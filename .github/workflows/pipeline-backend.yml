@@ -29,42 +29,12 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Check available directories and permissions
+      - name: Setup SSH
         run: |
-          echo "Current working directory:"
-          pwd
-          echo "Listing contents of /home/runner directory:"
-          ls -l /home/runner
-          echo "Checking permissions for /home/runner/.ssh folder:"
-          ls -ld /home/runner/.ssh || echo ".ssh does not exist"
-
-      - name: Setup SSH for secure scp
-        run: |
-          echo "Creating ~/.ssh directory"
-          mkdir -p /home/runner/.ssh
-          echo "Verifying directory creation"
-          ls -ld /home/runner/.ssh
-
-          echo "VPS IP: ${{ secrets.VPS_IP }}"
-
-          touch /home/runner/.ssh/known_hosts
-
-          echo "Setting up SSH private key"
-          echo "${{ secrets.SSH_PRIVATE_KEY }}" > /home/runner/.ssh/id_rsa
-          chmod 600 /home/runner/.ssh/id_rsa
-
-          echo "Adding VPS to known hosts"
-          ssh-keyscan -v -H ${{ secrets.VPS_IP }} >> /home/runner/.ssh/known_hosts
-
-          echo "Contents of known_hosts"
-          cat /home/runner/.ssh/known_hosts
-          
-          echo "Changing permissions of known_hosts"
-          chmod 600 /home/runner/.ssh/known_hosts
-
-          echo "Verifying contents of ~/.ssh"
-          ls -l /home/runner/.ssh 
-
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -H ${{ secrets.VPS_IP }} >> ~/.ssh/known_hosts 2>/dev/null
 
       - name: Debug SSH connection
         run: |
