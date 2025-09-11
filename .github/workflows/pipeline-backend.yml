@@ -45,8 +45,10 @@ jobs:
           echo "Verifying directory creation"
           ls -ld /home/runner/.ssh
 
+          echo "VPS IP: ${{ secrets.VPS_IP }}"
+
           touch /home/runner/.ssh/known_hosts
-    
+
           echo "Setting up SSH private key"
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > /home/runner/.ssh/id_rsa
           chmod 600 /home/runner/.ssh/id_rsa
