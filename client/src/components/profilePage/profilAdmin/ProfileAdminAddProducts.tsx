@@ -2,7 +2,6 @@ import { ChangeEvent, useEffect, useState } from "react";
 import { api } from "../../../config/api";
 import {
   Category,
-  ToastOptions,
   VariationOption,
 } from "../../../types/userTypes";
 import { useFormik } from "formik";
@@ -18,8 +17,9 @@ import {
 } from "@mui/material";
 import { productSchema } from "../../../validator/userValidator";
 import LoadingAnimation from "../../../ui/LoadingAnimation";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer, toast,ToastOptions } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
 
 interface ProductItem {
   id?: number;
