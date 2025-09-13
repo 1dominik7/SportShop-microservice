@@ -3,14 +3,12 @@ import {
   ProductItemByColour,
   UserReviewProductById,
 } from "../../types/userTypes";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Swiper as SwiperType } from "swiper";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/autoplay";
-import SwiperCore from "swiper";
-import { Autoplay, Pagination } from "swiper";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Swiper as SwiperType, Autoplay, Pagination } from "swiper";
 import ProductItemDetails from "./ProductItemDetails";
 
 interface Props {
