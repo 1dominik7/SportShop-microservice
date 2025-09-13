@@ -9,6 +9,7 @@
     "resolveJsonModule": true,
     "esModuleInterop": true,
         "skipLibCheck": true,
+        "noImplicitAny": false,
     "allowSyntheticDefaultImports": true,
     "types": ["swiper",
       "@stripe/stripe-js",
