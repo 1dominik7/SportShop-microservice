@@ -13,7 +13,7 @@ import { useNavigate } from "react-router";
 import LoadingAnimation from "../../ui/LoadingAnimation";
 import { api } from "../../config/api";
 import { emailValidationSchema } from "../../validator/userValidator";
-import { toast, ToastContainer,ToastOptions  } from "react-toastify";
+import { toast, ToastContainer,ToastOptions } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const producers = [

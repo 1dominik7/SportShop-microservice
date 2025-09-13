@@ -5,12 +5,7 @@
     { "path": "./tsconfig.node.json" }
   ],
   "compilerOptions": {
-        "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "esModuleInterop": true,
-        "skipLibCheck": true,
-        "noImplicitAny": false,
-    "allowSyntheticDefaultImports": true,
+      "noImplicitAny": false,
     "types": ["swiper",
       "@stripe/stripe-js",
     "vitest/globals"],
