@@ -5,15 +5,18 @@ import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import GradeIcon from "@mui/icons-material/Grade";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
-import "swiper/swiper-bundle.min.css";
-import { Swiper as SwiperType } from "swiper";
-import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import "swiper/css/autoplay";
+import { Swiper, SwiperSlide, type SwiperRef } from "swiper/react";
+import type { Swiper as SwiperType } from "swiper/types";
 import { useProductsByFiltersGrouped } from "../../hooks/query";
 import { useNavigate } from "react-router";
 import LoadingAnimation from "../../ui/LoadingAnimation";
 import { api } from "../../config/api";
 import { emailValidationSchema } from "../../validator/userValidator";
-import { toast, ToastContainer,ToastOptions } from "react-toastify";
+import { toast, ToastContainer, ToastOptions } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const producers = [
@@ -102,25 +105,25 @@ const BannerCenter = () => {
 
   const goToNextSlide = () => {
     if (swiperRef.current) {
-      swiperRef.current.swiper.slideNext();
+      swiperRef.current?.slideNext();
     }
   };
 
   const goToPrevSlide = () => {
     if (swiperRef.current) {
-      swiperRef.current.swiper.slidePrev();
+      swiperRef.current?.slidePrev();
     }
   };
 
   const goToNextSlideProducers = () => {
     if (swiperRefProducers.current) {
-      swiperRefProducers.current.swiper.slideNext();
+      swiperRef.current?.slideNext();
     }
   };
 
   const goToPrevSlideProducers = () => {
     if (swiperRefProducers.current) {
-      swiperRefProducers.current.swiper.slidePrev();
+      swiperRef.current?.slidePrev();
     }
   };
 
@@ -178,21 +181,13 @@ const BannerCenter = () => {
             className="h-full w-full object-cover cursor-pointer"
             src="/mercurial.jpg"
             alt=""
-            onClick={() =>
-              navigate(
-                `/products?category=1&filters=37[112]`
-              )
-            }
+            onClick={() => navigate(`/products?category=1&filters=37[112]`)}
           />
           <img
             className="h-full w-full object-cover cursor-pointer"
             src="/adidasPredator.jpg"
             alt=""
-               onClick={() =>
-              navigate(
-                `/products?category=1&filters=37[110]`
-              )
-            }
+            onClick={() => navigate(`/products?category=1&filters=37[110]`)}
           />
         </div>
         <div className="absolute -top-14 left-0 w-full h-[300px] bg-gray-100 -z-10 max-lg:-top-8 max-md:-top-8 max-md:h-[200px]" />
@@ -217,7 +212,9 @@ const BannerCenter = () => {
               </div>
             ) : (
               <Swiper
-                ref={swiperRef}
+                onSwiper={(swiper) => {
+                  swiperRef.current = swiper;
+                }}
                 spaceBetween={30}
                 breakpoints={{
                   0: {
@@ -366,7 +363,9 @@ const BannerCenter = () => {
           </div>
           <div className="w-full h-full">
             <Swiper
-              ref={swiperRefProducers}
+              onSwiper={(swiper) => {
+                swiperRefProducers.current = swiper;
+              }}
               spaceBetween={30}
               slidesPerView={1}
               breakpoints={{

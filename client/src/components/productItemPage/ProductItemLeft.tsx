@@ -8,7 +8,7 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/autoplay";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Swiper as SwiperType, Autoplay, Pagination } from "swiper";
+import type { Swiper as SwiperType } from "swiper/types";
 import ProductItemDetails from "./ProductItemDetails";
 
 interface Props {
@@ -34,7 +34,6 @@ const ProductItemLeft = ({
   openSection,
   setOpenSection,
 }: Props) => {
-  SwiperCore.use([Autoplay, Pagination]);
 
   const swiperRef = useRef<SwiperType | null>(null);
 

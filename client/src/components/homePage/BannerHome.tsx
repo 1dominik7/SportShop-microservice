@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Swiper as SwiperType, Autoplay } from "swiper";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/autoplay";
+import { Swiper, SwiperSlide } from "swiper/react";
+import type { Swiper as SwiperType } from "swiper/types";
 import LoadingAnimation from "../../ui/LoadingAnimation";
 import { api } from "../../config/api";
 import { useQuery } from "@tanstack/react-query";
