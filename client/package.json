@@ -39,7 +39,7 @@
     "react-toastify": "^11.0.5",
     "redux-mock-store": "^1.5.5",
     "styled-components": "^6.1.15",
-    "swiper": "^8.4.7",
+    "swiper": "^9.0.0",
     "yup": "^1.6.1"
   },
   "devDependencies": {
