@@ -177,7 +177,7 @@ public class AuthenticationService {
                 .secure(true)
                 .path("/")
                 .maxAge(maxAge)
-                .sameSite("Strict")
+                .sameSite("Strict")// production - None
                 .build();
 
         response.addHeader(HttpHeaders.SET_COOKIE, accessCookie.toString());
@@ -186,7 +186,7 @@ public class AuthenticationService {
                 .httpOnly(true)
                 .secure(true)
                 .path("/")
-                .maxAge(60 * 60 * 24 * 7) // 7 dni
+                .maxAge(60 * 60 * 24 * 7)
                 .sameSite("Strict")
                 .build();
 

@@ -20,7 +20,9 @@ const useTokenRefresh = () => {
 
     const timeoutId = setTimeout(async () => {
       try {
-        const res = await api.post("/api/v1/auth/refresh-token");
+        const res = await api.post("/api/v1/auth/refresh-token", null, {
+          withCredentials: true,
+        });
         const expiresIn = res.data.expires_in;
         const newTokenExpiresAt = Date.now() + expiresIn * 1000;
 
