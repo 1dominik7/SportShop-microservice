@@ -1,13 +1,12 @@
 import { useEffect, useRef, useState } from "react";
 import "swiper/css";
-import "swiper/css/navigation";
 import "swiper/css/pagination";
-import "swiper/css/autoplay";
 import { Swiper, SwiperSlide } from "swiper/react";
 import type { Swiper as SwiperType } from "swiper/types";
 import LoadingAnimation from "../../ui/LoadingAnimation";
 import { api } from "../../config/api";
 import { useQuery } from "@tanstack/react-query";
+import { Autoplay, Pagination } from "swiper";
 
 interface Image {
   id: number;
@@ -82,15 +81,15 @@ const BannerHome = () => {
       )}
 
       <Swiper
-        spaceBetween={50}
+        modules={[Autoplay, Pagination]}
+        spaceBetween={0}
         slidesPerView={1}
         loop={true}
         autoplay={{
           delay: autoplayDelay,
           disableOnInteraction: false,
-          waitForTransition: true,
         }}
-        pagination={{ clickable: true }}
+        pagination={false}
         onSlideChange={handleSlideChange}
         onSwiper={(swiperInstance: SwiperType) => {
           swiperRef.current = swiperInstance;
