@@ -30,13 +30,13 @@ spring:
       suffix: .html
       mode: HTML
       cache: false
-  zipkin:
-    base-url: http://zipkin:9411
-    enabled: true
-    sender:
-      type: web
-  sleuth:
-    enabled: true
+#  zipkin:
+#    base-url: ${ZIPKIN_URL}
+#    enabled: true
+#    sender:
+#      type: web
+#  sleuth:
+#    enabled: true
 
 application:
   security:
@@ -69,6 +69,11 @@ management:
   tracing:
     sampling:
       probability: 1.0
+    zipkin:
+      endpoint: ${ZIPKIN_URL}/api/v2/spans
+      base-url: ${ZIPKIN_URL}
+      connect-timeout: 10s
+      read-timeout: 30s
 
 eureka:
   client:

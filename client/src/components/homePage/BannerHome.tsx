@@ -18,6 +18,7 @@ interface Image {
 const BannerHome = () => {
   const swiperRef = useRef<SwiperType | null>(null);
 
+  const [imagesLoaded, setImagesLoaded] = useState(false);
   const [progress, setProgress] = useState(0);
   const [currentIndex, setCurrentIndex] = useState(0);
   const autoplayDelay = 5000;
@@ -72,6 +73,22 @@ const BannerHome = () => {
     setProgress(0);
   }, [currentIndex]);
 
+  useEffect(() => {
+    if (!images || images.length === 0) return;
+
+    const firstImage = new Image();
+    firstImage.src = images[0].url;
+
+    const handleLoad = () => setImagesLoaded(true);
+    firstImage.onload = handleLoad;
+    firstImage.onerror = handleLoad;
+
+    return () => {
+      firstImage.onload = null;
+      firstImage.onerror = null;
+    };
+  }, [images]);
+
   return (
     <div className="relative h-screen">
       {isLoading && (
@@ -101,7 +118,8 @@ const BannerHome = () => {
             <img
               src={item?.url}
               alt={item?.name}
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover transition-opacity duration-700"
+              style={{ opacity: imagesLoaded ? 1 : 0 }}
             />
           </SwiperSlide>
         ))}

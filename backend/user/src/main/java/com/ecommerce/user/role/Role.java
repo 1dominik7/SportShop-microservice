@@ -27,9 +27,6 @@ public class Role {
     @Indexed(unique = true)
     private String name;
 
-    @JsonIgnore
-    private List<User> users;
-
     @CreatedDate
     @NotNull
     private LocalDateTime createdDate;

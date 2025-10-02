@@ -130,6 +130,7 @@ services:
               httpHeaderValue1: "tenant1"
         EOF
         /run.sh
+#             url: http://gateway:3100 dla lokalnych
     ports:
       - "3000:3000"
     healthcheck:

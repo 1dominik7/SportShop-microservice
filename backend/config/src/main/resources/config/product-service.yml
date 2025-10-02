@@ -25,13 +25,13 @@ spring:
       kafka:
         binder:
           brokers: ${KAFKA_BOOTSTRAP_SERVERS}
-  zipkin:
-    base-url: http://zipkin:9411
-    enabled: true
-    sender:
-      type: web
-  sleuth:
-    enabled: true
+#  zipkin:
+#    base-url: ${ZIPKIN_URL}
+#    enabled: true
+#    sender:
+#      type: web
+#  sleuth:
+#    enabled: true
 
 server:
   port: 8083
@@ -49,6 +49,11 @@ management:
   tracing:
     sampling:
       probability: 1.0
+    zipkin:
+      endpoint: ${ZIPKIN_URL}/api/v2/spans
+      base-url: ${ZIPKIN_URL}
+      connect-timeout: 10s
+      read-timeout: 30s
 
 resilience4j:
   circuitbreaker:
