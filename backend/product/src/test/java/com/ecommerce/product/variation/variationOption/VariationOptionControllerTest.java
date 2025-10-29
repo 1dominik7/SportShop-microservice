@@ -77,7 +77,7 @@ public class VariationOptionControllerTest {
         Variation variation = new Variation();
         variation.setId(variationId);
 
-        VariationShortResponse variationShortResponse = new VariationShortResponse(1, "Size");
+        VariationShortResponse variationShortResponse = new VariationShortResponse(1, "Size","Shoes");
 
         VariationOptionWithVariationResponse savedVariationOption1 = VariationOptionWithVariationResponse.builder()
                 .variation(null)
