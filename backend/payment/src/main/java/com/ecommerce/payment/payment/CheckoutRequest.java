@@ -8,7 +8,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class StripeCheckoutRequest {
+public class CheckoutRequest {
     private ShopOrderRequest orderRequest;
     private String successUrl;
     private String cancelUrl;

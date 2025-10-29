@@ -33,4 +33,7 @@ public class Role {
 
     @LastModifiedDate
     private LocalDateTime lastModifiedDate;
+
+    public Role(Object o, String name, Object o1, LocalDateTime now, Object o2) {
+    }
 }

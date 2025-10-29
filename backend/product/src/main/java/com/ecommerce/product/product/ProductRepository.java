@@ -27,5 +27,8 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
 
     Page<Product> findByCategoryId(Integer categoryId, Pageable pageable);
 
+    List<Product> findByProductNameContainingIgnoreCase(String productName);
+
+    List<Product> findTop5ByOrderByCreatedDateDesc();
 }
 

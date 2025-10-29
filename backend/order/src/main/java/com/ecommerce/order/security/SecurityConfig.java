@@ -60,7 +60,11 @@ public class SecurityConfig {
                                 .requestMatchers(HttpMethod.GET,"/shipping-method/**").permitAll()
                                 .requestMatchers(HttpMethod.GET,"/order-line/**").permitAll()
                                 .requestMatchers(HttpMethod.POST,"/order-status/**").hasRole("ADMIN")
+                                .requestMatchers(HttpMethod.PUT,"/order-status/**").hasRole("ADMIN")
+                                .requestMatchers(HttpMethod.GET,"/order-status/**").permitAll()
                                 .requestMatchers(HttpMethod.DELETE,"/order-status/**").hasRole("ADMIN")
+                                .requestMatchers(HttpMethod.GET,"/shop-order/all").hasRole("ADMIN")
+                                .requestMatchers(HttpMethod.GET,"/shop-order/statistics/**").hasRole("ADMIN")
                                 .anyRequest().authenticated()
                 );
                 http.oauth2ResourceServer(oauth2 ->

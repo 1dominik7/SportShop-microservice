@@ -69,13 +69,6 @@ spring:
                 port: ${RABBITMQ_PORT}
                 username: ${RABBITMQ_USERNAME}
                 password: ${RABBITMQ_PASSWORD}
-#  zipkin:
-#    base-url: ${ZIPKIN_URL}
-#    enabled: true
-#    sender:
-#      type: web
-#  sleuth:
-#    enabled: true
 
 eureka:
   client:

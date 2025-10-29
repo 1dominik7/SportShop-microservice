@@ -1,13 +1,14 @@
 package com.ecommerce.payment.payment;
 
 import com.ecommerce.payment.clients.ProductItemCallerService;
-import com.ecommerce.payment.clients.dto.OrderLineResponse;
-import com.ecommerce.payment.clients.dto.ProductItemOneByColour;
-import com.ecommerce.payment.clients.dto.ProductItemOneByColourResponse;
-import com.ecommerce.payment.clients.dto.ShopOrderResponse;
+import com.ecommerce.payment.clients.dto.*;
+import com.ecommerce.payment.payment.PayUDTO.PayUOrder;
+import com.ecommerce.payment.payment.PayUDTO.PayUPayload;
+import com.ecommerce.payment.payment.PayUDTO.PayUProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -30,188 +31,161 @@ public class PayUPaymentService {
     private final ProductItemCallerService productItemCallerService;
     private final ObjectMapper objectMapper;
 
-//    @Value("${application.tpay.client-id}")
-//    private String clientId;
+    @Value("${application.payu.client-id}")
+    private String clientId;
 
-//    @Value("${application.tpay.client-secret}")
-//    private String clientSecret;
+    @Value("${application.payu.client-secret}")
+    private String clientSecret;
 
-//    @Value("${application.tpay.api-url}")
-//    private String apiUrl;
+    @Value("${application.payu.pos-id}")
+    private String posId;
 
-    private String clientId = "497723";
-    private String clientSecret = "c7bef1c5282b371885b95f78b1f7bcb3";
-    private String posId = "497723";
-    private String apiUrl = "https://secure.snd.payu.com";
+    @Value("${application.payu.api-url}")
+    private String apiUrl;
+
+    @Value("${application.payu.notify-url}")
+    private String notifyUrl;
+
+    @Value("${application.payment.success-url}")
+    private String successURL;
 
     private String getAccessToken() {
-        try {
-            HttpHeaders headers = new HttpHeaders();
-            headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
-            headers.setBasicAuth(clientId, clientSecret);
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
+        headers.setBasicAuth(clientId, clientSecret);
 
-            MultiValueMap<String, String> body = new LinkedMultiValueMap<>();
-            body.add("grant_type", "client_credentials");
+        MultiValueMap<String, String> body = new LinkedMultiValueMap<>();
+        body.add("grant_type", "client_credentials");
 
-            HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<>(body, headers);
+        HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<>(body, headers);
 
-            String authUrl = apiUrl + "/pl/standard/user/oauth/authorize";
+        String authUrl = apiUrl + "/pl/standard/user/oauth/authorize";
 
-            ResponseEntity<Map> response = restTemplate.postForEntity(authUrl, request, Map.class);
+        ResponseEntity<Map> response = restTemplate.postForEntity(authUrl, request, Map.class);
 
-            if (response.getStatusCode() == HttpStatus.OK) {
-                Map<String, Object> responseBody = response.getBody();
-                String accessToken = (String) responseBody.get("access_token");
-                return accessToken;
-            } else {
-                log.error("OAuth failed: {} - {}", response.getStatusCode(), response.getBody());
-                throw new RuntimeException("OAuth failed: " + response.getStatusCode());
-            }
-        } catch (Exception e) {
-            log.error("Error getting access token: {}", e.getMessage());
-            throw new RuntimeException("Access token error: " + e.getMessage());
+        if (response.getStatusCode() == HttpStatus.OK) {
+            Map<String, Object> responseBody = response.getBody();
+            return (String) responseBody.get("access_token");
+        } else {
+            throw new RuntimeException("OAuth failed: " + response.getStatusCode());
         }
     }
 
-    public String createCheckoutSession(ShopOrderResponse order, String successUrl, String cancelUrl) {
-        try {
-            String accessToken = getAccessToken();
+    public String createCheckoutSession(ShopOrderResponse order, String clientIp) throws InsufficientResourcesException {
 
-            Map<String, Object> orderRequest = new HashMap<>();
+        validateStock(order);
 
-            Double amountUsd = order.getFinalOrderTotal();
-            Double amountPln = amountUsd * 4;
+        String accessToken = getAccessToken();
 
-            orderRequest.put("notifyUrl", "https://webhook.site/d7341d1a-a68b-4292-8b0b-ae0597c5d7d8");
-            orderRequest.put("continueUrl", successUrl + "?orderId=" + order.getId());
-            orderRequest.put("customerIp", "127.0.0.1");
+        Map<String, Object> orderRequest = new HashMap<>();
 
-            List<Map<String, Object>> products = new ArrayList<>();
-            Map<String, Object> product = new HashMap<>();
-            product.put("name", "Order #" + order.getId());
-            product.put("unitPrice", toPayuAmount(amountPln));
-            product.put("quantity", 1);
-            products.add(product);
+        Double amountUsd = order.getFinalOrderTotal();
+        Double amountPln = amountUsd * 4;
 
-            orderRequest.put("products", products);
-            orderRequest.put("totalAmount", toPayuAmount(amountPln));
-            orderRequest.put("currencyCode", "PLN");
-            orderRequest.put("description", "Order #" + order.getId());
-            orderRequest.put("merchantPosId", this.posId);
-            orderRequest.put("extOrderId", "ORDER_" + order.getId() + "_" + System.currentTimeMillis());
+        orderRequest.put("notifyUrl", notifyUrl);
+        orderRequest.put("continueUrl", successURL + "?order_id=" + order.getId());
+        orderRequest.put("customerIp", clientIp);
 
-            HttpHeaders headers = new HttpHeaders();
-            headers.setContentType(MediaType.APPLICATION_JSON);
-            headers.setBearerAuth(accessToken);
+        List<Map<String, Object>> products = new ArrayList<>();
+        Map<String, Object> product = new HashMap<>();
+        product.put("name", "Order #" + order.getId());
+        product.put("unitPrice", toPayuAmount(amountPln));
+        product.put("quantity", 1);
+        products.add(product);
 
-            HttpEntity<Map<String, Object>> request = new HttpEntity<>(orderRequest, headers);
+        orderRequest.put("products", products);
+        orderRequest.put("totalAmount", toPayuAmount(amountPln));
+        orderRequest.put("currencyCode", "PLN");
+        orderRequest.put("description", "Order #" + order.getId());
+        orderRequest.put("merchantPosId", posId);
 
-            String paymentUrl = this.apiUrl + "/api/v2_1/orders";
+        String extOrderId = "ORDER_" + order.getId() + "_" + System.currentTimeMillis();
+        orderRequest.put("extOrderId", extOrderId);
 
-            ResponseEntity<Map> response = restTemplate.postForEntity(paymentUrl, request, Map.class);
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.setBearerAuth(accessToken);
 
-            if (response.getStatusCode() == HttpStatus.FOUND || response.getStatusCode() == HttpStatus.OK || response.getStatusCode() == HttpStatus.CREATED) {
-                Map<String, Object> responseBody = response.getBody();
+        HttpEntity<Map<String, Object>> request = new HttpEntity<>(orderRequest, headers);
 
-                if (responseBody != null) {
-                    String redirectUri = (String) responseBody.get("redirectUri");
-                    String payuOrderId = (String) responseBody.get("orderId");
+        String paymentUrl = apiUrl + "/api/v2_1/orders";
 
-                    if (redirectUri != null) {
-                        log.info("PayU payment created successfully. PayU OrderId: {}, Redirect: {}", payuOrderId, redirectUri);
-                        return redirectUri;
-                    }
+        ResponseEntity<Map> response = restTemplate.exchange(
+                paymentUrl,
+                HttpMethod.POST,
+                request,
+                Map.class
+        );
+
+
+        if (response.getStatusCode() == HttpStatus.FOUND || response.getStatusCode() == HttpStatus.OK || response.getStatusCode() == HttpStatus.CREATED) {
+            Map<String, Object> responseBody = response.getBody();
+
+            if (responseBody != null) {
+                String redirectUri = (String) responseBody.get("redirectUri");
+
+                if (redirectUri != null) {
+                    return redirectUri;
                 }
-
-                throw new RuntimeException("Invalid response from PayU: " + responseBody);
-            } else {
-                throw new RuntimeException("PayU API returned status: " + response.getStatusCode());
             }
 
-        } catch (Exception e) {
-            log.error("Failed to create PayU payment for order: {}", order.getId(), e);
-            throw new RuntimeException("Payment processing failed: " + e.getMessage());
+            throw new RuntimeException("Invalid response from PayU: " + responseBody);
+        } else {
+            throw new RuntimeException("PayU API returned status: " + response.getStatusCode());
         }
     }
 
     private String toPayuAmount(Double amount) {
-        return String.valueOf(Math.round(amount * 100 * 4));//USD
+        return String.valueOf(Math.round(amount * 100));//USD
     }
 
     @Transactional
     public void handleWebhookEvent(String payload, String signature) throws Exception {
-        try {
-            PayUNotification notification = objectMapper.readValue(payload, PayUNotification.class);
+        PayUPayload payloadObj = objectMapper.readValue(payload, PayUPayload.class);
+        PayUOrder order = payloadObj.getOrder();
 
-            if ("correct".equals(notification.getStatus()) || "success".equals(notification.getStatus())) {
-                handleSuccessfulPayment(notification);
-            } else if ("pending".equals(notification.getStatus())) {
-                handlePendingPayment(notification);
-            } else if ("error".equals(notification.getStatus()) || "failed".equals(notification.getStatus())) {
-                handleFailedPayment(notification);
-            } else {
-                log.warn("Unknown TPay payment status: {}", notification.getStatus());
+        if ("COMPLETED".equals(order.getStatus()) || "SUCCESS".equals(order.getStatus())) {
+            handleSuccessfulPayment(payloadObj);
+        }
+    }
+
+    private void handleSuccessfulPayment(PayUPayload payloadObj) throws InsufficientResourcesException {
+        Integer orderId = extractOrderIdFromExtOrderId(payloadObj.getOrder().getExtOrderId());
+
+        String transactionId = extractPaymentId(payloadObj.getProperties());
+        if (transactionId == null) {
+            transactionId = payloadObj.getOrder().getOrderId();
+            log.warn("PAYMENT_ID not found, using orderId as transactionId: {}", transactionId);
+        }
+
+        PaymentRequest paymentRequest = new PaymentRequest();
+        paymentRequest.setShopOrderId(orderId);
+        paymentRequest.setTransactionId(transactionId);
+        paymentRequest.setPaymentIntentId(payloadObj.getOrder().getOrderId());
+        paymentRequest.setProvider(payloadObj.getOrder().getPayMethod().getType());
+        paymentRequest.setStatus(Payment.PaymentStatus.SUCCEEDED);
+        paymentRequest.setPaymentDate(LocalDateTime.now());
+
+        paymentService.createPayment(paymentRequest);
+    }
+
+    private Integer extractOrderIdFromExtOrderId(String extOrderId) {
+        if (extOrderId != null && extOrderId.startsWith("ORDER_")) {
+            String[] parts = extOrderId.split("_");
+            return Integer.parseInt(parts[1]);
+        }
+        throw new IllegalArgumentException("Invalid extOrderId: " + extOrderId);
+    }
+
+    private String extractPaymentId(List<PayUProperty> properties) {
+        if (properties != null) {
+            for (PayUProperty prop : properties) {
+                if ("PAYMENT_ID".equals(prop.getName())) {
+                    return prop.getValue();
+                }
             }
-
-        } catch (Exception e) {
-            log.error("TPay webhook processing failed", e);
-            throw e;
         }
-    }
-
-    private void handleSuccessfulPayment(PayUNotification notification) throws InsufficientResourcesException {
-        try {
-            Integer orderId = extractOrderIdFromCrc(notification.getCrc());
-
-            PaymentRequest paymentRequest = new PaymentRequest();
-            paymentRequest.setShopOrderId(orderId);
-            paymentRequest.setTransactionId(notification.getId());
-            paymentRequest.setPaymentIntentId(notification.getId());
-            paymentRequest.setProvider("TPay");
-            paymentRequest.setStatus(Payment.PaymentStatus.SUCCEEDED);
-            paymentRequest.setPaymentDate(LocalDateTime.now());
-
-            paymentService.createPayment(paymentRequest);
-
-            log.info("TPay payment successful for order: {}, transaction: {}", orderId, notification.getId());
-
-        } catch (Exception e) {
-            log.error("Failed to process successful TPay payment", e);
-            throw e;
-        }
-    }
-
-    private void handlePendingPayment(PayUNotification notification) {
-        log.info("TPay payment pending for transaction: {}", notification.getId());
-    }
-
-    private void handleFailedPayment(PayUNotification notification) {
-        log.warn("TPay payment failed for transaction: {}, error: {}",
-                notification.getId(), notification.getError());
-    }
-
-    private Integer extractOrderIdFromCrc(String crc) {
-        if (crc != null && crc.startsWith("ORDER_")) {
-            return Integer.parseInt(crc.substring(6));
-        }
-        throw new IllegalArgumentException("Invalid CRC format: " + crc);
-    }
-
-    private String generateOrderDescription(ShopOrderResponse order) {
-        StringBuilder description = new StringBuilder("Order #" + order.getId() + " - Products: ");
-
-        for (OrderLineResponse line : order.getOrderLines()) {
-            description.append(line.getProductName())
-                    .append(" (x")
-                    .append(line.getQty())
-                    .append("), ");
-        }
-
-        if (description.length() > 2) {
-            description.setLength(description.length() - 2);
-        }
-
-        return description.toString();
+        return null;
     }
 
     private void validateStock(ShopOrderResponse order) throws InsufficientResourcesException {
@@ -232,16 +206,13 @@ public class PayUPaymentService {
         }
 
         for (OrderLineResponse orderLine : order.getOrderLines()) {
-            var productItem = orderLine.getProductItem();
-            if (productItem != null) {
-                Integer stock = stockMap.get(productItem.getId());
-                int requestedQty = orderLine.getQty();
+            Integer stock = stockMap.get(orderLine.getProductItem().getId());
+            orderLine.setQty(stock != null ? stock : 0);
 
-                productItem.setQtyInStock(stock != null ? stock : 0);
-
-                if (productItem.getQtyInStock() < requestedQty) {
-                    throw new InsufficientResourcesException("Product " + productItem.getId() + " has insufficient stock");
-                }
+            if (orderLine.getQty() < orderLine.getQty()) {
+                throw new InsufficientResourcesException(
+                        "Product " + orderLine.getProductItem().getId() + " has insufficient stock"
+                );
             }
         }
     }

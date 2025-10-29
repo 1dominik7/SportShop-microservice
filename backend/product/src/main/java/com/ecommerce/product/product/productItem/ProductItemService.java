@@ -494,7 +494,8 @@ public class ProductItemService {
                                 .value(vo.getValue())
                                 .variation(new VariationShortResponse(
                                         vo.getVariation().getId(),
-                                        vo.getVariation().getName()))
+                                        vo.getVariation().getName(),
+                                        vo.getVariation().getCategory().getCategoryName()))
                                 .build())
                         .collect(Collectors.toList()))
                 .build();
@@ -708,7 +709,8 @@ public class ProductItemService {
                                 .value(vo.getValue())
                                 .variation(new VariationShortResponse(
                                         vo.getVariation().getId(),
-                                        vo.getVariation().getName()))
+                                        vo.getVariation().getName(),
+                                        vo.getVariation().getCategory().getCategoryName()))
                                 .build())
                         .collect(Collectors.toList()))
                 .productImages(productItem.getProductImages().stream().map(image -> ProductImageResponse.builder()
@@ -742,7 +744,8 @@ public class ProductItemService {
                                         .value(vo.getValue())
                                         .variation(new VariationShortResponse(
                                                 vo.getVariation().getId(),
-                                                vo.getVariation().getName()))
+                                                vo.getVariation().getName(),
+                                                vo.getVariation().getCategory().getCategoryName()))
                                         .build())
                                 .collect(Collectors.toList()))
                         .productImages(productItem.getProductImages().stream()

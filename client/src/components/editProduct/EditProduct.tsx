@@ -374,11 +374,7 @@ const EditProduct = () => {
         ],
       }));
     }
-  };
-
-  useEffect(() => {
-    console.log("Updated images state:", images);
-  }, [images]);
+  }
 
   const uploadImageToCloudinary = async (file: File) => {
     const formData = new FormData();

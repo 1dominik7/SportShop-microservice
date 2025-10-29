@@ -5,7 +5,7 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
 import { useLocation, useNavigate } from "react-router";
 import { AppDispatch, useAppDispatch, useAppSelector } from "../state/store";
-import { useEffect, useState } from "react";
+import { act, useEffect, useState } from "react";
 import {
   useCartByUserId,
   useCategoryQuery,
@@ -17,6 +17,8 @@ import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 import { useQueryClient } from "@tanstack/react-query";
 import { signOut } from "../state/authActions";
+import { api } from "../config/api";
+import { ProductQuery } from "../types/userTypes";
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -28,6 +30,9 @@ const Navbar = () => {
   const [hoverCategoryId, setHoverCategoryId] = useState<number | null>(null);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [openMobileMenu, setOpenMobileMenu] = useState(false);
+  const [query, setQuery] = useState("");
+  const [isSearchFocused, setIsSearchFocused] = useState(false);
+  const [queryProducts, setQueryProducts] = useState<ProductQuery[] | []>([]);
 
   const isHomePage = location.pathname === "/";
   const isLoggedIn = useAppSelector((store) => store?.auth?.isLoggedIn);
@@ -92,6 +97,25 @@ const Navbar = () => {
 
   const { data: favorites } = useFavorites();
 
+  useEffect(() => {
+    const delayDebounce = setTimeout(() => {
+      if (isSearchFocused) {
+        const fetchProducts = async () => {
+          try {
+            const res = await api.get(
+              `/api/v1/products/byQuery?query=${query}`
+            );
+            setQueryProducts(res.data);
+          } catch (error) {
+            console.error("Error fetching products by query: ", error);
+          }
+        };
+        fetchProducts();
+      }
+    }, 400);
+    return () => clearTimeout(delayDebounce);
+  }, [query, isSearchFocused]);
+
   return (
     <div className="flex flex-col relative">
       <div
@@ -114,12 +138,16 @@ const Navbar = () => {
             </span>
           </div>
           <div className="flex items-center text-white space-x-12 max-lg:space-x-6">
-            <div className="relative border-b-[1px] border-white p-[1px] max-md:hidden">
+            <div className="relative w-[300px] border-b-[1px] border-white p-[1px] max-md:hidden">
               <Input
                 type="text"
                 className="text-white padding-r-5"
                 sx={{ color: "white", paddingRight: 5 }}
                 placeholder="Search...."
+                value={query}
+                onFocus={() => setIsSearchFocused(true)}
+                onBlur={() => setIsSearchFocused(false)}
+                onChange={(e) => setQuery(e.target.value)}
               />
               <SearchIcon
                 sx={{
@@ -133,6 +161,69 @@ const Navbar = () => {
                   },
                 }}
               />
+              {isSearchFocused && (
+                <div className="absolute w-full h-96 bg-white border-black border-2 overflow-y-scroll">
+                  <div className="flex flex-col gap-2 p-2">
+                    <div className="flex justify-end">
+                      <CloseIcon
+                        sx={{
+                          cursor: "pointer",
+                          color: "black",
+                        }}
+                        onClick={() => setIsSearchFocused(false)}
+                      />
+                    </div>
+                    {queryProducts.map((product) => (
+                      <div
+                        key={product.productItemId}
+                        className="flex gap-4 text-black cursor-pointer hover:opacity-70"
+                        onMouseDown={() =>
+                          navigate(
+                            `products/${product?.id}${
+                              product?.colour !== ""
+                                ? "-" + product?.colour
+                                : ""
+                            }`
+                          )
+                        }
+                      >
+                        <img
+                          src={product.imageUrl}
+                          alt=""
+                          className="w-[100px] object-cover"
+                        />
+                        <div className="flex flex-col gap-2 py-2">
+                          <span className="font-bold text-sm">
+                            {product.productName}
+                          </span>
+                          <div className="flex gap-4">
+                            {product.discount > 0 ? (
+                              <div>
+                                <span className="font-bold">
+                                  {(
+                                    product.price -
+                                    product.price * product.discount
+                                  ).toFixed(2)}{" "}
+                                  $
+                                </span>
+                                <span className="text-gray-500 line-through">
+                                  {product.price} $
+                                </span>
+                              </div>
+                            ) : (
+                              <div>
+                                <span className="font-bold">
+                                  {product.price} $
+                                </span>
+                              </div>
+                            )}
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
             {isLoggedIn ? (
               <PersonOutlineIcon
@@ -323,7 +414,7 @@ const Navbar = () => {
                       <button
                         className="hover:text-secondary-color"
                         onClick={() =>
-                          navigate(`/products?category=1&filters=4[5]`)
+                          navigate(`/products?category=1&filters=37[112]`)
                         }
                       >
                         Nike Murcurial Vapor

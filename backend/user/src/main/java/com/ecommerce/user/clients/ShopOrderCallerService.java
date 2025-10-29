@@ -1,9 +1,11 @@
 package com.ecommerce.user.clients;
 
 import com.ecommerce.user.clients.dto.OrderLineResponse;
-import com.ecommerce.user.clients.dto.ProductItemOneByColourResponse;
+import com.ecommerce.user.clients.dto.SalesRatioStatistics;
 import com.ecommerce.user.clients.dto.ShopOrderResponse;
+import com.ecommerce.user.clients.dto.ShopOrderStatisticsResponse;
 import com.ecommerce.user.exceptions.ServiceNotFoundException;
+import com.ecommerce.user.statistics.dto.OrderStatusStatisticsResponse;
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
 import io.github.resilience4j.retry.annotation.Retry;
@@ -32,6 +34,32 @@ public class ShopOrderCallerService {
     public List<ShopOrderResponse> shopOrderServiceFallback(String jwt, Throwable ex){
         log.error("Failed to getUserShopOrders, shopOrder service, error: ", ex.getMessage());
         throw new ServiceNotFoundException("Shop Order", "getUserShopOrders", ex.getMessage());
+    }
+
+    @Retry(name = "shopOrderService", fallbackMethod = "getShopOrderIncomesAndTotalOrdersServiceFallback")
+    @CircuitBreaker(name = "shopOrderService", fallbackMethod = "getShopOrderIncomesAndTotalOrdersServiceFallback")
+    @RateLimiter(name = "shopOrderService", fallbackMethod = "getShopOrderIncomesAndTotalOrdersServiceFallback")
+    public ShopOrderStatisticsResponse getShopOrderIncomesAndTotalOrders(Jwt jwt) {
+        String token = "Bearer " + jwt.getTokenValue();
+        return shopOrderClient.getShopOrderIncomesAndTotalOrders(token);
+    }
+
+    public List<ShopOrderResponse> getShopOrderIncomesAndTotalOrdersServiceFallback(Throwable ex){
+        log.error("Failed to getShopOrderIncomesAndTotalOrders, shopOrder service, error: ", ex.getMessage());
+        throw new ServiceNotFoundException("Shop Order", "getShopOrderIncomesAndTotalOrders", ex.getMessage());
+    }
+
+    @Retry(name = "shopOrderService", fallbackMethod = "getShopOrderIncomesAndTotalOrdersServiceFallback")
+    @CircuitBreaker(name = "shopOrderService", fallbackMethod = "getShopOrderIncomesAndTotalOrdersServiceFallback")
+    @RateLimiter(name = "shopOrderService", fallbackMethod = "getShopOrderIncomesAndTotalOrdersServiceFallback")
+    public List<OrderStatusStatisticsResponse> getTopOrderStatuses(Jwt jwt) {
+        String token = "Bearer " + jwt.getTokenValue();
+        return shopOrderClient.getTopOrderStatuses(token);
+    }
+
+    public List<OrderStatusStatisticsResponse> getTopOrderStatusesServiceFallback(Throwable ex){
+        log.error("Failed to getTopOrderStatusesServiceFallback, shopOrder service, error: ", ex.getMessage());
+        throw new ServiceNotFoundException("Shop Order", "getTopOrderStatusesServiceFallback", ex.getMessage());
     }
 
     @Retry(name = "shopOrderService", fallbackMethod = "getOrderLineByIdServiceFallback")

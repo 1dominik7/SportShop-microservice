@@ -62,7 +62,9 @@ const Login = () => {
     <div className="h-screen flex items-center justify-center max-md:px-6">
       <div className="flex flex-col h-max items-center justify-center px-12 py-24 border-[1px] border-gray-200 max-md:px-6 max-md:py-6">
         <h1 className="text-center font-bold text-3xl pb-8 max-sm:text-2xl">LOGIN</h1>
-        <div className="w-[500px] space-y-5 max-md:w-full">
+        <form 
+        onSubmit={formik.handleSubmit}
+        className="w-[500px] space-y-5 max-md:w-full">
           <TextField
             fullWidth
             name="email"
@@ -96,7 +98,7 @@ const Login = () => {
             </div>
           )}
           <Button
-            onClick={() => formik.handleSubmit()}
+            type="submit"
             fullWidth
             variant="contained"
             sx={{ py: "11px", backgroundColor: "black", fontWeight: "bold" }}
@@ -113,7 +115,7 @@ const Login = () => {
               Register
             </span>
           </span>
-        </div>
+        </form>
         <ToastContainer />
       </div>
     </div>

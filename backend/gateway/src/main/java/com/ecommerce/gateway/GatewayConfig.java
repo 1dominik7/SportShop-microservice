@@ -19,10 +19,10 @@ public class GatewayConfig {
                         .path("/api/v1/products/**", "/api/v1/category/**","/api/v1/productItems/**","/api/v1/variation/**","/api/v1/variation-option/**")
                         .uri("lb://PRODUCT-SERVICE"))
                 .route("user-service", r -> r
-                        .path("/api/v1/users/**", "/api/v1/auth/**", "/api/v1/address/**","/api/v1/discount/**","/api/v1/review/**", "/api/v1/cart/**","/api/v1/user-payment-method/**")
+                        .path("/api/v1/users/**", "/api/v1/auth/**", "/api/v1/address/**","/api/v1/discount/**","/api/v1/review/**", "/api/v1/cart/**","/api/v1/user-payment-method/**", "/api/v1/roles/**","/api/v1/statistics/**")
                         .uri("lb://USER-SERVICE"))
                 .route("order-service", r -> r
-                        .path("/api/v1/shipping-method/**", "/api/v1/shop-order/**","/api/v1/order-line/**")
+                        .path("/api/v1/shipping-method/**", "/api/v1/shop-order/**","/api/v1/order-line/**","/api/v1/order-status/**")
                         .uri("lb://ORDER-SERVICE"))
                 .route("payment-service", r -> r
                         .path("/api/v1/payment/**", "/api/v1/payment-type/**")

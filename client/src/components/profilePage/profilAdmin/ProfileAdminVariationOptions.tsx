@@ -58,7 +58,7 @@ const ProfileAdminVariationOptions = () => {
     };
     getVariation();
   }, [refresh]);
-  
+
   useEffect(() => {
     if (editActive !== null) {
       const option = variationOption.find((option) => option.id === editActive);
@@ -143,7 +143,6 @@ const ProfileAdminVariationOptions = () => {
     },
     validationSchema: variationOptionSchema,
     onSubmit: (values) => {
-      console.log(values);
       if (values.id !== null && values.id !== undefined) {
         editVariationOption(values.id, {
           value: values.value,
@@ -167,6 +166,25 @@ const ProfileAdminVariationOptions = () => {
     }
   };
 
+  const groupedByCategoryAndVariation = variationOption.reduce<
+    Record<string, Record<string, VariationOption[]>>
+  >((acc, vo) => {
+    const categoryName = vo.variation?.categoryName || "Uncategorized";
+    const variationName = vo.variation?.name || "Without";
+
+    if (!acc[categoryName]) {
+      acc[categoryName] = {};
+    }
+
+    if (!acc[categoryName][variationName]) {
+      acc[categoryName][variationName] = [];
+    }
+
+    acc[categoryName][variationName].push(vo);
+
+    return acc;
+  }, {});
+
   return (
     <div className="w-full h-full relative flex flex-col gap-4 p-6">
       {isLoading ? (
@@ -175,114 +193,152 @@ const ProfileAdminVariationOptions = () => {
         </div>
       ) : (
         <>
-          <span className="text-3xl font-bold max-md:text-xl">Variation Options</span>
+          <span className="text-3xl font-bold max-md:text-xl">
+            Variation Options
+          </span>
           <div className="flex flex-col gap-6 max-md:flex-col-reverse">
-            <div className="flex flex-wrap gap-4 items-center">
-              {variationOption.map((option) => (
+            {Object.entries(groupedByCategoryAndVariation)
+              .sort(([a], [b]) => a.localeCompare(b))
+              .map(([categoryName, variationsByName]) => (
                 <div
-                  key={option.id}
-                  className="flex gap-2 items-center bg-gray-200 rounded-xl p-2 max-md:rounded-md"
+                  key={categoryName}
+                  className="pb-6 border-b-[1px] border-gray-100"
                 >
-                  {editActive === option?.id ? (
-                    <form
-                      className="flex items-center w-full"
-                      onSubmit={editFormik.handleSubmit}
-                    >
-                      <div className="flex items-start gap-2 px-4 max-md:text-sm max-md:flex-col">
-                        <TextField
-                       className="w-[160px] max-md:w-full"
-                          name="value"
-                          label="value"
-                          value={editFormik.values.value || option.value}
-                          onChange={editFormik.handleChange}
-                          onBlur={editFormik.handleBlur}
-                          error={
-                            editFormik.touched.value &&
-                            Boolean(editFormik.errors.value)
-                          }
-                          helperText={
-                            editFormik.touched.value && editFormik.errors.value
-                          }
-                        />
-                        <FormControl
-                       className="w-[160px] max-md:w-full"
-                        >
-                          <InputLabel id="selector-label">
-                            Select Variation
-                          </InputLabel>
-                          <Select
-                            labelId="selector-label"
-                            name="variationId"
-                            value={editFormik.values.variationId ?? ""}
-                            onChange={editFormik.handleChange}
-                            onBlur={editFormik.handleBlur}
-                            label="Select Option"
-                            MenuProps={{
-                              PaperProps: {
-                                style: {
-                                  height: 200,
-                                  overflowY: "scroll",
-                                },
-                              },
-                            }}
-                          >
-                            <MenuItem value="">
-                              <em>None</em>
-                            </MenuItem>
-                            {[...variations]
-                              .sort((a, b) => {
-                                const categoryCompare = (
-                                  a.categoryName || ""
-                                ).localeCompare(b.categoryName || "");
-                                return categoryCompare !== 0
-                                  ? categoryCompare
-                                  : a.name.localeCompare(b.name);
-                              })
-                              .map((variation) => (
-                                <MenuItem
-                                  key={variation.id}
-                                  value={variation.id}
+                  <div className="flex gap-2 mb-2">
+                    <span>Category: </span>
+                    <h2 className="text-lg font-bold capitalize">
+                      {categoryName}
+                    </h2>
+                  </div>
+                  {Object.entries(variationsByName)
+                    .sort(([a], [b]) => a.localeCompare(b))
+                    .map(([variationName, vo]) => (
+                      <div
+                        key={variationName}
+                        className="mb-4 pl-4 border-l-2 border-gray-300"
+                      >
+                        <div className="mb-2">
+                          <span className="font-semibold">Variation: </span>
+                          <span>{variationName}</span>
+                        </div>
+                        <div className="flex flex-wrap gap-4 items-center">
+                          {vo.map((option) => (
+                            <div
+                              key={option.id}
+                              className="flex gap-2 items-center bg-gray-200 rounded-xl p-2 max-md:rounded-md"
+                            >
+                              {editActive === option?.id ? (
+                                <form
+                                  className="flex items-center w-full"
+                                  onSubmit={editFormik.handleSubmit}
                                 >
-                                  {variation.categoryName}: {variation.name}
-                                </MenuItem>
-                              ))}
-                          </Select>
-                        </FormControl>
-                        <button
-                          className="h-[55px] ml-2 px-6 bg-gray-200 rounded-xl border-[1px] border-black hover:opacity-80 font-bold max-md:w-full max-md:ml-0"
-                          type="submit"
-                        >
-                          Submit
-                        </button>
-                        <button
-                          className="h-[55px] ml-2 px-6 bg-gray-200 rounded-xl border-[1px] border-black hover:opacity-80 font-bold max-md:w-full max-md:ml-0"
-                          onClick={() => setEditActive(null)}
-                        >
-                          Cancel
-                        </button>
+                                  <div className="flex items-start gap-2 px-4 max-md:text-sm max-md:flex-col">
+                                    <TextField
+                                      className="w-[160px] max-md:w-full"
+                                      name="value"
+                                      label="value"
+                                      value={
+                                        editFormik.values.value || option.value
+                                      }
+                                      onChange={editFormik.handleChange}
+                                      onBlur={editFormik.handleBlur}
+                                      error={
+                                        editFormik.touched.value &&
+                                        Boolean(editFormik.errors.value)
+                                      }
+                                      helperText={
+                                        editFormik.touched.value &&
+                                        editFormik.errors.value
+                                      }
+                                    />
+                                    <FormControl className="w-[160px] max-md:w-full">
+                                      <InputLabel id="selector-label">
+                                        Select Variation
+                                      </InputLabel>
+                                      <Select
+                                        labelId="selector-label"
+                                        name="variationId"
+                                        value={
+                                          editFormik.values.variationId ?? ""
+                                        }
+                                        onChange={editFormik.handleChange}
+                                        onBlur={editFormik.handleBlur}
+                                        label="Select Option"
+                                        MenuProps={{
+                                          PaperProps: {
+                                            style: {
+                                              height: 200,
+                                              overflowY: "scroll",
+                                            },
+                                          },
+                                        }}
+                                      >
+                                        <MenuItem value="">
+                                          <em>None</em>
+                                        </MenuItem>
+                                        {[...variations]
+                                          .sort((a, b) => {
+                                            const categoryCompare = (
+                                              a.categoryName || ""
+                                            ).localeCompare(
+                                              b.categoryName || ""
+                                            );
+                                            return categoryCompare !== 0
+                                              ? categoryCompare
+                                              : a.name.localeCompare(b.name);
+                                          })
+                                          .map((variation) => (
+                                            <MenuItem
+                                              key={variation.id}
+                                              value={variation.id}
+                                            >
+                                              {variation.categoryName}:{" "}
+                                              {variation.name}
+                                            </MenuItem>
+                                          ))}
+                                      </Select>
+                                    </FormControl>
+                                    <button
+                                      className="h-[55px] ml-2 px-6 bg-gray-200 rounded-xl border-[1px] border-black hover:opacity-80 font-bold max-md:w-full max-md:ml-0"
+                                      type="submit"
+                                    >
+                                      Submit
+                                    </button>
+                                    <button
+                                      className="h-[55px] ml-2 px-6 bg-gray-200 rounded-xl border-[1px] border-black hover:opacity-80 font-bold max-md:w-full max-md:ml-0"
+                                      onClick={() => setEditActive(null)}
+                                    >
+                                      Cancel
+                                    </button>
+                                  </div>
+                                </form>
+                              ) : (
+                                <div className="flex gap-2 px-2">
+                                  <div className="flex gap-[1px]">
+                                    <span>Variation option:</span>
+                                    <span className="font-semibold">
+                                      {option.value}
+                                    </span>
+                                  </div>
+                                  <div className="flex gap-[2px]">
+                                    <EditNoteIcon
+                                      className="cursor-pointer hover:opacity-50"
+                                      onClick={() => setEditActive(option.id)}
+                                    />
+                                    <DeleteIcon
+                                      className="text-red-500 cursor-pointer hover:opacity-50"
+                                      onClick={() => setOpenDelete(option.id)}
+                                    />
+                                  </div>
+                                </div>
+                              )}
+                            </div>
+                          ))}
+                        </div>
                       </div>
-                    </form>
-                  ) : (
-                    <div className="flex gap-2 px-2">
-                      <div className="flex gap-[1px]">
-                        <span>Variation option:</span>
-                        <span className="font-semibold">{option.value}</span>
-                      </div>
-                      <div className="flex gap-[2px]">
-                        <EditNoteIcon
-                          className="cursor-pointer hover:opacity-50"
-                          onClick={() => setEditActive(option.id)}
-                        />
-                        <DeleteIcon
-                          className="text-red-500 cursor-pointer hover:opacity-50"
-                          onClick={() => setOpenDelete(option.id)}
-                        />
-                      </div>
-                    </div>
-                  )}
+                    ))}
                 </div>
               ))}
-            </div>
             <span className="font-bold">Add Variation</span>
             <form className="flex items-center" onSubmit={formik.handleSubmit}>
               <div className="flex items-start gap-4 flex-wrap">
@@ -296,9 +352,7 @@ const ProfileAdminVariationOptions = () => {
                   error={formik.touched.value && Boolean(formik.errors.value)}
                   helperText={formik.touched.value && formik.errors.value}
                 />
-                <FormControl
-                  style={{ width: "300px", marginTop: 0 }}
-                >
+                <FormControl style={{ width: "300px", marginTop: 0 }}>
                   <InputLabel id="selector-label">Select Variation</InputLabel>
                   <Select
                     labelId="selector-label"
@@ -345,7 +399,7 @@ const ProfileAdminVariationOptions = () => {
             </form>
           </div>
           {openDelete !== null && (
-            <div className="absolute w-full h-full flex items-center justify-center top-0 left-0 ">
+            <div className="fixed w-full h-full flex items-center justify-center top-0 left-0 ">
               <div className="absolute opacity-90 w-full h-full bg-white"></div>
               <div className="flex z-20 flex-col gap-4 items-center justify-center text-lg p-10 border-2 border-gray-200 rounded-xl bg-gray-100">
                 <span className="font-bold">

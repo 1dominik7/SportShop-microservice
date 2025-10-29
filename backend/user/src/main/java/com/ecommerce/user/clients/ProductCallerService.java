@@ -54,4 +54,15 @@ public class ProductCallerService {
         log.error("Failed to getProductById, product service, error: ", ex.getMessage());
         return new ProductResponseGetById();
     }
+
+    @Retry(name = "productService", fallbackMethod = "getTotalProductItemsNumberServiceFallback")
+    @CircuitBreaker(name = "productService", fallbackMethod = "getTotalProductItemsNumberServiceFallback")
+    @RateLimiter(name = "productService", fallbackMethod = "getTotalProductItemsNumberServiceFallback")
+    public Long getTotalProductItemsNumber() {
+        return productClient.getTotalProductItemsNumber();
+    }
+
+    public Long getTotalProductItemsNumberServiceFallback(Throwable ex){
+        throw new ServiceNotFoundException("product", "getTotalProductItemsNumber", ex.getMessage());
+    }
 }

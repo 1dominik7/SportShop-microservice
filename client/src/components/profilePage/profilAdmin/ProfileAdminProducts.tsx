@@ -38,7 +38,7 @@ const ProfileAdminProducts = () => {
   };
 
   return (
-    <div className="w-full h-full pb-20 max-md:items-center p-6">
+    <div className="w-full h-full pb-20 max-md:items-center p-6 bg-white">
       {isLoading ? (
         <div className="flex items-center justify-center w-full h-full z-50 bg-white opacity-80">
           <LoadingAnimation />
@@ -46,11 +46,11 @@ const ProfileAdminProducts = () => {
       ) : (
         <>
           <h1 className="font-bold text-3xl max-md:text-xl px-2">Products</h1>
-          <div className="flex flex-wrap gap-10 p-2 justify-start max-md:justify-between max-md:gap-4">
+          <div className="flex flex-wrap gap-10 p-2 justify-start max-md:justify-between max-2xl:gap-4">
             {data?.content.map((product, index) => (
               <div
                 key={index}
-                className="w-[22%] h-[400px] flex flex-col cursor-pointer overflow-hidden max-lg:h-[320px] max-lg:w-[25%] max-md:w-[29%] max-md:h-max max-md:text-sm"
+                className="w-[22%] h-[400px] flex flex-col cursor-pointer overflow-hidden max-lg:h-[320px] max-xl:w-[25%] max-md:w-[29%] max-md:h-max max-md:text-sm"
                 onClick={() =>
                   handleProductClick(product?.productId, product?.colour ?? "")
                 }

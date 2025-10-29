@@ -48,6 +48,12 @@ public class ProductController {
         return ResponseEntity.ok(products);
     }
 
+    @GetMapping("/byQuery")
+    public ResponseEntity<List<ProductQueryResponse>> getProductsByProductName(@RequestParam(name="query", required = false) String query){
+        List<ProductQueryResponse> productQueryResponses = productService.getProductsByQuery(query);
+        return ResponseEntity.ok(productQueryResponses);
+    }
+
     @PutMapping("/{productId}")
     public ResponseEntity<ProductCreateResponse> updateProduct(@RequestBody ProductCreateRequest productCreateRequest, @PathVariable Integer productId ){
         ProductCreateResponse updateProduct = productService.updateProduct(productCreateRequest, productId);

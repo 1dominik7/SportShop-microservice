@@ -4,4 +4,4 @@ spring:
   main:
     allow-circular-references: true
   config:
-    import: optional:configserver:http://config-service:8888/
+    import: ${CONFIG_IMPORT:optional:configserver:http://localhost:8888/}

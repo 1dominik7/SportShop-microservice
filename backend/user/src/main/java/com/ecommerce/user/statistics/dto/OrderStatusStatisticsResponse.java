@@ -1,4 +1,4 @@
-package com.ecommerce.user.statistics;
+package com.ecommerce.user.statistics.dto;
 
 import lombok.*;
 

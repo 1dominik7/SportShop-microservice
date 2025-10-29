@@ -21,4 +21,7 @@ public interface ProductClient {
 
     @GetMapping("/products/{id}")
     ProductResponseGetById getProductById(@PathVariable Integer id);
+
+    @GetMapping("/productItems/statistics/totalProducts")
+    Long getTotalProductItemsNumber();
 }

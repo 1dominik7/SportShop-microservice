@@ -111,8 +111,12 @@ const ProductsPage = () => {
 
   useEffect(() => {
     const filtersValue = searchParams.get("filters");
-    if (!filtersValue) return;
 
+
+     if (!filtersValue) {
+    setSelectedOption({});
+    return;
+  }
     const initialSelectedOption: SelectedOption = {};
     const filterMatches = filtersValue.match(/(\d+)\[(\d+(?:%\d+)*)\]/g);
 
@@ -133,7 +137,7 @@ const ProductsPage = () => {
 
     setSelectedOption(initialSelectedOption);
     setPageNumber(0);
-  }, [searchParams.get("filters")]);
+  }, [searchParams.get("filters"), categoryId]);
 
   return (
     <div className="relative flex flex-col mt-[120px] min-h-full max-lg:mt-[100px]">

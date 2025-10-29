@@ -30,13 +30,6 @@ spring:
       suffix: .html
       mode: HTML
       cache: false
-#  zipkin:
-#    base-url: ${ZIPKIN_URL}
-#    enabled: true
-#    sender:
-#      type: web
-#  sleuth:
-#    enabled: true
 
 application:
   security:

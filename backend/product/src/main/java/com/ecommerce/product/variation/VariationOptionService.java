@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -32,8 +33,18 @@ public class VariationOptionService {
         return variationOptionRepository.save(variationOption);
     }
 
-    public List<VariationOption> getAllVariationOptions() {
-        return variationOptionRepository.findAll();
+    public List<VariationOptionWithVariationResponse> getAllVariationOptions() {
+        List<VariationOption> variationOptions = variationOptionRepository.findAll();
+        return variationOptions.stream()
+                .map(variationOption -> new VariationOptionWithVariationResponse(
+                        variationOption.getId(),
+                        variationOption.getValue(),
+                        new VariationShortResponse(
+                                variationOption.getVariation().getId(),
+                                variationOption.getVariation().getName(),
+                                variationOption.getVariation().getCategory().getCategoryName()
+                        )
+                )).collect(Collectors.toList());
     }
 
     public VariationOption getVariationOptionById(Integer variationOptionId){

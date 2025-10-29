@@ -392,6 +392,5 @@ public class KeyCloakService {
         } catch (Exception e) {
             log.error("Keycloak logout failed", e);
         }
-
     }
 }

@@ -15,7 +15,7 @@ public class RoleController {
     private final RoleService roleService;
 
     @PostMapping
-    public ResponseEntity<Role> createRole(@RequestBody RoleRequest request){
+    public ResponseEntity<Role> createRole(@RequestBody RoleRequest request) {
         Role role = roleService.createRole(request.getName());
         return new ResponseEntity<>(role, HttpStatus.CREATED);
     }
@@ -26,12 +26,12 @@ public class RoleController {
     }
 
     @GetMapping("/{name}")
-    public ResponseEntity<Role> getByName(@PathVariable String name){
+    public ResponseEntity<Role> getByName(@PathVariable String name) {
         return ResponseEntity.ok(roleService.getByName(name));
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteRole(@PathVariable String id){
+    public ResponseEntity<String> deleteRole(@PathVariable String id) {
         roleService.deleteRole(id);
         return ResponseEntity.ok("Role has been successfully deleted");
     }

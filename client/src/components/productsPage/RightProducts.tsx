@@ -353,7 +353,7 @@ const RightProducts = ({
                   onClick={() =>
                     navigate(
                       `${product?.productId}${
-                        product?.colour !== "Unknown"
+                        product?.colour !== ""
                           ? "-" + product?.colour
                           : ""
                       }`

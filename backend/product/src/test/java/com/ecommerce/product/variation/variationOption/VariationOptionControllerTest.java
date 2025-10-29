@@ -1,10 +1,6 @@
 package com.ecommerce.product.variation.variationOption;
 
-import com.ecommerce.product.variation.Variation;
-import com.ecommerce.product.variation.VariationOption;
-import com.ecommerce.product.variation.VariationOptionController;
-import com.ecommerce.product.variation.VariationOptionRequest;
-import com.ecommerce.product.variation.VariationOptionService;
+import com.ecommerce.product.variation.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -81,19 +77,23 @@ public class VariationOptionControllerTest {
         Variation variation = new Variation();
         variation.setId(variationId);
 
-        VariationOption savedVariationOption1 = VariationOption.builder()
+        VariationShortResponse variationShortResponse = new VariationShortResponse(1, "Size");
+
+        VariationOptionWithVariationResponse savedVariationOption1 = VariationOptionWithVariationResponse.builder()
                 .variation(null)
                 .id(1)
                 .value("Shirt1")
+                .variation(variationShortResponse)
                 .build();
 
-        VariationOption savedVariationOption2 = VariationOption.builder()
+        VariationOptionWithVariationResponse savedVariationOption2 = VariationOptionWithVariationResponse.builder()
                 .variation(null)
                 .id(2)
                 .value("Shirt2")
+                .variation(variationShortResponse)
                 .build();
 
-        List<VariationOption> mockOptions = List.of(savedVariationOption1, savedVariationOption2);
+        List<VariationOptionWithVariationResponse> mockOptions = List.of(savedVariationOption1, savedVariationOption2);
 
         when(variationOptionService.getAllVariationOptions()).thenReturn(mockOptions);
 
@@ -102,8 +102,12 @@ public class VariationOptionControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$[0].id").value(1))
                 .andExpect(jsonPath("$[0].value").value("Shirt1"))
+                .andExpect(jsonPath("$[0].variation.id").value(1))
+                .andExpect(jsonPath("$[0].variation.name").value("Size"))
                 .andExpect(jsonPath("$[1].id").value(2))
-                .andExpect(jsonPath("$[1].value").value("Shirt2"));
+                .andExpect(jsonPath("$[1].value").value("Shirt2"))
+                .andExpect(jsonPath("$[1].variation.id").value(1))
+                .andExpect(jsonPath("$[1].variation.name").value("Size"));
     }
 
 

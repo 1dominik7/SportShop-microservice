@@ -23,7 +23,7 @@ const ProductItemPage = () => {
   });
 
   const { data } = useProductItemByProductIdAndColour(productItemId, colour);
-  console.log(data?.productId)
+
   useEffect(() => {
     if (data?.productId) {
       const getUserReviewById = async () => {

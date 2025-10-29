@@ -176,6 +176,18 @@ const ProfileAdminVariation = () => {
     }
   };
 
+  const groupedVariations = variations.reduce<Record<string, Variation[]>>(
+    (acc, variation) => {
+      const category = variation.categoryName || "Uncategorized";
+      if (!acc[category]) {
+        acc[category] = [];
+      }
+      acc[category].push(variation);
+      return acc;
+    },
+    {}
+  );
+
   return (
     <div className="h-full w-[100%] relative flex flex-col gap-4 p-6">
       {isLoading ? (
@@ -185,107 +197,123 @@ const ProfileAdminVariation = () => {
       ) : (
         <>
           <span className="text-3xl font-bold max-md:text-xl">Variation</span>
-          <div className="flex flex-col gap-6 max-md:flex-col-reverse">
-            <div className="flex flex-wrap gap-4 items-center">
-              {variations.map((variation) => (
-                <div
-                  key={variation.id}
-                  className="flex gap-2 items-center bg-gray-200 rounded-xl p-2 max-md:rounded-md"
-                >
-                  {editActive === variation?.id ? (
-                    <form
-                      className="flex items-center"
-                      onSubmit={editFormik.handleSubmit}
-                    >
-                      <div className="flex items-start gap-2 px-4 max-md:text-sm max-md:flex-col">
-                        <TextField
-                          className="w-[160px] max-md:w-full"
-                          name="name"
-                          label="name"
-                          value={editFormik.values.name || variation.name}
-                          onChange={editFormik.handleChange}
-                          onBlur={editFormik.handleBlur}
-                          error={
-                            editFormik.touched.name &&
-                            Boolean(editFormik.errors.name)
-                          }
-                          helperText={
-                            editFormik.touched.name && editFormik.errors.name
-                          }
-                        />
-                        <FormControl className="w-[160px] max-md:w-full">
-                          <InputLabel id="selector-label">
-                            Select Category
-                          </InputLabel>
-                          <Select
-                            labelId="selector-label"
-                            name="categoryId"
-                            value={editFormik.values.categoryId ?? ""}
-                            onChange={editFormik.handleChange}
-                            onBlur={editFormik.handleBlur}
-                            label="Select Category"
-                            MenuProps={{
-                              PaperProps: {
-                                style: {
-                                  height: 200,
-                                  overflowY: "scroll",
-                                },
-                              },
-                            }}
+          <div className="flex flex-col gap-4 max-md:flex-col-reverse">
+            {Object.entries(groupedVariations)
+              .sort(([a], [b]) => a.localeCompare(b))
+              .map(([categoryName, variations]) => (
+                <div key={categoryName} className="pb-6 border-b-[1px] border-gray-100">
+                  <div className="flex gap-2 mb-2">
+                  <span>Category: </span>
+                  <h2 className="text-lg font-bold capitalize">{categoryName}</h2>
+                  </div>
+                  <div className="flex flex-wrap gap-4 items-center">
+                    {variations.map((variation) => (
+                      <div
+                        key={variation.id}
+                        className="flex gap-2 items-center bg-gray-200 rounded-xl p-2 max-md:rounded-md"
+                      >
+                        {editActive === variation?.id ? (
+                          <form
+                            className="flex items-center"
+                            onSubmit={editFormik.handleSubmit}
                           >
-                            <MenuItem value="">
-                              <em>None</em>
-                            </MenuItem>
-                            {categories?.map((category) => (
-                              <MenuItem key={category?.id} value={category?.id}>
-                                {category?.categoryName}
-                              </MenuItem>
-                            ))}
-                          </Select>
-                        </FormControl>
-                        <button
-                          className="h-[55px] ml-2 px-6 bg-gray-200 rounded-xl border-[1px] border-black hover:opacity-80 font-bold max-md:w-full max-md:ml-0"
-                          type="submit"
-                        >
-                          Submit
-                        </button>
-                        <button
-                          className="h-[55px] ml-2 px-6 bg-gray-200 rounded-xl border-[1px] border-black hover:opacity-80 font-bold max-md:w-full max-md:ml-0"
-                          onClick={() => setEditActive(null)}
-                        >
-                          Cancel
-                        </button>
+                            <div className="flex items-start gap-2 px-4 max-md:text-sm max-md:flex-col">
+                              <TextField
+                                className="w-[160px] max-md:w-full"
+                                name="name"
+                                label="name"
+                                value={editFormik.values.name || variation.name}
+                                onChange={editFormik.handleChange}
+                                onBlur={editFormik.handleBlur}
+                                error={
+                                  editFormik.touched.name &&
+                                  Boolean(editFormik.errors.name)
+                                }
+                                helperText={
+                                  editFormik.touched.name &&
+                                  editFormik.errors.name
+                                }
+                              />
+                              <FormControl className="w-[160px] max-md:w-full">
+                                <InputLabel id="selector-label">
+                                  Select Category
+                                </InputLabel>
+                                <Select
+                                  labelId="selector-label"
+                                  name="categoryId"
+                                  value={editFormik.values.categoryId ?? ""}
+                                  onChange={editFormik.handleChange}
+                                  onBlur={editFormik.handleBlur}
+                                  label="Select Category"
+                                  MenuProps={{
+                                    PaperProps: {
+                                      style: {
+                                        height: 200,
+                                        overflowY: "scroll",
+                                      },
+                                    },
+                                  }}
+                                >
+                                  <MenuItem value="">
+                                    <em>None</em>
+                                  </MenuItem>
+                                  {categories?.map((category) => (
+                                    <MenuItem
+                                      key={category?.id}
+                                      value={category?.id}
+                                    >
+                                      {category?.categoryName}
+                                    </MenuItem>
+                                  ))}
+                                </Select>
+                              </FormControl>
+                              <button
+                                className="h-[55px] ml-2 px-6 bg-gray-200 rounded-xl border-[1px] border-black hover:opacity-80 font-bold max-md:w-full max-md:ml-0"
+                                type="submit"
+                              >
+                                Submit
+                              </button>
+                              <button
+                                className="h-[55px] ml-2 px-6 bg-gray-200 rounded-xl border-[1px] border-black hover:opacity-80 font-bold max-md:w-full max-md:ml-0"
+                                onClick={() => setEditActive(null)}
+                              >
+                                Cancel
+                              </button>
+                            </div>
+                          </form>
+                        ) : (
+                          <div className="flex-col">
+                            <div className="flex">
+                              <div className="flex gap-[2px] px-2">
+                                <span>Variation:</span>
+                                <span className="font-semibold">
+                                  {variation.name}
+                                </span>
+                              </div>
+                              <EditNoteIcon
+                                className="cursor-pointer hover:opacity-50"
+                                onClick={() => setEditActive(variation.id)}
+                              />
+                              <DeleteIcon
+                                className="text-red-500 cursor-pointer hover:opacity-50"
+                                onClick={() => setOpenDelete(variation.id)}
+                              />
+                            </div>
+                            {variation.categoryName && (
+                              <div className="flex gap-[2px] px-2">
+                                <span>Category name:</span>
+                                <span className="font-semibold">
+                                  {variation.categoryName}
+                                </span>
+                              </div>
+                            )}
+                          </div>
+                        )}
                       </div>
-                    </form>
-                  ) : (
-                    <div className="flex-col">
-                      <div className="flex">
-                        <div className="flex gap-[2px] px-2">
-                          <span>Variation:</span>
-                          <span className="font-semibold">
-                            {variation.name}
-                          </span>
-                        </div>
-                        <EditNoteIcon
-                          className="cursor-pointer hover:opacity-50"
-                          onClick={() => setEditActive(variation.id)}
-                        />
-                        <DeleteIcon
-                          className="text-red-500 cursor-pointer hover:opacity-50"
-                          onClick={() => setOpenDelete(variation.id)}
-                        />
-                      </div>
-                      {variation.categoryName && (
-                        <div className="flex gap-[2px] px-2">
-                          <span>Category name:</span>
-                          <span className="font-semibold">{variation.categoryName}</span>
-                        </div>
-                      )}
-                    </div>
-                  )}
-                </div>
+                    ))}
+                  </div>
+                </div>  
               ))}
-            </div>
             <span className="font-bold">Add Variation</span>
             <form className="flex items-center" onSubmit={formik.handleSubmit}>
               <div className="flex items-start gap-4 flex-wrap">
@@ -339,6 +367,7 @@ const ProfileAdminVariation = () => {
               </div>
             </form>
           </div>
+
           {openDelete !== null && (
             <div className="absolute w-full h-full flex items-center justify-center top-0 left-0 ">
               <div className="absolute opacity-90 w-full h-full bg-white"></div>

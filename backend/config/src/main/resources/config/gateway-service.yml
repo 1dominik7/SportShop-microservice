@@ -45,13 +45,6 @@ spring:
         max-attempts: 5
         interval: 1s
         backoff-policy: EXPONENTIAL
-#  zipkin:
-#    base-url: ${ZIPKIN_URL}
-#    enabled: true
-#    sender:
-#      type: web
-#  sleuth:
-#    enabled: true
 
 cors:
   allowed-origin: ${CORS_ALLOWED_ORIGIN}

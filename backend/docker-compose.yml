@@ -48,6 +48,7 @@ services:
     restart: unless-stopped
     environment:
       - MANAGEMENT_ZIPKIN_TRACING_ENDPOINT=http://zipkin:9411/api/v2/spans
+      - CONFIG_IMPORT=optional:configserver:http://config-service:8888/
 
   product-service:
     container_name: product-service
@@ -67,6 +68,7 @@ services:
     restart: unless-stopped
     environment:
       - MANAGEMENT_ZIPKIN_TRACING_ENDPOINT=http://zipkin:9411/api/v2/spans
+      - CONFIG_IMPORT=optional:configserver:http://config-service:8888/
 
   order-service:
     container_name: order-service
@@ -86,6 +88,7 @@ services:
     restart: unless-stopped
     environment:
       - MANAGEMENT_ZIPKIN_TRACING_ENDPOINT=http://zipkin:9411/api/v2/spans
+      - CONFIG_IMPORT=optional:configserver:http://config-service:8888/
 
   payment-service:
     container_name: payment-service
@@ -98,6 +101,7 @@ services:
       KAFKA_BOOTSTRAP_SERVERS: kafka:9092
       SPRING_KAFKA_BOOTSTRAP_SERVERS: kafka:9092
       MANAGEMENT_ZIPKIN_TRACING_ENDPOINT: http://zipkin:9411/api/v2/spans
+      CONFIG_IMPORT=optional: configserver:http://config-service:8888/
     depends_on:
       - postgres
       - rabbitmq
@@ -127,6 +131,7 @@ services:
     restart: unless-stopped
     environment:
       - MANAGEMENT_ZIPKIN_TRACING_ENDPOINT=http://zipkin:9411/api/v2/spans
+      - CONFIG_IMPORT=optional:configserver:http://config-service:8888/
 
   config-service:
     image: dominikdev7/backend-config-service:latest
@@ -160,6 +165,7 @@ services:
       - ecommerce-microservice-app
     environment:
       - MANAGEMENT_ZIPKIN_TRACING_ENDPOINT=http://zipkin:9411/api/v2/spans
+      - CONFIG_IMPORT=optional:configserver:http://config-service:8888/
 
   eureka-service:
     image: dominikdev7/backend-eureka-service:latest

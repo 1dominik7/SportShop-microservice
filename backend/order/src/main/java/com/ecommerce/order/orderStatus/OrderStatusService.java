@@ -2,6 +2,9 @@ package com.ecommerce.order.orderStatus;
 
 import com.ecommerce.order.exceptions.APIException;
 import com.ecommerce.order.exceptions.NotFoundException;
+import com.ecommerce.order.shippingMethod.ShippingMethod;
+import com.ecommerce.order.shippingMethod.ShippingMethodRequest;
+import com.ecommerce.order.shippingMethod.ShippingMethodResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,8 +20,8 @@ public class OrderStatusService {
     private final OrderStatusRepository orderStatusRepository;
 
     @Transactional
-    public OrderStatusResponse createOrderStatus(OrderStatusRequest orderStatusRequest){
-        orderStatusRepository.findByStatus(orderStatusRequest.getStatus()).ifPresent(existing ->{
+    public OrderStatusResponse createOrderStatus(OrderStatusRequest orderStatusRequest) {
+        orderStatusRepository.findByStatus(orderStatusRequest.getStatus()).ifPresent(existing -> {
             throw new APIException("Order status with this name exists!");
         });
         OrderStatus newStatus = OrderStatus.builder()
@@ -43,7 +46,21 @@ public class OrderStatusService {
     }
 
     @Transactional
-    public void deleteOrderStatus(Integer orderStatusId){
+    public OrderStatusResponse updateOrderStatus(OrderStatusRequest orderStatusRequest, Integer orderStatusId) {
+        OrderStatus orderStatusResponse = orderStatusRepository.findById(orderStatusId).orElseThrow(() -> new NotFoundException("OrderStatus", Optional.of(orderStatusId.toString())));
+
+        orderStatusResponse.setStatus(orderStatusRequest.getStatus());;
+
+        OrderStatus updated = orderStatusRepository.save(orderStatusResponse);
+
+        return OrderStatusResponse.builder()
+                .id(updated.getId())
+                .status(updated.getStatus())
+                .build();
+    }
+
+    @Transactional
+    public void deleteOrderStatus(Integer orderStatusId) {
         OrderStatus orderStatus = orderStatusRepository.findById(orderStatusId).orElseThrow(() ->
                 new NotFoundException("OrderStatus", Optional.of(orderStatusId.toString())));
         orderStatusRepository.delete(orderStatus);

@@ -38,12 +38,12 @@ const ProfileNavbar = () => {
           {section && formatSectionName(section)}
         </span>
       </div>
-      <div className="flex items-center gap-16 mt-6 px-20 border-b-[1px] border-gray-200 max-lg:px-10 max-lg:gap-6 max-sm:px-4 max-sm:gap-4 max-md:flex-wrap max-md:mt-0 max-md:py-4">
+      <div className="flex items-center gap-16 pt-6 px-20 border-b-[1px] border-gray-200 max-lg:px-10 max-lg:gap-6 max-sm:px-4 max-sm:gap-4 max-md:flex-wrap max-md:mt-0 max-md:py-4 bg-blue-950 text-white">
         <div
           className={`${
             section === "personalData"
-              ? "border-b-2 border-secondary-color max-sm:border-none max-sm:text-secondary-color font-bold"
-              : "border-b-2 border-transparent max-sm:border-none max-sm:text-black"
+              ? "border-b-4 border-secondary-color max-sm:border-none max-sm:text-secondary-color font-bold"
+              : "border-b-4 border-transparent max-sm:border-none"
           } pb-6 px-6 cursor-pointer max-sm:px-2 max-sm:border-none max-sm:pb-2`}
           onClick={() => navigate("/profile/personalData")}
         >
@@ -52,8 +52,8 @@ const ProfileNavbar = () => {
         <div
           className={`${
             section === "addresses"
-              ? "border-b-2 border-secondary-color max-sm:border-none max-sm:text-secondary-color font-bold"
-              : "border-b-2 border-transparent max-sm:border-none max-sm:text-black"
+              ? "border-b-4 border-secondary-color max-sm:border-none max-sm:text-secondary-color font-bold"
+              : "border-b-4 border-transparent max-sm:border-none"
           } pb-6 px-6 cursor-pointer max-sm:px-2 max-sm:border-none max-sm:pb-2`}
           onClick={() => navigate("/profile/addresses")}
         >
@@ -62,8 +62,8 @@ const ProfileNavbar = () => {
         <div
           className={`${
             section === "orders"
-              ? "border-b-2 border-secondary-color max-sm:border-none max-sm:text-secondary-color font-bold"
-              : "border-b-2 border-transparent max-sm:border-none max-sm:text-black"
+              ? "border-b-4 border-secondary-color max-sm:border-none max-sm:text-secondary-color font-bold"
+              : "border-b-4 border-transparent max-sm:border-none"
           } pb-6 px-6 cursor-pointer max-sm:px-2 max-sm:border-none max-sm:pb-2`}
           onClick={() => navigate("/profile/orders")}
         >
@@ -73,16 +73,19 @@ const ProfileNavbar = () => {
           <div
             className={`${
               section === "adminPanel"
-                ? "border-b-2 border-secondary-color max-sm:border-none max-sm:text-secondary-color font-bold"
-                : "border-b-2 border-transparent max-sm:border-none max-sm:text-black"
+                ? "border-b-4 border-secondary-color max-sm:border-none max-sm:text-secondary-color font-bold"
+                : "border-b-4 border-transparent max-sm:border-none"
             } pb-6 px-6 cursor-pointer max-sm:px-2 max-sm:border-none max-sm:pb-2`}
             onClick={() => navigate("/profile/adminPanel/products")}
           >
             <span>Admin panel</span>
           </div>
         )}
-        <div className="text-red-500 pb-6 px-6 cursor-pointer max-sm:px-2 max-sm:pb-2">
-          <span onClick={logout}>Logout</span>
+        <div
+          className="text-red-500 pb-6 px-6 cursor-pointer max-sm:px-2 max-sm:pb-2"
+          onClick={logout}
+        >
+          <span>Logout</span>
         </div>
       </div>
       <Outlet />

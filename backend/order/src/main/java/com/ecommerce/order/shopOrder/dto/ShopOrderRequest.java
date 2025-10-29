@@ -1,4 +1,4 @@
-package com.ecommerce.order.shopOrder;
+package com.ecommerce.order.shopOrder.dto;
 
 import com.ecommerce.order.clients.dto.AddressRequest;
 import lombok.*;
@@ -19,4 +19,5 @@ public class ShopOrderRequest {
     private Double orderTotal;
     private Double finalOrderTotal;
     private Integer appliedDiscountValue;
+    private Integer providerId;
 }

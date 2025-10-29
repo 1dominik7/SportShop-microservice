@@ -1,4 +1,4 @@
-package com.ecommerce.order.shopOrder.dto;
+package com.ecommerce.user.clients.dto;
 
 import lombok.*;
 

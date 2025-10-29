@@ -1,7 +1,11 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
 import { api } from "../../config/api";
-import { GetShopOrder } from "../../types/userTypes";
+import {
+  GetShopOrder,
+  PaymentType,
+  UserPaymentMethod,
+} from "../../types/userTypes";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import LoadingAnimation from "../../ui/LoadingAnimation";
 
@@ -12,6 +16,10 @@ const ProfileOrderDetails = () => {
 
   const [order, setOrder] = useState<GetShopOrder | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [paymentIsLoading, setPaymentIsLoading] = useState<boolean>(false);
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
+  const [openPaymentWindow, setOpenPaymentWindow] = useState<boolean>(false);
+  const [paymentType, setPaymentType] = useState<PaymentType[] | []>([]);
 
   useEffect(() => {
     const getOrder = async () => {
@@ -38,6 +46,54 @@ const ProfileOrderDetails = () => {
     }).format(date);
   };
 
+  const handleTogglePaymentWindow = async () => {
+  setOpenPaymentWindow(!openPaymentWindow);
+
+  if (!openPaymentWindow && paymentType.length === 0) {
+    try {
+      setPaymentIsLoading(true);
+      const res = await api.get("/api/v1/payment-type/all");
+      setPaymentType(res.data);
+    } catch (error) {
+      console.error("Error fetching payment types:", error);
+    } finally {
+      setPaymentIsLoading(false);
+    }
+  }
+};
+
+  const getPaymentIcon = (methodName: string) => {
+    const name = methodName.toLowerCase();
+    if (name.includes("stripe")) return "stripe.png";
+    if (name.includes("payu")) return "payu.png";
+    return "payment.png";
+  };
+
+  const submitRetryPayment = async (value: string) => {
+    if (!paymentType.some((type) => type.value === value)) {
+      console.warn("Unsupported payment method: " + value);
+    }
+
+    setIsSubmitting(true);
+
+    const request = {
+      orderId,
+      successUrl: `${window.location.origin}/payment-success`,
+      cancelUrl: `${window.location.origin}/payment-cancel`,
+    };
+    try {
+      const response = await api.post(
+        `/api/v1/payment/${value}/pay-again`,
+        request
+      );
+      window.location.href = response.data.checkoutUrl;
+    } catch (error) {
+      console.log("Error creating order: ", error);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <div className="py-11 px-20 max-md:px-6 max-sm:py-4">
       {isLoading ? (
@@ -57,8 +113,52 @@ const ProfileOrderDetails = () => {
             <span className="text-gray-400">{orderId}</span>
           </div>
           <div className="flex flex-col gap-2">
-            <div className="text-xl font-bold">
-              <h1 className="text-3xl font-bold max-sm:text-xl">Order Number: {orderId}</h1>
+            <div className="flex justify-between">
+              <div className="text-xl font-bold">
+                <h1 className="text-3xl font-bold max-sm:text-xl">
+                  Order Number: {orderId}
+                </h1>
+              </div>
+              {order?.paymentId === null &&
+                (isSubmitting ? (
+                  <div className="flex items-center justify-center">
+                    <LoadingAnimation height={50} width={50} />
+                  </div>
+                ) : (
+                  <div className="relative">
+                    <button
+                      className="text-green-500 underline font-bold text-xl hover:opacity-55 cursor-pointer"
+                      onClick={handleTogglePaymentWindow}
+                    >
+                      Pay for order
+                    </button>
+                    {openPaymentWindow && (
+                      <div className="absolute bg-gray-100 top-7 left-0 flex flex-col px-9 border-[1px] border-black rounded-md">
+                        {paymentIsLoading ? (
+                          <LoadingAnimation height={50} width={50}/>
+                        ) : (
+                          paymentType?.map((type) => (
+                            <div
+                              key={type.id}
+                              className="flex flex-col gap-[2px] items-center cursor-pointer hover:opacity-60"
+                              onClick={() =>
+                                submitRetryPayment(type.value.toLowerCase())
+                              }
+                            >
+                              <img
+                                src={`/${getPaymentIcon(type?.value)}`}
+                                className="w-16 h-16 object-contain"
+                                alt=""
+                                loading="lazy"
+                              />
+                              {/* <span className="font-bold">{type?.value}</span> */}
+                            </div>
+                          ))
+                        )}
+                      </div>
+                    )}
+                  </div>
+                ))}
             </div>
             <div className="flex gap-16 border-b-[1px] border-gray-300 pb-4 max-sm:flex-col max-sm:gap-2">
               <div className="flex flex-col max-sm:flex-row max-sm:justify-between max-sm:items-center">
@@ -70,7 +170,17 @@ const ProfileOrderDetails = () => {
               <div className="flex flex-col max-sm:flex-row max-sm:justify-between max-sm:items-center">
                 <span className="font-semibold">Payment type:</span>
                 <span>
-                  {order?.paymentMethodName?.toUpperCase()}
+                  {order?.paymentMethodName?.toUpperCase()
+                    ? order?.paymentMethodName?.toUpperCase()
+                    : "Not paid"}
+                </span>
+              </div>
+                <div className="flex flex-col max-sm:flex-row max-sm:justify-between max-sm:items-center">
+                <span className="font-semibold">Payment status:</span>
+                <span>
+                  {order?.paymentStatus
+                    ? order?.paymentStatus
+                    : "Not paid"}
                 </span>
               </div>
             </div>
@@ -143,7 +253,9 @@ const ProfileOrderDetails = () => {
                     </div>
                     <div className="flex flex-col items-end">
                       <span>Quantity: {item?.qty}</span>
-                      <span className="font-bold">{item?.price.toFixed(2)} $</span>
+                      <span className="font-bold">
+                        {item?.price.toFixed(2)} $
+                      </span>
                     </div>
                   </div>
                 ))}
@@ -169,12 +281,14 @@ const ProfileOrderDetails = () => {
                 </div>
                 <div className="flex justify-between mt-2 font-bold">
                   <span>Total cost:</span>
-                  <span>{order?.finalOrderTotal} $</span>
+                  <span>{order?.finalOrderTotal.toFixed(2)} $</span>
                 </div>
               </div>
             </div>
             <div className="flex flex-col gap-4 max-sm:gap-2">
-              <h1 className="text-3xl font-bold max-sm:text-xl">Delivery address</h1>
+              <h1 className="text-3xl font-bold max-sm:text-xl">
+                Delivery address
+              </h1>
               <div className="flex flex-col">
                 <span>
                   {order?.shippingFirstName} {order?.shippingLastName}

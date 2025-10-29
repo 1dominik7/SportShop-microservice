@@ -1,4 +1,4 @@
-package com.ecommerce.order.shopOrder;
+package com.ecommerce.order.shopOrder.dto;
 
 import com.ecommerce.order.clients.dto.PaymentStatus;
 import com.ecommerce.order.orderLine.OrderLineResponseWithProductItem;

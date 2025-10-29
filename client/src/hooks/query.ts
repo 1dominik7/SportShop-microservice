@@ -11,12 +11,18 @@ import {
   FamousShoes,
   Filter,
   GetShopOrder,
+  LatestSalesProductsResponse,
+  OrderList,
   Product,
   ProductItem,
   ProductItemByColour,
   ProductItemList,
   ProductItemListGroupedByFilters,
   ProductItemsFilters,
+  ShopOrderStatistics,
+  Statistics,
+  TopProductSales,
+  UserList,
 } from "../types/userTypes";
 import { api } from "../config/api";
 import { useSelector } from "react-redux";
@@ -187,15 +193,12 @@ export const fetchProductItemByProductIdAndColour = async (
   productId: number,
   colour: string
 ): Promise<ProductItemByColour> => {
-  const res = await api.get(
-    `/api/v1/productItems/by-product-id-and-colour`,
-    {
-      params: {
-        productId,
-        colour,
-      },
-    }
-  );
+  const res = await api.get(`/api/v1/productItems/by-product-id-and-colour`, {
+    params: {
+      productId,
+      colour,
+    },
+  });
   return res.data;
 };
 
@@ -409,7 +412,83 @@ export const useUserShopOrders = () => {
   });
 
   if (isError && error) {
-    console.error("Error fetching user addresses by id: ", error);
+    console.error("Error fetching user orders by id: ", error);
+  }
+
+  return { data, error, isLoading, isFetching, isError, refetch };
+};
+
+export const fetchAllShopOrders = async (
+  page: number,
+  size: number,
+  sortBy: string,
+  direction: string,
+  query: string,
+  searchBy: string
+): Promise<OrderList> => {
+  const res = await api.get(
+    `/api/v1/shop-order/all?page=${page}&size${size}&sortBy=${sortBy}&direction=${direction}&query=${query}&searchBy=${searchBy}`
+  );
+  return res.data;
+};
+
+export const useAllShopOrders = (
+  page: number,
+  size: number,
+  sortBy: string,
+  direction: string,
+  query: string,
+  searchBy: string
+) => {
+  const { data, error, isLoading, isFetching, isError, refetch } = useQuery<
+    OrderList,
+    Error
+  >({
+    queryKey: ["allShopOrders", page, size, sortBy, direction, query, searchBy],
+    queryFn: () =>
+      fetchAllShopOrders(page, size, sortBy, direction, query, searchBy),
+  });
+
+  if (isError && error) {
+    console.error("Error fetching all orders: ", error);
+  }
+
+  return { data, error, isLoading, isFetching, isError, refetch };
+};
+
+export const fetchAllUsers = async (
+  page: number,
+  size: number,
+  sortBy: string,
+  direction: string,
+  query: string,
+  searchBy: string
+): Promise<UserList> => {
+  const res = await api.get(
+    `/api/v1/users/all?page=${page}&size${size}&sortBy=${sortBy}&direction=${direction}&query=${query}&searchBy=${searchBy}`
+  );
+  return res.data;
+};
+
+export const useAllUsers = (
+  page: number,
+  size: number,
+  sortBy: string,
+  direction: string,
+  query: string,
+  searchBy: string
+) => {
+  const { data, error, isLoading, isFetching, isError, refetch } = useQuery<
+    UserList,
+    Error
+  >({
+    queryKey: ["allUsers", page, size, sortBy, direction, query, searchBy],
+    queryFn: () =>
+      fetchAllUsers(page, size, sortBy, direction, query, searchBy),
+  });
+
+  if (isError && error) {
+    console.error("Error fetching all users: ", error);
   }
 
   return { data, error, isLoading, isFetching, isError, refetch };
@@ -474,4 +553,107 @@ export const useToggleFavorite = () => {
       console.error("Error toggling favorite:", error);
     },
   });
+};
+
+export const fetchTopProductSales = async (
+  month: number,
+  year: number,
+  limit: number
+): Promise<TopProductSales[] | []> => {
+  const res = await api.get(
+    `/api/v1/shop-order/statistics/topProductSales?month=${month}&year=${year}&limit=${limit}`
+  );
+  return res.data;
+};
+
+export const useTopProductSales = (
+  month: number,
+  year: number,
+  limit: number
+) => {
+  const { data, error, isLoading, isFetching, isError, refetch } = useQuery<
+    TopProductSales[] | [],
+    Error
+  >({
+    queryKey: ["fetchTopProductSales ", month, year, limit],
+    queryFn: () => fetchTopProductSales(month, year, limit),
+  });
+
+  if (isError && error) {
+    console.error("Error fetching top product sales: ", error);
+  }
+
+  return { data, error, isLoading, isFetching, isError, refetch };
+};
+
+export const fetchLatestSalesProducts = async (
+  limit: number
+): Promise<LatestSalesProductsResponse[] | []> => {
+  const res = await api.get(
+    `/api/v1/shop-order/statistics/latestSales?limit=${limit}`
+  );
+  return res.data;
+};
+
+export const useLatestSalesProducts = (limit: number) => {
+  const { data, error, isLoading, isFetching, isError, refetch } = useQuery<
+    LatestSalesProductsResponse[] | [],
+    Error
+  >({
+    queryKey: ["fetchLatestSalesProducts", limit],
+    queryFn: () => fetchLatestSalesProducts(limit),
+  });
+
+  if (isError && error) {
+    console.error("Error fetching latest sales products: ", error);
+  }
+
+  return { data, error, isLoading, isFetching, isError, refetch };
+};
+
+export const fetchShopOrderStatistics = async (
+  month: number,
+  year: number
+): Promise<ShopOrderStatistics | null> => {
+  const res = await api.get(
+    `/api/v1/shop-order/statistics/salesRatio?month=${month}&year=${year}`
+  );
+  return res.data;
+};
+
+export const useShopOrderStatistics = (month: number, year: number) => {
+  const { data, error, isLoading, isFetching, isError, refetch } = useQuery<
+    ShopOrderStatistics | null,
+    Error
+  >({
+    queryKey: ["fetchShopOrderStatistics", month, year],
+    queryFn: () => fetchShopOrderStatistics(month, year),
+  });
+
+  if (isError && error) {
+    console.error("Error fetching shop order statistics: ", error);
+  }
+
+  return { data, error, isLoading, isFetching, isError, refetch };
+};
+
+export const fetchStatistics = async (): Promise<Statistics | null> => {
+  const res = await api.get(`/api/v1/statistics`);
+  return res.data;
+};
+
+export const useStatistics = () => {
+  const { data, error, isLoading, isFetching, isError, refetch } = useQuery<
+    Statistics | null,
+    Error
+  >({
+    queryKey: ["fetchStatistics"],
+    queryFn: () => fetchStatistics(),
+  });
+
+  if (isError && error) {
+    console.error("Error fetching statistics: ", error);
+  }
+
+  return { data, error, isLoading, isFetching, isError, refetch };
 };

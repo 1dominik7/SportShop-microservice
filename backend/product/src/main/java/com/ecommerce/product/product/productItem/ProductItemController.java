@@ -21,6 +21,7 @@ import java.util.Optional;
 public class ProductItemController {
 
     private final ProductItemService productItemService;
+    private final ProductItemRepository productItemRepository;
 
     @PostMapping("/create")
     public ResponseEntity<ProductItem> createProductItem(@RequestBody CreateProductItemRequest createProductItemRequest
@@ -144,6 +145,12 @@ public class ProductItemController {
             @RequestParam List<Integer> productItemIds) {
         List<ProductItemOneByColourResponse> productItemResponse = productItemService.getProductItemByIds(productItemIds);
         return ResponseEntity.ok(productItemResponse);
+    }
+
+    @GetMapping("/statistics/totalProducts")
+    public ResponseEntity<Long> getTotalProductItemsNumber() {
+        Long totalProductItems = productItemRepository.count();
+        return ResponseEntity.ok(totalProductItems);
     }
 
     @PutMapping("/update-stock")

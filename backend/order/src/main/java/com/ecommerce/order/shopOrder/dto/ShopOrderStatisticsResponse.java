@@ -1,8 +1,6 @@
-package com.ecommerce.order.shopOrder;
+package com.ecommerce.order.shopOrder.dto;
 
 import lombok.*;
-
-import java.math.BigDecimal;
 
 @Getter
 @Setter

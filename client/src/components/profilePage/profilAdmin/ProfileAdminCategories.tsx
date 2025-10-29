@@ -87,7 +87,7 @@ const ProfileAdminCategories = () => {
     },
   });
 
-  const editVariation = async (
+  const editCategory = async (
     id: number | null,
     values: {
       categoryName: string | undefined;
@@ -123,7 +123,7 @@ const ProfileAdminCategories = () => {
     validationSchema: categorySchema,
     onSubmit: (values) => {
       if (values.id !== null && values.id !== undefined) {
-        editVariation(values.id, {
+        editCategory(values.id, {
           categoryName: values.categoryName,
           parentCategoryId: values.parentCategoryId,
         });
@@ -317,7 +317,7 @@ const ProfileAdminCategories = () => {
               <div className="absolute opacity-90 w-full h-full bg-white"></div>
               <div className="flex z-20 flex-col gap-4 items-center justify-center text-lg p-10 border-2 border-gray-200 rounded-xl bg-gray-100 max-md:text-base">
                 <span className="font-bold">
-                  Are you sure to delete variation option:{" "}
+                  Are you sure to delete category:{" "}
                   {categories.map((category) => {
                     if (category.id === openDelete) {
                       return category.categoryName;

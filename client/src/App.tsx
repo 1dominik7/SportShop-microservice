@@ -30,9 +30,15 @@ import ForgotPassword from "./pages/auth/ForgotPassword";
 import ProfilePersonalData from "./components/profilePage/ProfilePersonalData";
 import NotFound from "./pages/NotFound";
 import useTokenRefresh from "./config/useTokenRefresh";
+import ProfileAdminOrders from "./components/profilePage/profilAdmin/ProfileAdminOrders";
+import ProfileAdminUsers from "./components/profilePage/profilAdmin/ProfileAdminUsers";
+import ProfileAdminUser from "./components/profilePage/profilAdmin/ProfileAdminUser";
+import ProfileAdminStatistics from "./components/profilePage/profilAdmin/ProfileAdminStatistics";
+import ProfileAdminShippingMethods from "./components/profilePage/profilAdmin/ProfileAdminShippingMethods";
+import ProfileAdminOrderStatuses from "./components/profilePage/profilAdmin/ProfileAdminOrderStatuses";
 
 function App() {
- useTokenRefresh();
+  useTokenRefresh();
   const router = createBrowserRouter([
     {
       element: <Layout />,
@@ -148,11 +154,36 @@ function App() {
                       element: <ProfileAdminAddProducts />,
                     },
                     { path: "categories", element: <ProfileAdminCategories /> },
-                    { path: "variation", element: <ProfileAdminVariation /> },
-                    { path: "discount", element: <ProfileAdminDiscount /> },
+                    { path: "variations", element: <ProfileAdminVariation /> },
+                    { path: "discounts", element: <ProfileAdminDiscount /> },
                     {
-                      path: "variationOption",
+                      path: "variationOptions",
                       element: <ProfileAdminVariationOptions />,
+                    },
+                    { path: "orders", element: <ProfileAdminOrders /> },
+                    {
+                      path: "orders/:orderId",
+                      element: <ProfileOrderDetails />,
+                    },
+                    {
+                      path: "users",
+                      element: <ProfileAdminUsers />,
+                    },
+                    {
+                      path: "users/:userId",
+                      element: <ProfileAdminUser />,
+                    },
+                    {
+                      path: "statistics",
+                      element: <ProfileAdminStatistics />,
+                    },
+                    {
+                      path: "shippingMethods",
+                      element: <ProfileAdminShippingMethods />,
+                    },
+                    {
+                      path: "orderStatuses",
+                      element: <ProfileAdminOrderStatuses />,
                     },
                   ],
                 },

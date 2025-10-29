@@ -74,3 +74,22 @@ To run the entire system locally:
 ```bash
 docker-compose up --build
 ```
+
+## 🧩 Changelog
+
+### 🚧 v3 — In progress (React Native mobile app)
+- Building mobile app version in **React Native**
+- Integration with existing backend API (in progress)
+- UI redesign for mobile flow
+
+### 🆕 v2 — Released on 2025-10-29
+- Changed view of **option** and **variation** in admin panel -> now grouped & sorted
+- Added new features to admin panel:
+  - Manage **shipping methods**
+  - Manage **order statuses**
+- Added **statistics dashboard** in admin panel to track statistics of products and orders
+- Integrated new **PayU payment method**
+
+### 🪄 v1 — Released on 2025-08-10
+- Initial release of the application
+- Core backend and frontend

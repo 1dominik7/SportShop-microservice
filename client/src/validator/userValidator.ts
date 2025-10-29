@@ -30,14 +30,14 @@ const resetPasswordValidationSchema = Yup.object({
   newPassword: Yup.string()
     .min(8, "Password should be 8 characters long minimum")
     .required("Password is mandatory"),
-    confirmPassword: Yup.string()
+  confirmPassword: Yup.string()
     .oneOf([Yup.ref("newPassword")], "Passwords must match")
     .required("Confirmation is mandatory"),
 });
 
 const updateProfileValidationSchema = Yup.object({
   firstname: Yup.string().required("Firstname is mandatory"),
-  lastname: Yup.string().required("Lastname is mandatory")
+  lastname: Yup.string().required("Lastname is mandatory"),
 });
 
 const variationOptionSchema = Yup.object({
@@ -50,6 +50,18 @@ const variationSchema = Yup.object({
 
 const categorySchema = Yup.object({
   categoryName: Yup.string().required("Category name cannot be empty!"),
+});
+
+const shippingMethodSchema = Yup.object({
+  name: Yup.string().required("Shipping method name cannot be empty!"),
+  price: Yup.number()
+    .typeError("Price must be a number")
+    .required("Price is required")
+    .min(0, "Price cannot be negative"),
+});
+
+const orderStatusSchema = Yup.object({
+  status: Yup.string().required("Order status cannot be empty!"),
 });
 
 const productSchema = Yup.object({
@@ -131,13 +143,20 @@ const discountValidation = Yup.object({
 const emailValidationSchema = Yup.object({
   email: Yup.string()
     .email("Invalid email format")
-    .required("Email is mandatory")
-})
+    .required("Email is mandatory"),
+});
 
+const updateUserProfileValidationSchema = Yup.object({
+  firstname: Yup.string().required("Firstname is mandatory"),
+  lastname: Yup.string().required("Lastname is mandatory"),
+  newPassword: Yup.string().min(8, "Password must be at leasts 8 characters"),
+});
 
 export {
   productSchema,
   categorySchema,
+  shippingMethodSchema,
+  orderStatusSchema,
   registerValidationSchema,
   loginValidationSchema,
   forgotPasswordValidationSchema,
@@ -148,5 +167,6 @@ export {
   addressSchema,
   orderSchema,
   discountValidation,
-  emailValidationSchema
+  emailValidationSchema,
+  updateUserProfileValidationSchema,
 };

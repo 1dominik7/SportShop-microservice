@@ -1,6 +1,5 @@
-package com.ecommerce.user.shoppingCart;
+package com.ecommerce.payment.clients.dto;
 
-import com.ecommerce.user.shoppingCart.shoppingCartItem.ShoppingCartItemResponse;
 import lombok.*;
 
 import java.util.List;

@@ -1,12 +1,7 @@
 package com.ecommerce.product.variation.variationOption;
 
 
-import com.ecommerce.product.variation.Variation;
-import com.ecommerce.product.variation.VariationRepository;
-import com.ecommerce.product.variation.VariationOption;
-import com.ecommerce.product.variation.VariationOptionRepository;
-import com.ecommerce.product.variation.VariationOptionRequest;
-import com.ecommerce.product.variation.VariationOptionService;
+import com.ecommerce.product.variation.*;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -119,7 +114,7 @@ public class VariationOptionServiceTest {
 
         when(variationOptionRepository.findAll()).thenReturn(List.of(variationOption1, variationOption2));
 
-        List<VariationOption> variationOptions = variationOptionService.getAllVariationOptions();
+        List<VariationOptionWithVariationResponse> variationOptions = variationOptionService.getAllVariationOptions();
 
         assertNotNull(variationOptions);
         assertEquals(2, variationOptions.size());

@@ -12,7 +12,6 @@ import com.stripe.model.PaymentMethod;
 import com.stripe.model.checkout.Session;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.stereotype.Service;
@@ -147,6 +146,63 @@ public class PaymentService {
                 .build();
     }
 
+    @Transactional
+    public PaymentVerificationResponse verifyPayUPayment(Integer orderId, Jwt jwt) throws InsufficientResourcesException {
+
+        Payment payment = paymentRepository.findByShopOrderId(orderId)
+                    .orElseThrow(() -> new NotFoundException("Payment for transaction: " + orderId, Optional.empty()));
+
+            String userEmail = jwt.getClaimAsString("email");
+
+            ShopOrderResponse shopOrder = shopOrderCallerService.getUserShopOrderById(orderId, jwt);
+
+            if (shopOrder.getPaymentStatus() == Payment.PaymentStatus.SUCCEEDED) {
+                return PaymentVerificationResponse.builder()
+                        .id(shopOrder.getPaymentId())
+                        .transactionId(payment.getTransactionId())
+                        .paymentIntentId(payment.getPaymentIntentId())
+                        .shopOrder(shopOrder)
+                        .createdAt(shopOrder.getPaymentCreatedAt())
+                        .updatedAt(shopOrder.getPaymentUpdatedAt())
+                        .status(shopOrder.getPaymentStatus())
+                        .build();
+            }
+
+            ShopOrderPaymentUpdateRequest updateRequest = new ShopOrderPaymentUpdateRequest();
+            updateRequest.setPaymentId(payment.getId());
+            updateRequest.setPaymentStatus(Payment.PaymentStatus.SUCCEEDED);
+            updateRequest.setPaymentIntentId(payment.getPaymentIntentId());
+            updateRequest.setPaymentTransactionId(payment.getTransactionId());
+            updateRequest.setPaymentMethodName(payment.getProvider());
+            updateRequest.setOrderStatus("packing");
+            updateRequest.setPaymentCreatedAt(LocalDateTime.now());
+
+            shopOrder = shopOrderCallerService.updateShopOrder(orderId, updateRequest, jwt);
+
+            refreshProductStock(shopOrder, jwt);
+            updateProductStock(shopOrder, jwt);
+
+            orderEmailProducer.sendOrderEmail(
+                    new OrderConfirmationEmailPayload(
+                            shopOrder.getId(),
+                            userEmail,
+                            shopOrder.getOrderLines(),
+                            shopOrder.getOrderDate(),
+                            shopOrder.getFinalOrderTotal(),
+                            shopOrder.getShippingMethod()
+                    )
+            );
+
+            return PaymentVerificationResponse.builder()
+                    .id(shopOrder.getPaymentId())
+                    .transactionId(payment.getTransactionId())
+                    .paymentIntentId(payment.getPaymentIntentId())
+                    .shopOrder(shopOrder)
+                    .createdAt(shopOrder.getPaymentCreatedAt())
+                    .updatedAt(shopOrder.getPaymentUpdatedAt())
+                    .status(shopOrder.getPaymentStatus())
+                    .build();
+    }
 
     private void updateProductStock(ShopOrderResponse order, Jwt jwt) throws InsufficientResourcesException {
         List<ProductStockUpdateRequest> updateRequests = new ArrayList<>();

@@ -1,4 +1,4 @@
-package com.ecommerce.user.statistics;
+package com.ecommerce.user.statistics.dto;
 
 import lombok.*;
 
@@ -8,7 +8,7 @@ import lombok.*;
 @NoArgsConstructor
 @Builder
 public class StatisticsResponse {
-    private Long totalUsers;
+    private UsersStatistics usersStatistics;
     private Long totalProducts;
     private Long totalOrders;
     private Double totalIncomes;

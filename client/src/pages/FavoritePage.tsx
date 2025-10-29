@@ -78,7 +78,7 @@ const FavoritePage = () => {
       console.error("Error updating product:", error);
     }
   };
-  console.log(productItems);
+
   return (
     <div className="relative flex flex-col pt-[120px] min-h-screen max-lg:pt-[100px]">
       {isFetching ? (

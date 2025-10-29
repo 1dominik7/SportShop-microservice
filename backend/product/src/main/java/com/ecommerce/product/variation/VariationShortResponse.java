@@ -10,4 +10,5 @@ import lombok.*;
 public class VariationShortResponse {
     private Integer id;
     private String name;
+    private String categoryName;
 }

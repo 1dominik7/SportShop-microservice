@@ -58,7 +58,6 @@ public class UserReviewController {
 
     @GetMapping("/products/can-review")
     public ResponseEntity<Map<Integer, Boolean>> canUserReviewProducts(@RequestParam List<Integer> orderLineIds, @AuthenticationPrincipal Jwt jwt) {
-//        String currentKeycloakId = jwt.getSubject();
         Map<Integer, Boolean> canReviewMap = userReviewService.canUserReviewProducts(jwt, orderLineIds);
 
         return ResponseEntity.ok(canReviewMap);

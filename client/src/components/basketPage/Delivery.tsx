@@ -151,6 +151,7 @@ const Delivery = () => {
   const getPaymentIcon = (methodName: string) => {
     const name = methodName.toLowerCase();
     if (name.includes("stripe")) return "stripe.png";
+    if (name.includes("payu")) return "payu.png";
     return "payment.png";
   };
 
@@ -254,26 +255,104 @@ const Delivery = () => {
         Number(calculateTotalCartValue()) +
         (selectedShippingMethod?.price ? selectedShippingMethod?.price : 0),
       appliedDiscountValue: totalDiscount ? totalDiscount : 0,
+      providerId: selectedPayment,
+      cart:cart
     };
 
     const request = {
       orderRequest,
-      successUrl: `${window.location.origin}/payment-success`,
-      cancelUrl: `${window.location.origin}/payment-cancel`,
+      // successUrl: `${window.location.origin}/payment-success`,
+      // cancelUrl: `${window.location.origin}/payment-cancel`,
     };
 
+    const selectedPaymentName = paymentType
+      .find((p) => p.id === selectedPayment)
+      ?.value?.toLowerCase();
+
     try {
-      const response = await api.post(
-        `/api/v1/payment/stripe/checkout`,
-        request
-      );
-      window.location.href = response.data.checkoutUrl;
+      if (selectedPaymentName?.includes("stripe")) {
+        const response = await api.post(
+          `/api/v1/payment/stripe/checkout`,
+          request
+        );
+        window.location.href = response.data.checkoutUrl;
+      } else if (selectedPaymentName?.includes("payu")) {
+        const response = await api.post(
+          `/api/v1/payment/payu/checkout`,
+          request
+        );
+        window.location.href = response.data.checkoutUrl;
+      } else {
+        console.warn(
+          "This payment method is not supported: ",
+          selectedPaymentName
+        );
+      }
     } catch (error) {
       console.log("Error creating order: ", error);
     } finally {
       setIsSubmitting(false);
     }
   };
+
+//   const submitOrder = async () => {
+//   if (!cart) return;
+//   setIsSubmitting(true);
+
+//   const orderRequest = {
+//     userId: userId!,
+//     addressRequest: {
+//       country: formik.values.country,
+//       city: formik.values.city,
+//       firstName: formik.values.firstName,
+//       lastName: formik.values.lastName,
+//       postalCode: formik.values.postalCode,
+//       street: formik.values.street,
+//       phoneNumber: formik.values.phoneNumber,
+//       addressLine1: formik.values.addressLine1,
+//       addressLine2: formik.values.addressLine2,
+//     },
+//     shippingMethodId: selectedShippingMethod ? selectedShippingMethod.id : 0,
+//     orderTotal: Number(totalPrice()),
+//     finalOrderTotal: Number(calculateTotalCartValue()) + (selectedShippingMethod?.price ?? 0),
+//     appliedDiscountValue: totalDiscount ?? 0,
+//     providerId: selectedPayment,
+//     cart: cart
+//   };
+//   try {
+//     // 1️⃣ Tworzymy zamówienie
+//     const res = await api.post(`api/v1/shop-order/create`, orderRequest);
+//     console.log(res.data.id)
+//     const orderId = res.data.id; // musisz mieć w ShopOrderResponse
+
+//     // 2️⃣ Polling / sprawdzanie czy checkout URL jest gotowy
+//     let checkoutUrl: string | null = null;
+//     const maxRetries = 10;
+//     let attempts = 0;
+
+//     while (!checkoutUrl && attempts < maxRetries) {
+//       const urlRes = await api.get(`/api/v1/shop-order/checkout-url/${orderId}`);
+//       console.log(urlRes)
+//       if (urlRes.status === 200 && urlRes.data.checkoutUrl) {
+//         checkoutUrl = urlRes.data.checkoutUrl;
+//       } else {
+//         // jeśli status 202 lub brak checkoutUrl → czekamy 1s i próbujemy ponownie
+//         await new Promise((resolve) => setTimeout(resolve, 3000));
+//       }
+//       attempts++;
+//     }
+
+//     if (checkoutUrl) {
+//       window.location.href = checkoutUrl; // przekierowanie do płatności
+//     } else {
+//       console.error("Checkout URL not ready after several attempts");
+//     }
+//   } catch (error) {
+//     console.log("Error creating order: ", error);
+//   } finally {
+//     setIsSubmitting(false);
+//   }
+// };
 
   const hasUnavailableProducts = cart?.shoppingCartItems?.some((item) => {
     const selectedVariant = item?.productItem?.productItemOneByColour?.find(
@@ -443,7 +522,6 @@ const Delivery = () => {
                       }
                     />
                     <TextField
-                      // style={{ width: "500px" }}
                       fullWidth
                       name="street"
                       label="Street"
@@ -591,26 +669,28 @@ const Delivery = () => {
                           </div>
                         ))}
                     </div>
-                    <div>
-                      <div
-                        className={`w-full flex gap-6 items-center p-4 outline hover:outline-4 hover:outline-secondary-color cursor-pointer ${
-                          selectedPayment === -1
-                            ? "outline outline-4 outline-secondary-color"
-                            : "outline outline-1 outline-gray-300"
-                        } ${stripeImageLoaded ? "" : "hidden"}`}
-                        onClick={() => setSelectedPayment(-1)}
-                      >
-                        <img
-                          src={`/${getPaymentIcon("stripe")}`}
-                          alt=""
-                          className="w-16 h-16 object-contain"
-                          onLoad={() => setStripeImageLoaded(true)}
-                        />
-                        <span className="text-lg font-bold capitalize">
-                          stripe
-                        </span>
-                        <span></span>
-                      </div>
+                    <div className="flex flex-col gap-4">
+                      {paymentType.map((payment) => (
+                        <div
+                          key={payment?.id}
+                          className={`w-full flex gap-6 items-center p-4 outline hover:outline-4 hover:outline-secondary-color cursor-pointer ${
+                            selectedPayment === payment?.id
+                              ? "outline outline-4 outline-secondary-color"
+                              : "outline outline-1 outline-gray-300"
+                          } ${stripeImageLoaded ? "" : "hidden"}`}
+                          onClick={() => setSelectedPayment(payment?.id)}
+                        >
+                          <img
+                            src={`/${getPaymentIcon(payment?.value)}`}
+                            alt=""
+                            className="w-16 h-16 object-contain"
+                            onLoad={() => setStripeImageLoaded(true)}
+                          />
+                          <span className="text-lg font-bold capitalize">
+                            {payment?.value}
+                          </span>
+                        </div>
+                      ))}
                     </div>
                   </div>
                 )}
@@ -694,7 +774,6 @@ const Delivery = () => {
                           </span>
                         </div>
                       </div>
-                      {/* <span>{totalPrice()} $</span> */}
                     </div>
                   );
                 })}
@@ -753,7 +832,7 @@ const Delivery = () => {
                 >
                   {isSubmitting ? (
                     <div className="flex items-center justify-center h-[100%]">
-                      <LoadingAnimation height={50} width={50}/>
+                      <LoadingAnimation height={50} width={50} />
                     </div>
                   ) : (
                     "Order and pay"

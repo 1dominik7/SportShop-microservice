@@ -1,4 +1,4 @@
-package com.ecommerce.user.shoppingCart.shoppingCartItem;
+package com.ecommerce.payment.clients.dto;
 
 import lombok.*;
 

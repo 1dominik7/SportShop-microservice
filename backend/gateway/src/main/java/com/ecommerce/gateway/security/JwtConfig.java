@@ -11,7 +11,8 @@ public class JwtConfig {
     @Bean
     public ReactiveJwtDecoder reactiveJwtDecoder() {
         return NimbusReactiveJwtDecoder
-                .withJwkSetUri("http://keycloak:8080/realms/ecom-app/protocol/openid-connect/certs")
+//                .withJwkSetUri("http://keycloak:8080/realms/ecom-app/protocol/openid-connect/certs") dla vpsa
+                .withJwkSetUri("http://localhost:8443/realms/ecom-app/protocol/openid-connect/certs") //dla local
                 .build();
     }
 }

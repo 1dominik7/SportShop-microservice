@@ -4,12 +4,10 @@ import Confetti from "react-confetti";
 import { api } from "../config/api";
 import { OrderDetails } from "../types/userTypes";
 import LoadingAnimation from "../ui/LoadingAnimation";
-import { useAppSelector } from "../state/store";
 import { useCartByUserId } from "../hooks/query";
 
 const PaymentSuccess = () => {
   const navigate = useNavigate();
-  const auth = useAppSelector((store) => store.auth);
   const { refetch } = useCartByUserId();
   const [paymentSuccess, setPaymentSuccess] = useState(false);
   const [orderDetails, setOrderDetails] = useState<OrderDetails | null>(null);
@@ -21,43 +19,94 @@ const PaymentSuccess = () => {
 
   const urlParams = new URLSearchParams(window.location.search);
   const sessionId = urlParams.get("session_id");
-
-  const deleteCartItem = async () => {
-    if (!auth.isLoggedIn) return;
-    try {
-      await api.delete(`/api/v1/cart`);
-      refetch();
-    } catch (error) {
-      console.error("Failed to delete cart:", error);
-    }
-  };
+  const orderId = urlParams.get("order_id");
 
   useEffect(() => {
-    if (sessionId) {
-      setIsLoading(true);
-      const verifyPayment = async () => {
-        try {
-          const res = await api.get(`/api/v1/payment/verify/${sessionId}`);
-          if (res.data.status === "SUCCEEDED") {
-            setPaymentSuccess(true);
-            setOrderDetails(res.data);
-            await deleteCartItem();
-          } else {
+    if (!sessionId) return;
+
+    let interval: number;
+    let attempts = 0;
+    const maxAttempts = 5;
+
+    const verifyStripePayment = async () => {
+      try {
+        const res = await api.get(`/api/v1/payment/verify/${sessionId}`);
+        if (res.data.status === "SUCCEEDED") {
+          clearInterval(interval);
+          setPaymentSuccess(true);
+          setOrderDetails(res.data);
+          await refetch();
+          setIsLoading(false);
+        } else {
+          attempts++;
+          if (attempts >= maxAttempts) {
+            clearInterval(interval);
+            setIsLoading(false);
             setPaymentSuccess(false);
           }
-        } catch (error) {
-          console.error("Error verifying payment:", error);
-          setPaymentSuccess(false);
-        } finally {
-          setIsLoading(false);
         }
-      };
-      verifyPayment();
-    } else {
+      } catch (error) {
+        console.error("Error verifying Stripe payment:", error);
+        attempts++;
+        if (attempts >= maxAttempts) {
+          clearInterval(interval);
+          setIsLoading(false);
+          setPaymentSuccess(false);
+        }
+      }
+    };
+
+    setIsLoading(true);
+    interval = window.setInterval(verifyStripePayment, 3000);
+
+    return () => clearInterval(interval);
+  }, [navigate, sessionId]);
+
+  useEffect(() => {
+    if (!orderId) return;
+
+    let interval: number;
+    let attempts = 0;
+    const maxAttempts = 5;
+
+    setIsLoading(true);
+    const verifyPayUPayment = async () => {
+      try {
+        const res = await api.get(`/api/v1/payment/verify/payu/${orderId}`);
+        if (res.data.status === "SUCCEEDED") {
+          setPaymentSuccess(true);
+          setOrderDetails(res.data);
+          await refetch();
+          setIsLoading(false);
+        } else {
+          attempts++;
+          if (attempts >= maxAttempts) {
+            clearInterval(interval);
+            setIsLoading(false);
+            setPaymentSuccess(false);
+          }
+        }
+      } catch (error) {
+        console.error("Error verifying PayU payment:", error);
+        attempts++;
+        if (attempts >= maxAttempts) {
+          clearInterval(interval);
+          setIsLoading(false);
+          setPaymentSuccess(false);
+        }
+      }
+    };
+    interval = window.setInterval(verifyPayUPayment, 3000);
+
+    return () => clearInterval(interval);
+  }, [navigate, orderId, sessionId]);
+
+  useEffect(() => {
+    if (!sessionId && !orderId) {
       setPaymentSuccess(false);
       navigate("/");
     }
-  }, [sessionId, navigate]);
+  }, [navigate, orderId, sessionId]);
 
   useEffect(() => {
     const handleResize = () => {
@@ -110,7 +159,7 @@ const PaymentSuccess = () => {
                           {order?.qty} qty.
                         </span>
                         <span className="font-bold max-md:w-[80px]">
-                          {(order?.price)?.toFixed(2)} $
+                          {order?.price?.toFixed(2)} $
                         </span>
                       </div>
                     ))}
@@ -133,7 +182,8 @@ const PaymentSuccess = () => {
                       </div>
                     )}
                   <p className="font-bold">
-                    Total amount: {orderDetails?.shopOrder?.finalOrderTotal.toFixed(2)} $
+                    Total amount:{" "}
+                    {orderDetails?.shopOrder?.finalOrderTotal.toFixed(2)} $
                   </p>
                   <button
                     onClick={() => navigate("/")}

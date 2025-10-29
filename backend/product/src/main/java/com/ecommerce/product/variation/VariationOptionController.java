@@ -21,8 +21,8 @@ public class VariationOptionController {
     }
 
     @GetMapping
-    public ResponseEntity<List<VariationOption>> getAllVariationOptions(){
-        List<VariationOption> variationOptions = variationOptionService.getAllVariationOptions();
+    public ResponseEntity<List<VariationOptionWithVariationResponse>> getAllVariationOptions(){
+        List<VariationOptionWithVariationResponse> variationOptions = variationOptionService.getAllVariationOptions();
         return ResponseEntity.ok(variationOptions);
     }
 

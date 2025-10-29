@@ -46,15 +46,21 @@ public class StripePaymentService {
     @Value("${application.stripe.webhook-secret}")
     private String stripeWebhookSecret;
 
-    public String createCheckoutSession(ShopOrderResponse order, String successUrl, String cancelUrl)
+    @Value("${application.payment.success-url}")
+    private String successURL;
+
+    @Value("${application.payment.cancel-url}")
+    private String cancelURL;
+
+    public String createCheckoutSession(ShopOrderResponse order)
             throws StripeException, InsufficientResourcesException {
 
         validateStock(order);
 
         SessionCreateParams.Builder paramsBuilder = SessionCreateParams.builder()
                 .setMode(SessionCreateParams.Mode.PAYMENT)
-                .setSuccessUrl(successUrl + "?session_id={CHECKOUT_SESSION_ID}")
-                .setCancelUrl(cancelUrl + "?session_id={CHECKOUT_SESSION_ID}")
+                .setSuccessUrl(successURL + "?session_id={CHECKOUT_SESSION_ID}")
+                .setCancelUrl(cancelURL + "?session_id={CHECKOUT_SESSION_ID}")
                 .addPaymentMethodType(SessionCreateParams.PaymentMethodType.CARD)
                 .putMetadata("order_id", order.getId().toString())
                 .putMetadata("user_id", order.getUserId());
@@ -108,19 +114,11 @@ public class StripePaymentService {
 
         String webhookSecret = stripeWebhookSecret;
 
-        try {
-            Event event = Webhook.constructEvent(payload, sigHeader, webhookSecret);
+        Event event = Webhook.constructEvent(payload, sigHeader, webhookSecret);
 
-            if ("checkout.session.completed".equals(event.getType())) {
-                Session session = (Session) event.getDataObjectDeserializer().getObject().get();
-                handleSuccessfulPayment(session);
-            }
-        } catch (SignatureVerificationException e) {
-            log.error("Invalid signature! Check webhook secret");
-            throw e;
-        } catch (Exception e) {
-            log.error("Webhook processing failed", e);
-            throw e;
+        if ("checkout.session.completed".equals(event.getType())) {
+            Session session = (Session) event.getDataObjectDeserializer().getObject().get();
+            handleSuccessfulPayment(session);
         }
     }
 

@@ -17,4 +17,5 @@ public class KafkaProducers {
         ProductStockBatchUpdateRequest batch = new ProductStockBatchUpdateRequest(requests);
         streamBridge.send("stockUpdate-out-0", batch);
     }
+
 }

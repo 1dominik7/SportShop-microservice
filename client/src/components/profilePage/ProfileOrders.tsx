@@ -46,7 +46,7 @@ function ProfileOrders() {
                 </div>
                 <div className="flex flex-col">
                   <span className="font-semibold">Total price:</span>
-                  <span>{order?.finalOrderTotal} $</span>
+                  <span>{order?.finalOrderTotal.toFixed(2)} $</span>
                 </div>
                 <div className="flex flex-col">
                   <span className="font-semibold">Payment Status:</span>

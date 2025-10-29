@@ -1,9 +1,6 @@
 import { ChangeEvent, useEffect, useState } from "react";
 import { api } from "../../../config/api";
-import {
-  Category,
-  VariationOption,
-} from "../../../types/userTypes";
+import { Category, VariationOption } from "../../../types/userTypes";
 import { useFormik } from "formik";
 import {
   Checkbox,
@@ -17,9 +14,8 @@ import {
 } from "@mui/material";
 import { productSchema } from "../../../validator/userValidator";
 import LoadingAnimation from "../../../ui/LoadingAnimation";
-import { ToastContainer, toast,ToastOptions } from "react-toastify";
+import { ToastContainer, toast, ToastOptions } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
 
 interface ProductItem {
   id?: number;
@@ -101,11 +97,6 @@ const ProfileAdminAddProducts = () => {
           };
         }
       );
-
-      console.log("Final payload:", {
-        ...values,
-        productItems: updatedProductItems,
-      });
 
       const response = await api.post("/api/v1/products", {
         ...values,
@@ -249,7 +240,6 @@ const ProfileAdminAddProducts = () => {
         newAssignedImages[productItemIndex].push(imageIndex);
       }
     });
-    console.log("Updated assignments:", newAssignedImages);
     setAssignedImages(newAssignedImages);
   };
 
@@ -388,7 +378,7 @@ const ProfileAdminAddProducts = () => {
   }, [formik.values.categoryId]);
 
   return (
-    <div className="w-full h-full flex flex-col gap-4 p-6">
+    <div className="w-full h-full flex flex-col gap-4 p-6 bg-white">
       {isLoading ? (
         <div className="fixed top-0 left-0 flex h-full w-full z-50 bg-white opacity-80 items-center justify-center">
           <LoadingAnimation />
@@ -420,7 +410,7 @@ const ProfileAdminAddProducts = () => {
                 }
               />
               <TextField
-                        fullWidth
+                fullWidth
                 name="description"
                 label="Description"
                 value={formik.values.description ?? ""}
@@ -436,10 +426,7 @@ const ProfileAdminAddProducts = () => {
                 multiline
                 rows={5}
               />
-              <FormControl
-                margin="normal"
-                fullWidth
-              >
+              <FormControl margin="normal" fullWidth>
                 <InputLabel id="selector-label">Select Category</InputLabel>
                 <Select
                   labelId="selector-label"
@@ -492,7 +479,7 @@ const ProfileAdminAddProducts = () => {
                   </span>
                   <div className="w-[300px] flex flex-wrap gap-4 max-sm:w-full">
                     <TextField
-                            fullWidth
+                      fullWidth
                       name={`productItems[${index}].price`}
                       label="Price"
                       value={item.price ?? 0}
@@ -526,7 +513,7 @@ const ProfileAdminAddProducts = () => {
                       }
                     />
                     <TextField
-                  fullWidth
+                      fullWidth
                       name={`productItems[${index}].discount`}
                       label="Discount"
                       value={item.discount ?? 0}
@@ -560,7 +547,7 @@ const ProfileAdminAddProducts = () => {
                       }
                     />
                     <TextField
-                   fullWidth
+                      fullWidth
                       name={`productItems[${index}].productCode`}
                       label="Product Code"
                       value={item.productCode ?? ""}
@@ -594,7 +581,7 @@ const ProfileAdminAddProducts = () => {
                       }
                     />
                     <TextField
-                          fullWidth
+                      fullWidth
                       name={`productItems[${index}].qtyInStock`}
                       label="Quantity"
                       value={item.qtyInStock ?? 0}
@@ -628,16 +615,13 @@ const ProfileAdminAddProducts = () => {
                       }
                     />
                   </div>
-                  <div className="flex flex-col gap-2 flex-wrap max-lg:w-[450px] max-md:w-full">
-                    <FormControl
-                      margin="normal"
-                      fullWidth
-                    >
+                  <div className="flex flex-col gap-2 flex-wrap w-[600px] max-xl:max-w-full">
+                    <FormControl margin="normal" fullWidth>
                       <InputLabel id="selector-label">
                         Select Variation Option
                       </InputLabel>
                       <Select
-                      fullWidth
+                        fullWidth
                         labelId="selector-label"
                         name={`productItems[${index}].variationOptionIds`}
                         value={item.variationOptionIds || []}
@@ -661,7 +645,7 @@ const ProfileAdminAddProducts = () => {
                         </MenuItem>
                         {variations?.map((variation) =>
                           variation.variationOptions?.map((vOption) => (
-                            <MenuItem key={vOption?.id} value={vOption?.id}>
+                            <MenuItem key={vOption?.id} value={vOption?.id} >
                               {variation.name}: {vOption?.value}
                             </MenuItem>
                           ))
@@ -740,7 +724,10 @@ const ProfileAdminAddProducts = () => {
                 </div>
                 <div className="flex flex-wrap gap-4">
                   {fileInputs.map((inputIndex) => (
-                    <div key={inputIndex} className="flex flex-col gap-2 max-md:w-full">
+                    <div
+                      key={inputIndex}
+                      className="flex flex-col gap-2 max-md:w-full"
+                    >
                       <div className="flex gap-2 flex-wrap">
                         {imagePreviews[inputIndex]?.map((url, index) => (
                           <div key={index} className="flex flex-col gap-2">
@@ -752,11 +739,8 @@ const ProfileAdminAddProducts = () => {
                           </div>
                         ))}
                       </div>
-                      <FormControl
-                        margin="normal"
-                        fullWidth
-                      >
-                        <InputLabel id={`assign-label-${inputIndex}`} >
+                      <FormControl margin="normal" fullWidth>
+                        <InputLabel id={`assign-label-${inputIndex}`}>
                           Assign to Product Item
                         </InputLabel>
                         <Select

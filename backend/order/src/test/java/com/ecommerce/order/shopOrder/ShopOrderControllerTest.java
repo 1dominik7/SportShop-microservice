@@ -1,10 +1,9 @@
 package com.ecommerce.order.shopOrder;
 
 import com.ecommerce.order.clients.dto.PaymentStatus;
-import com.ecommerce.order.clients.dto.UserResponse;
-import com.ecommerce.order.orderLine.OrderLineController;
-import com.ecommerce.order.orderLine.OrderLineService;
-import com.fasterxml.jackson.core.JsonProcessingException;
+import com.ecommerce.order.shopOrder.dto.ShopOrderPaymentUpdateRequest;
+import com.ecommerce.order.shopOrder.dto.ShopOrderRequest;
+import com.ecommerce.order.shopOrder.dto.ShopOrderResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.ws.rs.core.MediaType;
 import org.junit.jupiter.api.Test;
@@ -27,12 +26,10 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.mockito.Mockito.*;
-import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.jwt;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @SpringBootTest(classes = {
         ShopOrderController.class,

@@ -245,6 +245,80 @@ public class ProductService {
         return productResponseGetById;
     }
 
+    public List<ProductQueryResponse> getProductsByQuery(String query) {
+
+        if(query == null || query.trim().isEmpty()){
+            return productRepository.findTop5ByOrderByCreatedDateDesc().stream()
+                    .flatMap(product ->
+                            product.getProductItems().stream()
+                                    .collect(Collectors.groupingBy(item ->
+                                            item.getVariationOptions().stream()
+                                                    .filter(vo -> "colour".equalsIgnoreCase(vo.getVariation().getName()))
+                                                    .map(VariationOption::getValue)
+                                                    .findFirst()
+                                                    .orElse("")))
+                                    .values().stream()
+                                    .map(itemsWithSameColour -> itemsWithSameColour.stream()
+                                            .min(Comparator.comparing(ProductItem::getPrice))
+                                            .map(item -> {
+                                                String colour = item.getVariationOptions().stream()
+                                                        .filter(vo -> "colour".equalsIgnoreCase(vo.getVariation().getName()))
+                                                        .map(VariationOption::getValue)
+                                                        .findFirst()
+                                                        .orElse(null);
+
+                                                return ProductQueryResponse.builder()
+                                                        .id(product.getId())
+                                                        .productItemId(item.getId())
+                                                        .imageUrl(item.getProductImages().isEmpty() ? null : item.getProductImages().get(0).getImageFilename())
+                                                        .productName(product.getProductName())
+                                                        .price(item.getPrice())
+                                                        .discount(item.getDiscount())
+                                                        .colour(colour)
+                                                        .build();
+                                            }).orElse(null)
+                                    ).filter(Objects::nonNull)
+                    )
+                    .collect(Collectors.toList());
+        }
+
+        List<Product> products = productRepository.findByProductNameContainingIgnoreCase(query);
+
+        return products.stream()
+                .flatMap(product ->
+                        product.getProductItems().stream()
+                                .collect(Collectors.groupingBy(item ->
+                                        item.getVariationOptions().stream()
+                                                .filter(vo -> "colour".equalsIgnoreCase(vo.getVariation().getName()))
+                                                .map(VariationOption::getValue)
+                                                .findFirst()
+                                                .orElse("")))
+                                .values().stream()
+                                .map(itemsWithSameColour  -> itemsWithSameColour.stream()
+                                        .min(Comparator.comparing(ProductItem::getPrice))
+                                        .map(
+                                                item -> {
+                                                    String colour = item.getVariationOptions().stream()
+                                                            .filter(vo -> "colour".equalsIgnoreCase(vo.getVariation().getName()))
+                                                            .map(VariationOption::getValue)
+                                                            .findFirst()
+                                                            .orElse(null);
+
+                                                    return ProductQueryResponse.builder()
+                                                            .id(product.getId())
+                                                            .productItemId(item.getId())
+                                                            .imageUrl(item.getProductImages().isEmpty() ? null : item.getProductImages().get(0).getImageFilename())
+                                                            .productName(product.getProductName())
+                                                            .price(item.getPrice())
+                                                            .discount(item.getDiscount())
+                                                            .colour(colour)
+                                                            .build();
+                                                }).orElse(null)
+                        ).filter(Objects::nonNull)
+                )
+                .collect(Collectors.toList());
+    }
+
     @Transactional
     public ProductCreateResponse updateProduct(ProductCreateRequest productCreateRequest, Integer productId) {
         if (productCreateRequest.getCategoryId() == null) {

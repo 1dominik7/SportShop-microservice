@@ -2,6 +2,15 @@ application:
   stripe:
     secret-key: ${STRIPE_SECRET_KEY}
     webhook-secret: ${STRIPE_WEBHOOK_SECRET}
+  payu:
+    client-id: ${PAYU_CLIENT_ID}
+    client-secret: ${PAYU_CLIENT_SECRET}
+    pos-id: ${PAYU_POSID}
+    api-url: ${PAYU_API_URL}
+    notify-url: ${PAYU_NOTIFY_URL}
+  payment:
+    success-url: ${SUCCESS_URL}
+    cancel-url: ${CANCEL_URL}
 
 spring:
   datasource:
@@ -55,6 +64,7 @@ spring:
           content-type: application/json
           producer:
             required-groups: marketing-group
+
   jpa:
     database: POSTGRESQL
     show-sql: true
@@ -64,13 +74,6 @@ spring:
     properties:
       hibernate:
         format_sql: true
-#  zipkin:
-#    base-url: ${ZIPKIN_URL}
-#    enabled: true
-#    sender:
-#      type: web
-#  sleuth:
-#    enabled: true
 
 management:
   endpoints:
@@ -173,7 +176,6 @@ resilience4j:
       productServiceRetry:
         maxAttempts: 2
         waitDuration: 500ms
-
 
 keycloak:
   admin:

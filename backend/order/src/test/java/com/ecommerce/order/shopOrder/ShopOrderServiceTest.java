@@ -5,13 +5,13 @@ import com.ecommerce.order.clients.UserCallerService;
 import com.ecommerce.order.clients.dto.*;
 import com.ecommerce.order.exceptions.APIException;
 import com.ecommerce.order.exceptions.NotFoundException;
-import com.ecommerce.order.orderLine.OrderLineRepository;
-import com.ecommerce.order.orderLine.OrderLineService;
 import com.ecommerce.order.orderStatus.OrderStatus;
 import com.ecommerce.order.orderStatus.OrderStatusRepository;
 import com.ecommerce.order.shippingMethod.ShippingMethod;
 import com.ecommerce.order.shippingMethod.ShippingMethodRepository;
-import org.aspectj.weaver.ast.Or;
+import com.ecommerce.order.shopOrder.dto.ShopOrderPaymentUpdateRequest;
+import com.ecommerce.order.shopOrder.dto.ShopOrderRequest;
+import com.ecommerce.order.shopOrder.dto.ShopOrderResponse;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -19,15 +19,12 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.security.oauth2.jwt.Jwt;
 
-import java.nio.file.AccessDeniedException;
 import java.time.LocalDateTime;
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 

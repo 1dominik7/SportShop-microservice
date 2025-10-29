@@ -1,4 +1,4 @@
-package com.ecommerce.order.shopOrder;
+package com.ecommerce.user.clients.dto;
 
 import lombok.*;
 
@@ -11,5 +11,5 @@ import java.math.BigDecimal;
 @Builder
 public class ShopOrderStatisticsResponse {
     private Long totalOrders;
-    private BigDecimal totalIncomes;
+    private Double totalIncomes;
 }

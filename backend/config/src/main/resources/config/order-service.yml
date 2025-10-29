@@ -13,13 +13,6 @@ spring:
         format_sql: true
         database: order
       database-platform: org.hibernate.dialect.PostgreSQLDialect
-#  zipkin:
-#    base-url: ${ZIPKIN_URL}
-#    enabled: true
-#    sender:
-#      type: web
-#  sleuth:
-#    enabled: true
 
 management:
   endpoints:

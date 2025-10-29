@@ -1,6 +1,8 @@
+import { checkAuth } from "./../state/authActions";
 export interface User {
   id: number;
   email: string;
+  password?: string;
   firstname?: string;
   lastname?: string;
   fullName: string;
@@ -8,6 +10,7 @@ export interface User {
   createdDate?: string;
   enabled: boolean;
   accountName: boolean;
+  accountLocked?: boolean;
   roleNames: string[];
 }
 
@@ -77,6 +80,7 @@ export interface Variation {
   categoryId: number | null;
   name: string;
   options: VariationOption[];
+  categoryName?: string;
 }
 
 export interface Category {
@@ -189,7 +193,7 @@ export interface ProductItemGrouped {
 export interface ProductItemByColour {
   id: number;
   productId: number;
-  productItemId:number;
+  productItemId: number;
   productName: string;
   colour: string;
   productItemOneByColour: ProductItemOneByColour[];
@@ -219,6 +223,16 @@ export interface OtherProductItemOneByColours {
   colour: string;
   productImages: ProductImage[];
   otherColourVariation: [];
+}
+
+export interface ProductQuery {
+  id: number;
+  productItemId: number;
+  imageUrl: string;
+  productName: string;
+  price: number;
+  discount: number;
+  colour: string;
 }
 
 export interface ToastOptions {
@@ -409,4 +423,77 @@ export interface OrderDetails {
   status: string;
   createdAt: string;
   updatedAt: null | string;
+}
+
+export interface OrderList {
+  content: GetShopOrder[];
+  size: number;
+  totalElements: number;
+  sort: string[];
+  totalPages: number;
+  last: boolean;
+}
+
+export interface UserList {
+  content: User[];
+  size: number;
+  totalElements: number;
+  sort: string[];
+  totalPages: number;
+  last: boolean;
+}
+
+export interface UpdateUser {
+  firstname: string;
+  lastname: string;
+  newPassword?: string;
+  dateOfBirth: string;
+  accountLocked: boolean;
+  enabled: boolean;
+  roleIds?: string[];
+}
+
+export interface Role {
+  id: string;
+  name: string;
+}
+
+export interface Statistics {
+  usersStatistics: UsersStatistics;
+  totalProducts: number;
+  totalOrders: number;
+  totalIncomes: number;
+}
+
+export interface UsersStatistics {
+  totalUsers: number;
+  usersInCurrentMonth: number;
+  usersInLastMonth: number;
+  usersTwoMonthsAgo: number;
+}
+
+export interface OrderStatusStatistics {
+  statusName: string;
+  count: number;
+}
+
+export interface ShopOrderStatistics {
+  thisMonthWeeklySales: number[];
+  lastMonthWeeklySales: number[];
+}
+
+export interface LatestSalesProductsResponse {
+  productId: number;
+  productItemId: number;
+  productName: string;
+  orderId: number;
+  orderCreatedDate: string;
+  price: number;
+  quantity: number;
+  orderStatus: string;
+}
+
+export interface TopProductSales {
+  productItem: ProductItem;
+  totalQuantity: number;
 }

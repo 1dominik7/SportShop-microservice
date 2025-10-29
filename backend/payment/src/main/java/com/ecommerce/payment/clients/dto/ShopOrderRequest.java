@@ -17,4 +17,6 @@ public class ShopOrderRequest {
     private Double orderTotal;
     private Double finalOrderTotal;
     private Integer appliedDiscountValue;
+    private String providerId;
+    private ShoppingCartResponse cart;
 }

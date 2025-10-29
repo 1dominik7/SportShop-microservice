@@ -3,22 +3,16 @@ package com.ecommerce.payment.payment;
 import com.ecommerce.payment.clients.ShopOrderCallerService;
 import com.ecommerce.payment.clients.dto.ShopOrderRequest;
 import com.ecommerce.payment.clients.dto.ShopOrderResponse;
-import com.ecommerce.payment.paymentType.PaymentTypeController;
-import com.ecommerce.payment.paymentType.PaymentTypeService;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.stripe.exception.InvalidRequestException;
 import com.stripe.exception.SignatureVerificationException;
 import com.stripe.exception.StripeException;
 import jakarta.ws.rs.core.MediaType;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.test.context.ActiveProfiles;
@@ -26,10 +20,6 @@ import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-
-import javax.naming.InsufficientResourcesException;
-
-import java.util.Map;
 
 import static org.hamcrest.Matchers.containsString;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -79,7 +69,7 @@ public class PaymentControllerTest {
                 .orderTotal(100.0)
                 .build();
 
-        StripeCheckoutRequest request = StripeCheckoutRequest.builder()
+        CheckoutRequest request = CheckoutRequest.builder()
                 .orderRequest(shopOrderRequest)
                 .successUrl("http://success")
                 .cancelUrl("http://cancel")
@@ -94,7 +84,7 @@ public class PaymentControllerTest {
         when(shopOrderCallerService.createShopOrder(any(), any()))
                 .thenReturn(shopOrderResponse);
 
-        when(stripePaymentService.createCheckoutSession(any(), anyString(), anyString()))
+        when(stripePaymentService.createCheckoutSession(any()))
                 .thenReturn("http://success?session_id={CHECKOUT_SESSION_ID}");
 
         mockMvc.perform(post("/payment/stripe/checkout")
@@ -114,7 +104,7 @@ public class PaymentControllerTest {
                 .orderTotal(100.0)
                 .build();
 
-        StripeCheckoutRequest request = StripeCheckoutRequest.builder()
+        CheckoutRequest request = CheckoutRequest.builder()
                 .orderRequest(shopOrderRequest)
                 .successUrl("http://success")
                 .cancelUrl("http://cancel")

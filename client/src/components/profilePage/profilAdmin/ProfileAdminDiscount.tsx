@@ -111,7 +111,6 @@ const ProfileAdminDiscount = () => {
         ...values,
         expiryDate: values.expiryDate ? `${values.expiryDate}T00:00:00` : null,
       };
-      console.log(payload);
 
       await api.put(`/api/v1/discount/${id}`, payload);
       setRefresh((prev) => !prev);
