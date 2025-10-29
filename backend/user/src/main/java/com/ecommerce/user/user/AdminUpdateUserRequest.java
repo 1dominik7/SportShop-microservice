@@ -1,0 +1,4 @@
+package com.ecommerce.user.user;
+
+public class AdminUpdateUserRequest {
+}
