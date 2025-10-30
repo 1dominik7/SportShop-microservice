@@ -1,40 +1,40 @@
-2025-10-29T16:31:56.334+01:00  INFO 37948 --- [marketing-service] [main] c.e.marketing.MarketingApplication       : Starting MarketingApplication using Java 22.0.2 with PID 37948 (C:\Users\domen\Desktop\programowanie\SportShop-microservice\backend\marketing\target\classes started by domen in C:\Users\domen\Desktop\programowanie\SportShop-microservice\backend)
-2025-10-29T16:31:56.341+01:00  INFO 37948 --- [marketing-service] [main] c.e.marketing.MarketingApplication       : No active profile set, falling back to 1 default profile: "default"
-2025-10-29T16:31:56.398+01:00  INFO 37948 --- [marketing-service] [main] o.s.c.c.c.ConfigServerConfigDataLoader   : Fetching config from server at : http://localhost:8888
-2025-10-29T16:31:56.398+01:00  INFO 37948 --- [marketing-service] [main] o.s.c.c.c.ConfigServerConfigDataLoader   : Located environment: name=marketing-service, profiles=[default], label=null, version=null, state=null
-2025-10-29T16:31:56.399+01:00 DEBUG 37948 --- [marketing-service] [main] o.s.c.c.c.ConfigServerConfigDataLoader   : Environment marketing-service has 1 property sources with 90 properties.
-2025-10-29T16:31:56.515+01:00 DEBUG 37948 --- [marketing-service] [main] o.s.c.a.ClassPathBeanDefinitionScanner   : Identified candidate component class: file [C:\Users\domen\Desktop\programowanie\SportShop-microservice\backend\marketing\target\classes\com\ecommerce\marketing\clients\UserCallerService.class]
-2025-10-29T16:31:56.533+01:00 DEBUG 37948 --- [marketing-service] [main] o.s.c.a.ClassPathBeanDefinitionScanner   : Identified candidate component class: file [C:\Users\domen\Desktop\programowanie\SportShop-microservice\backend\marketing\target\classes\com\ecommerce\marketing\config\NewsletterConsumer.class]
-2025-10-29T16:31:56.534+01:00 DEBUG 37948 --- [marketing-service] [main] o.s.c.a.ClassPathBeanDefinitionScanner   : Identified candidate component class: file [C:\Users\domen\Desktop\programowanie\SportShop-microservice\backend\marketing\target\classes\com\ecommerce\marketing\config\NewsletterProducer.class]
-2025-10-29T16:31:56.535+01:00 DEBUG 37948 --- [marketing-service] [main] o.s.c.a.ClassPathBeanDefinitionScanner   : Identified candidate component class: file [C:\Users\domen\Desktop\programowanie\SportShop-microservice\backend\marketing\target\classes\com\ecommerce\marketing\config\OrderEmailEventConsumer.class]
-2025-10-29T16:31:56.536+01:00 DEBUG 37948 --- [marketing-service] [main] o.s.c.a.ClassPathBeanDefinitionScanner   : Identified candidate component class: file [C:\Users\domen\Desktop\programowanie\SportShop-microservice\backend\marketing\target\classes\com\ecommerce\marketing\email\EmailService.class]
-2025-10-29T16:31:56.541+01:00 DEBUG 37948 --- [marketing-service] [main] o.s.c.a.ClassPathBeanDefinitionScanner   : Identified candidate component class: file [C:\Users\domen\Desktop\programowanie\SportShop-microservice\backend\marketing\target\classes\com\ecommerce\marketing\exceptions\GlobalExceptionHandler.class]
-2025-10-29T16:31:56.549+01:00 DEBUG 37948 --- [marketing-service] [main] o.s.c.a.ClassPathBeanDefinitionScanner   : Identified candidate component class: file [C:\Users\domen\Desktop\programowanie\SportShop-microservice\backend\marketing\target\classes\com\ecommerce\marketing\mainImages\ImagesController.class]
-2025-10-29T16:31:56.552+01:00 DEBUG 37948 --- [marketing-service] [main] o.s.c.a.ClassPathBeanDefinitionScanner   : Ignored because not a concrete top-level class: file [C:\Users\domen\Desktop\programowanie\SportShop-microservice\backend\marketing\target\classes\com\ecommerce\marketing\mainImages\ImagesRepository.class]
-2025-10-29T16:31:56.555+01:00 DEBUG 37948 --- [marketing-service] [main] o.s.c.a.ClassPathBeanDefinitionScanner   : Identified candidate component class: file [C:\Users\domen\Desktop\programowanie\SportShop-microservice\backend\marketing\target\classes\com\ecommerce\marketing\mainImages\ImagesService.class]
-2025-10-29T16:31:56.557+01:00 DEBUG 37948 --- [marketing-service] [main] o.s.c.a.ClassPathBeanDefinitionScanner   : Identified candidate component class: file [C:\Users\domen\Desktop\programowanie\SportShop-microservice\backend\marketing\target\classes\com\ecommerce\marketing\newsletter\NewsletterController.class]
-2025-10-29T16:31:56.559+01:00 DEBUG 37948 --- [marketing-service] [main] o.s.c.a.ClassPathBeanDefinitionScanner   : Ignored because not a concrete top-level class: file [C:\Users\domen\Desktop\programowanie\SportShop-microservice\backend\marketing\target\classes\com\ecommerce\marketing\newsletter\NewsletterRepository.class]
-2025-10-29T16:31:56.562+01:00 DEBUG 37948 --- [marketing-service] [main] o.s.c.a.ClassPathBeanDefinitionScanner   : Identified candidate component class: file [C:\Users\domen\Desktop\programowanie\SportShop-microservice\backend\marketing\target\classes\com\ecommerce\marketing\newsletter\NewsletterService.class]
-2025-10-29T16:31:56.574+01:00 DEBUG 37948 --- [marketing-service] [main] o.s.c.a.ClassPathBeanDefinitionScanner   : Identified candidate component class: file [C:\Users\domen\Desktop\programowanie\SportShop-microservice\backend\marketing\target\classes\com\ecommerce\marketing\security\SecurityConfig.class]
-2025-10-29T16:31:57.415+01:00 DEBUG 37948 --- [marketing-service] [main] o.s.c.openfeign.FeignClientsRegistrar$1  : Identified candidate component class: file [C:\Users\domen\Desktop\programowanie\SportShop-microservice\backend\marketing\target\classes\com\ecommerce\marketing\clients\UserClient.class]
-2025-10-29T16:31:58.269+01:00  INFO 37948 --- [marketing-service] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2025-10-29T16:31:58.447+01:00  INFO 37948 --- [marketing-service] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 167 ms. Found 2 JPA repository interfaces.
-2025-10-29T16:31:58.816+01:00  INFO 37948 --- [marketing-service] [main] faultConfiguringBeanFactoryPostProcessor : No bean named 'errorChannel' has been explicitly defined. Therefore, a default PublishSubscribeChannel will be created.
-2025-10-29T16:31:58.841+01:00  INFO 37948 --- [marketing-service] [main] faultConfiguringBeanFactoryPostProcessor : No bean named 'integrationHeaderChannelRegistry' has been explicitly defined. Therefore, a default DefaultHeaderChannelRegistry will be created.
-2025-10-29T16:31:59.022+01:00  INFO 37948 --- [marketing-service] [main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=181988a4-e523-3df1-98ab-9b7e51a9beb9
-2025-10-29T16:32:00.196+01:00  INFO 37948 --- [marketing-service] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8086 (http)
-2025-10-29T16:32:00.212+01:00  INFO 37948 --- [marketing-service] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2025-10-29T16:32:00.212+01:00  INFO 37948 --- [marketing-service] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.43]
-2025-10-29T16:32:00.296+01:00  INFO 37948 --- [marketing-service] [main] o.a.c.c.C.[.[localhost].[/api/v1]        : Initializing Spring embedded WebApplicationContext
-2025-10-29T16:32:00.296+01:00  INFO 37948 --- [marketing-service] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3895 ms
-2025-10-29T16:32:00.864+01:00  INFO 37948 --- [marketing-service] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2025-10-29T16:32:00.935+01:00  INFO 37948 --- [marketing-service] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.22.Final
-2025-10-29T16:32:00.982+01:00  INFO 37948 --- [marketing-service] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2025-10-29T16:32:01.330+01:00  INFO 37948 --- [marketing-service] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2025-10-29T16:32:01.360+01:00  INFO 37948 --- [marketing-service] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2025-10-29T16:32:01.568+01:00  INFO 37948 --- [marketing-service] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@58f27c37
-2025-10-29T16:32:01.571+01:00  INFO 37948 --- [marketing-service] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2025-10-29T16:32:01.716+01:00  INFO 37948 --- [marketing-service] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+2025-10-30T18:51:52.549+01:00  INFO 31404 --- [marketing-service] [main] c.e.marketing.MarketingApplication       : Starting MarketingApplication using Java 22.0.2 with PID 31404 (C:\Users\domen\Desktop\programowanie\SportShop-microservice\backend\marketing\target\classes started by domen in C:\Users\domen\Desktop\programowanie\SportShop-microservice\backend)
+2025-10-30T18:51:52.563+01:00  INFO 31404 --- [marketing-service] [main] c.e.marketing.MarketingApplication       : No active profile set, falling back to 1 default profile: "default"
+2025-10-30T18:51:52.711+01:00  INFO 31404 --- [marketing-service] [main] o.s.c.c.c.ConfigServerConfigDataLoader   : Fetching config from server at : http://localhost:8888
+2025-10-30T18:51:52.711+01:00  INFO 31404 --- [marketing-service] [main] o.s.c.c.c.ConfigServerConfigDataLoader   : Located environment: name=marketing-service, profiles=[default], label=null, version=null, state=null
+2025-10-30T18:51:52.712+01:00 DEBUG 31404 --- [marketing-service] [main] o.s.c.c.c.ConfigServerConfigDataLoader   : Environment marketing-service has 1 property sources with 90 properties.
+2025-10-30T18:51:52.979+01:00 DEBUG 31404 --- [marketing-service] [main] o.s.c.a.ClassPathBeanDefinitionScanner   : Identified candidate component class: file [C:\Users\domen\Desktop\programowanie\SportShop-microservice\backend\marketing\target\classes\com\ecommerce\marketing\clients\UserCallerService.class]
+2025-10-30T18:51:53.024+01:00 DEBUG 31404 --- [marketing-service] [main] o.s.c.a.ClassPathBeanDefinitionScanner   : Identified candidate component class: file [C:\Users\domen\Desktop\programowanie\SportShop-microservice\backend\marketing\target\classes\com\ecommerce\marketing\config\NewsletterConsumer.class]
+2025-10-30T18:51:53.028+01:00 DEBUG 31404 --- [marketing-service] [main] o.s.c.a.ClassPathBeanDefinitionScanner   : Identified candidate component class: file [C:\Users\domen\Desktop\programowanie\SportShop-microservice\backend\marketing\target\classes\com\ecommerce\marketing\config\NewsletterProducer.class]
+2025-10-30T18:51:53.030+01:00 DEBUG 31404 --- [marketing-service] [main] o.s.c.a.ClassPathBeanDefinitionScanner   : Identified candidate component class: file [C:\Users\domen\Desktop\programowanie\SportShop-microservice\backend\marketing\target\classes\com\ecommerce\marketing\config\OrderEmailEventConsumer.class]
+2025-10-30T18:51:53.036+01:00 DEBUG 31404 --- [marketing-service] [main] o.s.c.a.ClassPathBeanDefinitionScanner   : Identified candidate component class: file [C:\Users\domen\Desktop\programowanie\SportShop-microservice\backend\marketing\target\classes\com\ecommerce\marketing\email\EmailService.class]
+2025-10-30T18:51:53.053+01:00 DEBUG 31404 --- [marketing-service] [main] o.s.c.a.ClassPathBeanDefinitionScanner   : Identified candidate component class: file [C:\Users\domen\Desktop\programowanie\SportShop-microservice\backend\marketing\target\classes\com\ecommerce\marketing\exceptions\GlobalExceptionHandler.class]
+2025-10-30T18:51:53.095+01:00 DEBUG 31404 --- [marketing-service] [main] o.s.c.a.ClassPathBeanDefinitionScanner   : Identified candidate component class: file [C:\Users\domen\Desktop\programowanie\SportShop-microservice\backend\marketing\target\classes\com\ecommerce\marketing\mainImages\ImagesController.class]
+2025-10-30T18:51:53.101+01:00 DEBUG 31404 --- [marketing-service] [main] o.s.c.a.ClassPathBeanDefinitionScanner   : Ignored because not a concrete top-level class: file [C:\Users\domen\Desktop\programowanie\SportShop-microservice\backend\marketing\target\classes\com\ecommerce\marketing\mainImages\ImagesRepository.class]
+2025-10-30T18:51:53.113+01:00 DEBUG 31404 --- [marketing-service] [main] o.s.c.a.ClassPathBeanDefinitionScanner   : Identified candidate component class: file [C:\Users\domen\Desktop\programowanie\SportShop-microservice\backend\marketing\target\classes\com\ecommerce\marketing\mainImages\ImagesService.class]
+2025-10-30T18:51:53.123+01:00 DEBUG 31404 --- [marketing-service] [main] o.s.c.a.ClassPathBeanDefinitionScanner   : Identified candidate component class: file [C:\Users\domen\Desktop\programowanie\SportShop-microservice\backend\marketing\target\classes\com\ecommerce\marketing\newsletter\NewsletterController.class]
+2025-10-30T18:51:53.130+01:00 DEBUG 31404 --- [marketing-service] [main] o.s.c.a.ClassPathBeanDefinitionScanner   : Ignored because not a concrete top-level class: file [C:\Users\domen\Desktop\programowanie\SportShop-microservice\backend\marketing\target\classes\com\ecommerce\marketing\newsletter\NewsletterRepository.class]
+2025-10-30T18:51:53.144+01:00 DEBUG 31404 --- [marketing-service] [main] o.s.c.a.ClassPathBeanDefinitionScanner   : Identified candidate component class: file [C:\Users\domen\Desktop\programowanie\SportShop-microservice\backend\marketing\target\classes\com\ecommerce\marketing\newsletter\NewsletterService.class]
+2025-10-30T18:51:53.176+01:00 DEBUG 31404 --- [marketing-service] [main] o.s.c.a.ClassPathBeanDefinitionScanner   : Identified candidate component class: file [C:\Users\domen\Desktop\programowanie\SportShop-microservice\backend\marketing\target\classes\com\ecommerce\marketing\security\SecurityConfig.class]
+2025-10-30T18:51:54.763+01:00 DEBUG 31404 --- [marketing-service] [main] o.s.c.openfeign.FeignClientsRegistrar$1  : Identified candidate component class: file [C:\Users\domen\Desktop\programowanie\SportShop-microservice\backend\marketing\target\classes\com\ecommerce\marketing\clients\UserClient.class]
+2025-10-30T18:51:56.591+01:00  INFO 31404 --- [marketing-service] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-10-30T18:51:56.950+01:00  INFO 31404 --- [marketing-service] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 339 ms. Found 2 JPA repository interfaces.
+2025-10-30T18:51:57.595+01:00  INFO 31404 --- [marketing-service] [main] faultConfiguringBeanFactoryPostProcessor : No bean named 'errorChannel' has been explicitly defined. Therefore, a default PublishSubscribeChannel will be created.
+2025-10-30T18:51:57.626+01:00  INFO 31404 --- [marketing-service] [main] faultConfiguringBeanFactoryPostProcessor : No bean named 'integrationHeaderChannelRegistry' has been explicitly defined. Therefore, a default DefaultHeaderChannelRegistry will be created.
+2025-10-30T18:51:58.077+01:00  INFO 31404 --- [marketing-service] [main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=181988a4-e523-3df1-98ab-9b7e51a9beb9
+2025-10-30T18:52:01.249+01:00  INFO 31404 --- [marketing-service] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8086 (http)
+2025-10-30T18:52:01.295+01:00  INFO 31404 --- [marketing-service] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-10-30T18:52:01.295+01:00  INFO 31404 --- [marketing-service] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.43]
+2025-10-30T18:52:01.489+01:00  INFO 31404 --- [marketing-service] [main] o.a.c.c.C.[.[localhost].[/api/v1]        : Initializing Spring embedded WebApplicationContext
+2025-10-30T18:52:01.490+01:00  INFO 31404 --- [marketing-service] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 8753 ms
+2025-10-30T18:52:03.165+01:00  INFO 31404 --- [marketing-service] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-10-30T18:52:03.331+01:00  INFO 31404 --- [marketing-service] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.22.Final
+2025-10-30T18:52:03.425+01:00  INFO 31404 --- [marketing-service] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-10-30T18:52:04.120+01:00  INFO 31404 --- [marketing-service] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-10-30T18:52:04.181+01:00  INFO 31404 --- [marketing-service] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-10-30T18:52:04.662+01:00  INFO 31404 --- [marketing-service] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@5d8de155
+2025-10-30T18:52:04.665+01:00  INFO 31404 --- [marketing-service] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-10-30T18:52:04.940+01:00  INFO 31404 --- [marketing-service] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
 	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
 	Database driver: undefined/unknown
 	Database version: 15.14
@@ -42,63 +42,63 @@
 	Isolation level: undefined/unknown
 	Minimum pool size: undefined/unknown
 	Maximum pool size: undefined/unknown
-2025-10-29T16:32:02.609+01:00  INFO 37948 --- [marketing-service] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2025-10-29T16:32:02.671+01:00  INFO 37948 --- [marketing-service] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2025-10-29T16:32:02.695+01:00 DEBUG 37948 --- [marketing-service] [main] o.s.c.openfeign.FeignClientFactoryBean   : Creating a FeignClientFactoryBean.
-2025-10-29T16:32:02.730+01:00 DEBUG 37948 --- [marketing-service] [main] s.c.a.AnnotationConfigApplicationContext : Refreshing FeignClientFactory-user-service
-2025-10-29T16:32:02.963+01:00  WARN 37948 --- [marketing-service] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2025-10-29T16:32:03.155+01:00 DEBUG 37948 --- [marketing-service] [main] ssPathScanningCandidateComponentProvider : Identified candidate component class: URL [jar:file:/C:/Users/domen/.m2/repository/org/springframework/cloud/spring-cloud-bus/4.3.0-RC1/spring-cloud-bus-4.3.0-RC1.jar!/org/springframework/cloud/bus/event/AckRemoteApplicationEvent.class]
-2025-10-29T16:32:03.156+01:00 DEBUG 37948 --- [marketing-service] [main] ssPathScanningCandidateComponentProvider : Identified candidate component class: URL [jar:file:/C:/Users/domen/.m2/repository/org/springframework/cloud/spring-cloud-bus/4.3.0-RC1/spring-cloud-bus-4.3.0-RC1.jar!/org/springframework/cloud/bus/event/EnvironmentChangeRemoteApplicationEvent.class]
-2025-10-29T16:32:03.156+01:00 DEBUG 37948 --- [marketing-service] [main] ssPathScanningCandidateComponentProvider : Identified candidate component class: URL [jar:file:/C:/Users/domen/.m2/repository/org/springframework/cloud/spring-cloud-bus/4.3.0-RC1/spring-cloud-bus-4.3.0-RC1.jar!/org/springframework/cloud/bus/event/RefreshRemoteApplicationEvent.class]
-2025-10-29T16:32:03.158+01:00 DEBUG 37948 --- [marketing-service] [main] ssPathScanningCandidateComponentProvider : Ignored because not a concrete top-level class: URL [jar:file:/C:/Users/domen/.m2/repository/org/springframework/cloud/spring-cloud-bus/4.3.0-RC1/spring-cloud-bus-4.3.0-RC1.jar!/org/springframework/cloud/bus/event/RemoteApplicationEvent.class]
-2025-10-29T16:32:03.160+01:00 DEBUG 37948 --- [marketing-service] [main] ssPathScanningCandidateComponentProvider : Identified candidate component class: URL [jar:file:/C:/Users/domen/.m2/repository/org/springframework/cloud/spring-cloud-bus/4.3.0-RC1/spring-cloud-bus-4.3.0-RC1.jar!/org/springframework/cloud/bus/event/ShutdownRemoteApplicationEvent.class]
-2025-10-29T16:32:03.161+01:00 DEBUG 37948 --- [marketing-service] [main] ssPathScanningCandidateComponentProvider : Identified candidate component class: URL [jar:file:/C:/Users/domen/.m2/repository/org/springframework/cloud/spring-cloud-bus/4.3.0-RC1/spring-cloud-bus-4.3.0-RC1.jar!/org/springframework/cloud/bus/event/UnknownRemoteApplicationEvent.class]
-2025-10-29T16:32:05.633+01:00  INFO 37948 --- [marketing-service] [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 35 endpoints beneath base path '/actuator'
-2025-10-29T16:32:06.526+01:00  WARN 37948 --- [marketing-service] [main] c.f.c.c.BeanFactoryAwareFunctionRegistry : Failed to locate function 'newsletterEmail' for function definition 'newsletterEmail'. Returning null.
-2025-10-29T16:32:06.533+01:00  WARN 37948 --- [marketing-service] [main] c.f.c.c.BeanFactoryAwareFunctionRegistry : Failed to locate function 'orderEmail' for function definition 'orderEmail'. Returning null.
-2025-10-29T16:32:06.535+01:00  WARN 37948 --- [marketing-service] [main] c.f.c.c.BeanFactoryAwareFunctionRegistry : Failed to locate function 'busConsumer' for function definition 'busConsumer'. Returning null.
-2025-10-29T16:32:06.598+01:00  INFO 37948 --- [marketing-service] [main] o.s.c.s.m.DirectWithAttributesChannel    : Channel 'marketing-service.newsletterEmail-in-0' has 1 subscriber(s).
-2025-10-29T16:32:06.601+01:00  INFO 37948 --- [marketing-service] [main] o.s.c.s.m.DirectWithAttributesChannel    : Channel 'marketing-service.orderEmail-in-0' has 1 subscriber(s).
-2025-10-29T16:32:06.605+01:00  INFO 37948 --- [marketing-service] [main] o.s.c.s.m.DirectWithAttributesChannel    : Channel 'marketing-service.springCloudBusInput' has 1 subscriber(s).
-2025-10-29T16:32:07.406+01:00  INFO 37948 --- [marketing-service] [main] DiscoveryClientOptionalArgsConfiguration : Eureka HTTP Client uses RestTemplate.
-2025-10-29T16:32:07.529+01:00  WARN 37948 --- [marketing-service] [main] iguration$LoadBalancerCaffeineWarnLogger : Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
-2025-10-29T16:32:07.921+01:00 DEBUG 37948 --- [marketing-service] [main] o.s.c.support.DefaultLifecycleProcessor  : Starting beans in phase -2147483648
-2025-10-29T16:32:07.921+01:00 DEBUG 37948 --- [marketing-service] [main] o.s.c.support.DefaultLifecycleProcessor  : Successfully started bean 'rabbitConnectionFactory'
-2025-10-29T16:32:07.922+01:00 DEBUG 37948 --- [marketing-service] [main] o.s.c.support.DefaultLifecycleProcessor  : Successfully started bean 'kafkaProducerFactory'
-2025-10-29T16:32:07.922+01:00  INFO 37948 --- [marketing-service] [main] o.s.i.endpoint.EventDrivenConsumer       : Adding {logging-channel-adapter:_org.springframework.integration.errorLogger} as a subscriber to the 'errorChannel' channel
-2025-10-29T16:32:07.922+01:00  INFO 37948 --- [marketing-service] [main] o.s.i.channel.PublishSubscribeChannel    : Channel 'marketing-service.errorChannel' has 1 subscriber(s).
-2025-10-29T16:32:07.923+01:00  INFO 37948 --- [marketing-service] [main] o.s.i.endpoint.EventDrivenConsumer       : started bean '_org.springframework.integration.errorLogger'
-2025-10-29T16:32:07.923+01:00 DEBUG 37948 --- [marketing-service] [main] o.s.c.support.DefaultLifecycleProcessor  : Successfully started bean '_org.springframework.integration.errorLogger'
-2025-10-29T16:32:07.923+01:00 DEBUG 37948 --- [marketing-service] [main] o.s.c.support.DefaultLifecycleProcessor  : Successfully started bean 'applicationRunningController'
-2025-10-29T16:32:07.923+01:00 DEBUG 37948 --- [marketing-service] [main] o.s.c.support.DefaultLifecycleProcessor  : Starting beans in phase -2147483647
-2025-10-29T16:32:07.923+01:00 DEBUG 37948 --- [marketing-service] [main] o.s.c.support.DefaultLifecycleProcessor  : Successfully started bean 'springBootLoggingLifecycle'
-2025-10-29T16:32:07.924+01:00 DEBUG 37948 --- [marketing-service] [main] o.s.c.support.DefaultLifecycleProcessor  : Starting beans in phase -2147482648
-2025-10-29T16:32:07.925+01:00 DEBUG 37948 --- [marketing-service] [main] o.s.c.support.DefaultLifecycleProcessor  : Successfully started bean 'outputBindingLifecycle'
-2025-10-29T16:32:07.926+01:00 DEBUG 37948 --- [marketing-service] [main] o.s.c.support.DefaultLifecycleProcessor  : Starting beans in phase 0
-2025-10-29T16:32:07.986+01:00 DEBUG 37948 --- [marketing-service] [main] o.s.c.support.DefaultLifecycleProcessor  : Successfully started bean 'reactorResourceFactory'
-2025-10-29T16:32:08.002+01:00  INFO 37948 --- [marketing-service] [main] o.s.c.n.eureka.InstanceInfoFactory       : Setting initial instance status as: STARTING
-2025-10-29T16:32:08.033+01:00  INFO 37948 --- [marketing-service] [main] com.netflix.discovery.DiscoveryClient    : Initializing Eureka in region us-east-1
-2025-10-29T16:32:08.036+01:00  INFO 37948 --- [marketing-service] [main] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
-2025-10-29T16:32:08.047+01:00  INFO 37948 --- [marketing-service] [main] com.netflix.discovery.DiscoveryClient    : Disable delta property : false
-2025-10-29T16:32:08.048+01:00  INFO 37948 --- [marketing-service] [main] com.netflix.discovery.DiscoveryClient    : Single vip registry refresh property : null
-2025-10-29T16:32:08.048+01:00  INFO 37948 --- [marketing-service] [main] com.netflix.discovery.DiscoveryClient    : Force full registry fetch : false
-2025-10-29T16:32:08.048+01:00  INFO 37948 --- [marketing-service] [main] com.netflix.discovery.DiscoveryClient    : Application is null : false
-2025-10-29T16:32:08.048+01:00  INFO 37948 --- [marketing-service] [main] com.netflix.discovery.DiscoveryClient    : Registered Applications size is zero : true
-2025-10-29T16:32:08.048+01:00  INFO 37948 --- [marketing-service] [main] com.netflix.discovery.DiscoveryClient    : Application version is -1: true
-2025-10-29T16:32:08.048+01:00  INFO 37948 --- [marketing-service] [main] com.netflix.discovery.DiscoveryClient    : Getting all instance registry info from the eureka server
-2025-10-29T16:32:08.324+01:00  INFO 37948 --- [marketing-service] [main] com.netflix.discovery.DiscoveryClient    : The response status is 200
-2025-10-29T16:32:08.327+01:00  INFO 37948 --- [marketing-service] [main] com.netflix.discovery.DiscoveryClient    : Starting heartbeat executor: renew interval is: 30
-2025-10-29T16:32:08.329+01:00  INFO 37948 --- [marketing-service] [main] c.n.discovery.InstanceInfoReplicator     : InstanceInfoReplicator onDemand update allowed rate per min is 4
-2025-10-29T16:32:08.331+01:00  INFO 37948 --- [marketing-service] [main] com.netflix.discovery.DiscoveryClient    : Discovery Client initialized at timestamp 1761751928330 with initial instances count: 5
-2025-10-29T16:32:08.340+01:00  INFO 37948 --- [marketing-service] [main] o.s.c.n.e.s.EurekaServiceRegistry        : Registering application MARKETING-SERVICE with eureka with status UP
-2025-10-29T16:32:08.341+01:00  INFO 37948 --- [marketing-service] [main] com.netflix.discovery.DiscoveryClient    : Saw local status change event StatusChangeEvent [timestamp=1761751928341, current=UP, previous=STARTING]
-2025-10-29T16:32:08.343+01:00 DEBUG 37948 --- [marketing-service] [main] o.s.c.support.DefaultLifecycleProcessor  : Successfully started bean 'eurekaAutoServiceRegistration'
-2025-10-29T16:32:08.343+01:00 DEBUG 37948 --- [marketing-service] [main] o.s.c.support.DefaultLifecycleProcessor  : Starting beans in phase 1073741823
-2025-10-29T16:32:08.343+01:00  INFO 37948 --- [marketing-service] [DiscoveryClient-InstanceInfoReplicator-%d] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_MARKETING-SERVICE/dominikPC:marketing-service:8086: registering service...
-2025-10-29T16:32:08.343+01:00 DEBUG 37948 --- [marketing-service] [main] o.s.c.support.DefaultLifecycleProcessor  : Starting beans in phase 2147480647
-2025-10-29T16:32:08.344+01:00  INFO 37948 --- [marketing-service] [main] o.s.c.s.binder.DefaultBinderFactory      : Creating binder: rabbit
-2025-10-29T16:32:08.344+01:00  INFO 37948 --- [marketing-service] [main] o.s.c.s.binder.DefaultBinderFactory      : Constructing binder child context for rabbit
-2025-10-29T16:32:08.350+01:00 DEBUG 37948 --- [marketing-service] [main] o.s.c.s.binder.DefaultBinderFactory      : Attempt to load org.springframework.cloud.stream.binder.kafka.support.ConsumerConfigCustomizer failed.
+2025-10-30T18:52:06.905+01:00  INFO 31404 --- [marketing-service] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-10-30T18:52:07.075+01:00  INFO 31404 --- [marketing-service] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-10-30T18:52:07.121+01:00 DEBUG 31404 --- [marketing-service] [main] o.s.c.openfeign.FeignClientFactoryBean   : Creating a FeignClientFactoryBean.
+2025-10-30T18:52:07.222+01:00 DEBUG 31404 --- [marketing-service] [main] s.c.a.AnnotationConfigApplicationContext : Refreshing FeignClientFactory-user-service
+2025-10-30T18:52:07.655+01:00  WARN 31404 --- [marketing-service] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-10-30T18:52:08.039+01:00 DEBUG 31404 --- [marketing-service] [main] ssPathScanningCandidateComponentProvider : Identified candidate component class: URL [jar:file:/C:/Users/domen/.m2/repository/org/springframework/cloud/spring-cloud-bus/4.3.0-RC1/spring-cloud-bus-4.3.0-RC1.jar!/org/springframework/cloud/bus/event/AckRemoteApplicationEvent.class]
+2025-10-30T18:52:08.040+01:00 DEBUG 31404 --- [marketing-service] [main] ssPathScanningCandidateComponentProvider : Identified candidate component class: URL [jar:file:/C:/Users/domen/.m2/repository/org/springframework/cloud/spring-cloud-bus/4.3.0-RC1/spring-cloud-bus-4.3.0-RC1.jar!/org/springframework/cloud/bus/event/EnvironmentChangeRemoteApplicationEvent.class]
+2025-10-30T18:52:08.041+01:00 DEBUG 31404 --- [marketing-service] [main] ssPathScanningCandidateComponentProvider : Identified candidate component class: URL [jar:file:/C:/Users/domen/.m2/repository/org/springframework/cloud/spring-cloud-bus/4.3.0-RC1/spring-cloud-bus-4.3.0-RC1.jar!/org/springframework/cloud/bus/event/RefreshRemoteApplicationEvent.class]
+2025-10-30T18:52:08.043+01:00 DEBUG 31404 --- [marketing-service] [main] ssPathScanningCandidateComponentProvider : Ignored because not a concrete top-level class: URL [jar:file:/C:/Users/domen/.m2/repository/org/springframework/cloud/spring-cloud-bus/4.3.0-RC1/spring-cloud-bus-4.3.0-RC1.jar!/org/springframework/cloud/bus/event/RemoteApplicationEvent.class]
+2025-10-30T18:52:08.045+01:00 DEBUG 31404 --- [marketing-service] [main] ssPathScanningCandidateComponentProvider : Identified candidate component class: URL [jar:file:/C:/Users/domen/.m2/repository/org/springframework/cloud/spring-cloud-bus/4.3.0-RC1/spring-cloud-bus-4.3.0-RC1.jar!/org/springframework/cloud/bus/event/ShutdownRemoteApplicationEvent.class]
+2025-10-30T18:52:08.046+01:00 DEBUG 31404 --- [marketing-service] [main] ssPathScanningCandidateComponentProvider : Identified candidate component class: URL [jar:file:/C:/Users/domen/.m2/repository/org/springframework/cloud/spring-cloud-bus/4.3.0-RC1/spring-cloud-bus-4.3.0-RC1.jar!/org/springframework/cloud/bus/event/UnknownRemoteApplicationEvent.class]
+2025-10-30T18:52:12.438+01:00  INFO 31404 --- [marketing-service] [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 35 endpoints beneath base path '/actuator'
+2025-10-30T18:52:13.721+01:00  WARN 31404 --- [marketing-service] [main] c.f.c.c.BeanFactoryAwareFunctionRegistry : Failed to locate function 'newsletterEmail' for function definition 'newsletterEmail'. Returning null.
+2025-10-30T18:52:13.730+01:00  WARN 31404 --- [marketing-service] [main] c.f.c.c.BeanFactoryAwareFunctionRegistry : Failed to locate function 'orderEmail' for function definition 'orderEmail'. Returning null.
+2025-10-30T18:52:13.732+01:00  WARN 31404 --- [marketing-service] [main] c.f.c.c.BeanFactoryAwareFunctionRegistry : Failed to locate function 'busConsumer' for function definition 'busConsumer'. Returning null.
+2025-10-30T18:52:13.823+01:00  INFO 31404 --- [marketing-service] [main] o.s.c.s.m.DirectWithAttributesChannel    : Channel 'marketing-service.newsletterEmail-in-0' has 1 subscriber(s).
+2025-10-30T18:52:13.828+01:00  INFO 31404 --- [marketing-service] [main] o.s.c.s.m.DirectWithAttributesChannel    : Channel 'marketing-service.orderEmail-in-0' has 1 subscriber(s).
+2025-10-30T18:52:13.834+01:00  INFO 31404 --- [marketing-service] [main] o.s.c.s.m.DirectWithAttributesChannel    : Channel 'marketing-service.springCloudBusInput' has 1 subscriber(s).
+2025-10-30T18:52:14.488+01:00  INFO 31404 --- [marketing-service] [main] DiscoveryClientOptionalArgsConfiguration : Eureka HTTP Client uses RestTemplate.
+2025-10-30T18:52:14.591+01:00  WARN 31404 --- [marketing-service] [main] iguration$LoadBalancerCaffeineWarnLogger : Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+2025-10-30T18:52:14.812+01:00 DEBUG 31404 --- [marketing-service] [main] o.s.c.support.DefaultLifecycleProcessor  : Starting beans in phase -2147483648
+2025-10-30T18:52:14.812+01:00 DEBUG 31404 --- [marketing-service] [main] o.s.c.support.DefaultLifecycleProcessor  : Successfully started bean 'rabbitConnectionFactory'
+2025-10-30T18:52:14.812+01:00 DEBUG 31404 --- [marketing-service] [main] o.s.c.support.DefaultLifecycleProcessor  : Successfully started bean 'kafkaProducerFactory'
+2025-10-30T18:52:14.812+01:00  INFO 31404 --- [marketing-service] [main] o.s.i.endpoint.EventDrivenConsumer       : Adding {logging-channel-adapter:_org.springframework.integration.errorLogger} as a subscriber to the 'errorChannel' channel
+2025-10-30T18:52:14.813+01:00  INFO 31404 --- [marketing-service] [main] o.s.i.channel.PublishSubscribeChannel    : Channel 'marketing-service.errorChannel' has 1 subscriber(s).
+2025-10-30T18:52:14.813+01:00  INFO 31404 --- [marketing-service] [main] o.s.i.endpoint.EventDrivenConsumer       : started bean '_org.springframework.integration.errorLogger'
+2025-10-30T18:52:14.813+01:00 DEBUG 31404 --- [marketing-service] [main] o.s.c.support.DefaultLifecycleProcessor  : Successfully started bean '_org.springframework.integration.errorLogger'
+2025-10-30T18:52:14.813+01:00 DEBUG 31404 --- [marketing-service] [main] o.s.c.support.DefaultLifecycleProcessor  : Successfully started bean 'applicationRunningController'
+2025-10-30T18:52:14.814+01:00 DEBUG 31404 --- [marketing-service] [main] o.s.c.support.DefaultLifecycleProcessor  : Starting beans in phase -2147483647
+2025-10-30T18:52:14.814+01:00 DEBUG 31404 --- [marketing-service] [main] o.s.c.support.DefaultLifecycleProcessor  : Successfully started bean 'springBootLoggingLifecycle'
+2025-10-30T18:52:14.815+01:00 DEBUG 31404 --- [marketing-service] [main] o.s.c.support.DefaultLifecycleProcessor  : Starting beans in phase -2147482648
+2025-10-30T18:52:14.817+01:00 DEBUG 31404 --- [marketing-service] [main] o.s.c.support.DefaultLifecycleProcessor  : Successfully started bean 'outputBindingLifecycle'
+2025-10-30T18:52:14.817+01:00 DEBUG 31404 --- [marketing-service] [main] o.s.c.support.DefaultLifecycleProcessor  : Starting beans in phase 0
+2025-10-30T18:52:14.946+01:00 DEBUG 31404 --- [marketing-service] [main] o.s.c.support.DefaultLifecycleProcessor  : Successfully started bean 'reactorResourceFactory'
+2025-10-30T18:52:14.980+01:00  INFO 31404 --- [marketing-service] [main] o.s.c.n.eureka.InstanceInfoFactory       : Setting initial instance status as: STARTING
+2025-10-30T18:52:15.026+01:00  INFO 31404 --- [marketing-service] [main] com.netflix.discovery.DiscoveryClient    : Initializing Eureka in region us-east-1
+2025-10-30T18:52:15.032+01:00  INFO 31404 --- [marketing-service] [main] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2025-10-30T18:52:15.046+01:00  INFO 31404 --- [marketing-service] [main] com.netflix.discovery.DiscoveryClient    : Disable delta property : false
+2025-10-30T18:52:15.046+01:00  INFO 31404 --- [marketing-service] [main] com.netflix.discovery.DiscoveryClient    : Single vip registry refresh property : null
+2025-10-30T18:52:15.046+01:00  INFO 31404 --- [marketing-service] [main] com.netflix.discovery.DiscoveryClient    : Force full registry fetch : false
+2025-10-30T18:52:15.046+01:00  INFO 31404 --- [marketing-service] [main] com.netflix.discovery.DiscoveryClient    : Application is null : false
+2025-10-30T18:52:15.047+01:00  INFO 31404 --- [marketing-service] [main] com.netflix.discovery.DiscoveryClient    : Registered Applications size is zero : true
+2025-10-30T18:52:15.047+01:00  INFO 31404 --- [marketing-service] [main] com.netflix.discovery.DiscoveryClient    : Application version is -1: true
+2025-10-30T18:52:15.047+01:00  INFO 31404 --- [marketing-service] [main] com.netflix.discovery.DiscoveryClient    : Getting all instance registry info from the eureka server
+2025-10-30T18:52:15.378+01:00  INFO 31404 --- [marketing-service] [main] com.netflix.discovery.DiscoveryClient    : The response status is 200
+2025-10-30T18:52:15.388+01:00  INFO 31404 --- [marketing-service] [main] com.netflix.discovery.DiscoveryClient    : Starting heartbeat executor: renew interval is: 30
+2025-10-30T18:52:15.391+01:00  INFO 31404 --- [marketing-service] [main] c.n.discovery.InstanceInfoReplicator     : InstanceInfoReplicator onDemand update allowed rate per min is 4
+2025-10-30T18:52:15.393+01:00  INFO 31404 --- [marketing-service] [main] com.netflix.discovery.DiscoveryClient    : Discovery Client initialized at timestamp 1761846735393 with initial instances count: 3
+2025-10-30T18:52:15.408+01:00  INFO 31404 --- [marketing-service] [main] o.s.c.n.e.s.EurekaServiceRegistry        : Registering application MARKETING-SERVICE with eureka with status UP
+2025-10-30T18:52:15.411+01:00  INFO 31404 --- [marketing-service] [main] com.netflix.discovery.DiscoveryClient    : Saw local status change event StatusChangeEvent [timestamp=1761846735411, current=UP, previous=STARTING]
+2025-10-30T18:52:15.413+01:00  INFO 31404 --- [marketing-service] [DiscoveryClient-InstanceInfoReplicator-%d] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_MARKETING-SERVICE/dominikPC:marketing-service:8086: registering service...
+2025-10-30T18:52:15.413+01:00 DEBUG 31404 --- [marketing-service] [main] o.s.c.support.DefaultLifecycleProcessor  : Successfully started bean 'eurekaAutoServiceRegistration'
+2025-10-30T18:52:15.413+01:00 DEBUG 31404 --- [marketing-service] [main] o.s.c.support.DefaultLifecycleProcessor  : Starting beans in phase 1073741823
+2025-10-30T18:52:15.414+01:00 DEBUG 31404 --- [marketing-service] [main] o.s.c.support.DefaultLifecycleProcessor  : Starting beans in phase 2147480647
+2025-10-30T18:52:15.415+01:00  INFO 31404 --- [marketing-service] [main] o.s.c.s.binder.DefaultBinderFactory      : Creating binder: rabbit
+2025-10-30T18:52:15.415+01:00  INFO 31404 --- [marketing-service] [main] o.s.c.s.binder.DefaultBinderFactory      : Constructing binder child context for rabbit
+2025-10-30T18:52:15.423+01:00 DEBUG 31404 --- [marketing-service] [main] o.s.c.s.binder.DefaultBinderFactory      : Attempt to load org.springframework.cloud.stream.binder.kafka.support.ConsumerConfigCustomizer failed.
 
 java.lang.ClassNotFoundException: org.springframework.cloud.stream.binder.kafka.support.ConsumerConfigCustomizer
 	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:641) ~[na:na]
@@ -133,7 +133,7 @@ java.lang.ClassNotFoundException: org.springframework.cloud.stream.binder.kafka.
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1350) ~[spring-boot-3.5.4.jar:3.5.4]
 	at com.ecommerce.marketing.MarketingApplication.main(MarketingApplication.java:16) ~[classes/:na]
 
-2025-10-29T16:32:08.354+01:00 DEBUG 37948 --- [marketing-service] [main] o.s.c.s.binder.DefaultBinderFactory      : Attempt to load org.springframework.cloud.stream.binder.kafka.provisioning.AdminClientConfigCustomizer failed.
+2025-10-30T18:52:15.430+01:00 DEBUG 31404 --- [marketing-service] [main] o.s.c.s.binder.DefaultBinderFactory      : Attempt to load org.springframework.cloud.stream.binder.kafka.provisioning.AdminClientConfigCustomizer failed.
 
 java.lang.ClassNotFoundException: org.springframework.cloud.stream.binder.kafka.provisioning.AdminClientConfigCustomizer
 	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:641) ~[na:na]
@@ -168,7 +168,7 @@ java.lang.ClassNotFoundException: org.springframework.cloud.stream.binder.kafka.
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1350) ~[spring-boot-3.5.4.jar:3.5.4]
 	at com.ecommerce.marketing.MarketingApplication.main(MarketingApplication.java:16) ~[classes/:na]
 
-2025-10-29T16:32:08.357+01:00 DEBUG 37948 --- [marketing-service] [main] o.s.c.s.binder.DefaultBinderFactory      : Attempt to load org.springframework.cloud.stream.binder.kafka.ListenerContainerWithDlqAndRetryCustomizer failed.
+2025-10-30T18:52:15.433+01:00 DEBUG 31404 --- [marketing-service] [main] o.s.c.s.binder.DefaultBinderFactory      : Attempt to load org.springframework.cloud.stream.binder.kafka.ListenerContainerWithDlqAndRetryCustomizer failed.
 
 java.lang.ClassNotFoundException: org.springframework.cloud.stream.binder.kafka.ListenerContainerWithDlqAndRetryCustomizer
 	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:641) ~[na:na]
@@ -203,7 +203,7 @@ java.lang.ClassNotFoundException: org.springframework.cloud.stream.binder.kafka.
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1350) ~[spring-boot-3.5.4.jar:3.5.4]
 	at com.ecommerce.marketing.MarketingApplication.main(MarketingApplication.java:16) ~[classes/:na]
 
-2025-10-29T16:32:08.359+01:00 DEBUG 37948 --- [marketing-service] [main] o.s.c.s.binder.DefaultBinderFactory      : Attempt to load org.springframework.rabbit.stream.listener.ConsumerCustomizer failed.
+2025-10-30T18:52:15.438+01:00 DEBUG 31404 --- [marketing-service] [main] o.s.c.s.binder.DefaultBinderFactory      : Attempt to load org.springframework.rabbit.stream.listener.ConsumerCustomizer failed.
 
 java.lang.ClassNotFoundException: org.springframework.rabbit.stream.listener.ConsumerCustomizer
 	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:641) ~[na:na]
@@ -238,7 +238,7 @@ java.lang.ClassNotFoundException: org.springframework.rabbit.stream.listener.Con
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1350) ~[spring-boot-3.5.4.jar:3.5.4]
 	at com.ecommerce.marketing.MarketingApplication.main(MarketingApplication.java:16) ~[classes/:na]
 
-2025-10-29T16:32:08.360+01:00 DEBUG 37948 --- [marketing-service] [main] o.s.c.s.binder.DefaultBinderFactory      : Attempt to load org.springframework.cloud.stream.binder.test.InputDestination failed.
+2025-10-30T18:52:15.440+01:00 DEBUG 31404 --- [marketing-service] [main] o.s.c.s.binder.DefaultBinderFactory      : Attempt to load org.springframework.cloud.stream.binder.test.InputDestination failed.
 
 java.lang.ClassNotFoundException: org.springframework.cloud.stream.binder.test.InputDestination
 	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:641) ~[na:na]
@@ -273,7 +273,7 @@ java.lang.ClassNotFoundException: org.springframework.cloud.stream.binder.test.I
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1350) ~[spring-boot-3.5.4.jar:3.5.4]
 	at com.ecommerce.marketing.MarketingApplication.main(MarketingApplication.java:16) ~[classes/:na]
 
-2025-10-29T16:32:08.361+01:00 DEBUG 37948 --- [marketing-service] [main] o.s.c.s.binder.DefaultBinderFactory      : Attempt to load org.springframework.cloud.stream.binder.test.OutputDestination failed.
+2025-10-30T18:52:15.443+01:00 DEBUG 31404 --- [marketing-service] [main] o.s.c.s.binder.DefaultBinderFactory      : Attempt to load org.springframework.cloud.stream.binder.test.OutputDestination failed.
 
 java.lang.ClassNotFoundException: org.springframework.cloud.stream.binder.test.OutputDestination
 	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:641) ~[na:na]
@@ -308,7 +308,7 @@ java.lang.ClassNotFoundException: org.springframework.cloud.stream.binder.test.O
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1350) ~[spring-boot-3.5.4.jar:3.5.4]
 	at com.ecommerce.marketing.MarketingApplication.main(MarketingApplication.java:16) ~[classes/:na]
 
-2025-10-29T16:32:08.362+01:00 DEBUG 37948 --- [marketing-service] [main] o.s.c.s.binder.DefaultBinderFactory      : Attempt to load org.springframework.cloud.stream.binder.kafka.support.ProducerConfigCustomizer failed.
+2025-10-30T18:52:15.445+01:00 DEBUG 31404 --- [marketing-service] [main] o.s.c.s.binder.DefaultBinderFactory      : Attempt to load org.springframework.cloud.stream.binder.kafka.support.ProducerConfigCustomizer failed.
 
 java.lang.ClassNotFoundException: org.springframework.cloud.stream.binder.kafka.support.ProducerConfigCustomizer
 	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:641) ~[na:na]
@@ -343,378 +343,98 @@ java.lang.ClassNotFoundException: org.springframework.cloud.stream.binder.kafka.
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1350) ~[spring-boot-3.5.4.jar:3.5.4]
 	at com.ecommerce.marketing.MarketingApplication.main(MarketingApplication.java:16) ~[classes/:na]
 
-2025-10-29T16:32:08.364+01:00 DEBUG 37948 --- [marketing-service] [main] s.c.a.AnnotationConfigApplicationContext : Refreshing rabbit_context
-2025-10-29T16:32:08.387+01:00  INFO 37948 --- [marketing-service] [DiscoveryClient-InstanceInfoReplicator-%d] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_MARKETING-SERVICE/dominikPC:marketing-service:8086 - registration status: 204
-2025-10-29T16:32:08.428+01:00 DEBUG 37948 --- [marketing-service] [main] o.s.c.support.GenericApplicationContext  : Refreshing org.springframework.context.support.GenericApplicationContext@382e9e2a
-2025-10-29T16:32:08.442+01:00 DEBUG 37948 --- [marketing-service] [main] o.s.c.support.GenericApplicationContext  : Refreshing org.springframework.context.support.GenericApplicationContext@6a45af66
-2025-10-29T16:32:08.445+01:00 DEBUG 37948 --- [marketing-service] [main] o.s.c.support.DefaultLifecycleProcessor  : Starting beans in phase -2147483648
-2025-10-29T16:32:08.446+01:00 DEBUG 37948 --- [marketing-service] [main] o.s.c.support.DefaultLifecycleProcessor  : Successfully started bean 'rabbitConnectionFactory'
-2025-10-29T16:32:08.447+01:00  INFO 37948 --- [marketing-service] [main] o.s.c.s.binder.DefaultBinderFactory      : Caching the binder: rabbit
-2025-10-29T16:32:08.458+01:00  INFO 37948 --- [marketing-service] [main] c.s.b.r.p.RabbitExchangeQueueProvisioner : declaring queue for inbound: newsletter.queue.anonymous.2qWGA5RpSVSH_vyD5yvNig, bound to: newsletter.queue
-2025-10-29T16:32:08.464+01:00  INFO 37948 --- [marketing-service] [main] o.s.a.r.c.CachingConnectionFactory       : Attempting to connect to: [localhost:5672]
-2025-10-29T16:32:08.510+01:00  INFO 37948 --- [marketing-service] [main] o.s.a.r.c.CachingConnectionFactory       : Created new connection: rabbitConnectionFactory#53517736:0/SimpleConnection@497b783 [delegate=amqp://guest@127.0.0.1:5672/, localPort=57069]
-2025-10-29T16:32:08.516+01:00 DEBUG 37948 --- [marketing-service] [main] o.s.amqp.rabbit.core.RabbitAdmin         : Initializing declarations
-2025-10-29T16:32:08.517+01:00 DEBUG 37948 --- [marketing-service] [main] o.s.amqp.rabbit.core.RabbitAdmin         : Nothing to declare
-2025-10-29T16:32:08.517+01:00 DEBUG 37948 --- [marketing-service] [main] o.s.amqp.rabbit.core.RabbitAdmin         : Initializing declarations
-2025-10-29T16:32:08.517+01:00 DEBUG 37948 --- [marketing-service] [main] o.s.amqp.rabbit.core.RabbitAdmin         : Nothing to declare
-2025-10-29T16:32:08.526+01:00 DEBUG 37948 --- [marketing-service] [main] o.s.a.r.c.CachingConnectionFactory       : Creating cached Rabbit Channel from AMQChannel(amqp://guest@127.0.0.1:5672/,1)
-2025-10-29T16:32:08.542+01:00 DEBUG 37948 --- [marketing-service] [main] o.s.amqp.rabbit.core.RabbitTemplate      : Executing callback RabbitAdmin$$Lambda/0x0000021452ec0340 on RabbitMQ Channel: Cached Rabbit Channel: AMQChannel(amqp://guest@127.0.0.1:5672/,1), conn: Proxy@32bd7445 Shared Rabbit Connection: SimpleConnection@497b783 [delegate=amqp://guest@127.0.0.1:5672/, localPort=57069]
-2025-10-29T16:32:08.543+01:00 DEBUG 37948 --- [marketing-service] [main] o.s.amqp.rabbit.core.RabbitAdmin         : declaring Exchange 'newsletter.queue'
-2025-10-29T16:32:08.552+01:00 DEBUG 37948 --- [marketing-service] [main] o.s.amqp.rabbit.core.RabbitTemplate      : Executing callback RabbitAdmin$$Lambda/0x0000021452ee5ce8 on RabbitMQ Channel: Cached Rabbit Channel: AMQChannel(amqp://guest@127.0.0.1:5672/,1), conn: Proxy@32bd7445 Shared Rabbit Connection: SimpleConnection@497b783 [delegate=amqp://guest@127.0.0.1:5672/, localPort=57069]
-2025-10-29T16:32:08.553+01:00 DEBUG 37948 --- [marketing-service] [main] o.s.amqp.rabbit.core.RabbitAdmin         : declaring Queue 'newsletter.queue.anonymous.2qWGA5RpSVSH_vyD5yvNig'
-2025-10-29T16:32:08.571+01:00 DEBUG 37948 --- [marketing-service] [main] o.s.amqp.rabbit.core.RabbitTemplate      : Executing callback RabbitAdmin$$Lambda/0x0000021452ee6d58 on RabbitMQ Channel: Cached Rabbit Channel: AMQChannel(amqp://guest@127.0.0.1:5672/,1), conn: Proxy@32bd7445 Shared Rabbit Connection: SimpleConnection@497b783 [delegate=amqp://guest@127.0.0.1:5672/, localPort=57069]
-2025-10-29T16:32:08.572+01:00 DEBUG 37948 --- [marketing-service] [main] o.s.amqp.rabbit.core.RabbitAdmin         : Binding destination [newsletter.queue.anonymous.2qWGA5RpSVSH_vyD5yvNig (QUEUE)] to exchange [newsletter.queue] with routing key [#]
-2025-10-29T16:32:08.589+01:00 DEBUG 37948 --- [marketing-service] [main] o.s.a.r.l.SimpleMessageListenerContainer : Changing consumers from 1 to 1
-2025-10-29T16:32:08.591+01:00 DEBUG 37948 --- [marketing-service] [main] o.s.a.r.l.SimpleMessageListenerContainer : No global properties bean
-2025-10-29T16:32:08.608+01:00  INFO 37948 --- [marketing-service] [main] o.s.c.stream.binder.BinderErrorChannel   : Channel 'rabbit-1329963164.newsletterEmail-in-0.errors' has 1 subscriber(s).
-2025-10-29T16:32:08.610+01:00  INFO 37948 --- [marketing-service] [main] o.s.c.stream.binder.BinderErrorChannel   : Channel 'rabbit-1329963164.newsletterEmail-in-0.errors' has 2 subscriber(s).
-2025-10-29T16:32:08.614+01:00 DEBUG 37948 --- [marketing-service] [main] o.s.a.r.l.SimpleMessageListenerContainer : Starting Rabbit listener container.
-2025-10-29T16:32:08.639+01:00 DEBUG 37948 --- [marketing-service] [newsletter.queue.anonymous.2qWGA5RpSVSH_vyD5yvNig-1] o.s.a.r.listener.BlockingQueueConsumer   : Starting consumer Consumer@4e3db1c6: tags=[[]], channel=null, acknowledgeMode=AUTO local queue size=0
-2025-10-29T16:32:08.665+01:00 DEBUG 37948 --- [marketing-service] [newsletter.queue.anonymous.2qWGA5RpSVSH_vyD5yvNig-1] o.s.a.r.listener.BlockingQueueConsumer   : Started on queue 'newsletter.queue.anonymous.2qWGA5RpSVSH_vyD5yvNig' with tag amq.ctag-PvpzQgwsS4sVU2i7sH51dA: Consumer@4e3db1c6: tags=[[]], channel=Cached Rabbit Channel: AMQChannel(amqp://guest@127.0.0.1:5672/,1), conn: Proxy@32bd7445 Shared Rabbit Connection: SimpleConnection@497b783 [delegate=amqp://guest@127.0.0.1:5672/, localPort=57069], acknowledgeMode=AUTO local queue size=0
-2025-10-29T16:32:08.665+01:00 DEBUG 37948 --- [marketing-service] [pool-7-thread-3] o.s.a.r.listener.BlockingQueueConsumer   : ConsumeOK: Consumer@4e3db1c6: tags=[[amq.ctag-PvpzQgwsS4sVU2i7sH51dA]], channel=Cached Rabbit Channel: AMQChannel(amqp://guest@127.0.0.1:5672/,1), conn: Proxy@32bd7445 Shared Rabbit Connection: SimpleConnection@497b783 [delegate=amqp://guest@127.0.0.1:5672/, localPort=57069], acknowledgeMode=AUTO local queue size=0
-2025-10-29T16:32:08.665+01:00  INFO 37948 --- [marketing-service] [main] o.s.i.a.i.AmqpInboundChannelAdapter      : started bean 'inbound.newsletter.queue.anonymous.2qWGA5RpSVSH_vyD5yvNig'
-2025-10-29T16:32:08.675+01:00  INFO 37948 --- [marketing-service] [main] c.s.b.r.p.RabbitExchangeQueueProvisioner : declaring queue for inbound: order.success.email.marketing-group, bound to: order.success.email
-2025-10-29T16:32:08.679+01:00 DEBUG 37948 --- [marketing-service] [main] o.s.a.r.c.CachingConnectionFactory       : Creating cached Rabbit Channel from AMQChannel(amqp://guest@127.0.0.1:5672/,2)
-2025-10-29T16:32:08.679+01:00 DEBUG 37948 --- [marketing-service] [main] o.s.amqp.rabbit.core.RabbitTemplate      : Executing callback RabbitAdmin$$Lambda/0x0000021452ec0340 on RabbitMQ Channel: Cached Rabbit Channel: AMQChannel(amqp://guest@127.0.0.1:5672/,2), conn: Proxy@32bd7445 Shared Rabbit Connection: SimpleConnection@497b783 [delegate=amqp://guest@127.0.0.1:5672/, localPort=57069]
-2025-10-29T16:32:08.680+01:00 DEBUG 37948 --- [marketing-service] [main] o.s.amqp.rabbit.core.RabbitAdmin         : declaring Exchange 'order.success.email'
-2025-10-29T16:32:08.682+01:00 DEBUG 37948 --- [marketing-service] [main] o.s.amqp.rabbit.core.RabbitTemplate      : Executing callback RabbitAdmin$$Lambda/0x0000021452ee5ce8 on RabbitMQ Channel: Cached Rabbit Channel: AMQChannel(amqp://guest@127.0.0.1:5672/,2), conn: Proxy@32bd7445 Shared Rabbit Connection: SimpleConnection@497b783 [delegate=amqp://guest@127.0.0.1:5672/, localPort=57069]
-2025-10-29T16:32:08.683+01:00 DEBUG 37948 --- [marketing-service] [main] o.s.amqp.rabbit.core.RabbitAdmin         : declaring Queue 'order.success.email.marketing-group'
-2025-10-29T16:32:08.684+01:00 DEBUG 37948 --- [marketing-service] [main] o.s.amqp.rabbit.core.RabbitTemplate      : Executing callback RabbitAdmin$$Lambda/0x0000021452ee6d58 on RabbitMQ Channel: Cached Rabbit Channel: AMQChannel(amqp://guest@127.0.0.1:5672/,2), conn: Proxy@32bd7445 Shared Rabbit Connection: SimpleConnection@497b783 [delegate=amqp://guest@127.0.0.1:5672/, localPort=57069]
-2025-10-29T16:32:08.685+01:00 DEBUG 37948 --- [marketing-service] [main] o.s.amqp.rabbit.core.RabbitAdmin         : Binding destination [order.success.email.marketing-group (QUEUE)] to exchange [order.success.email] with routing key [#]
-2025-10-29T16:32:08.688+01:00 DEBUG 37948 --- [marketing-service] [main] c.s.b.r.p.RabbitExchangeQueueProvisioner : autoBindDLQ=false for: order.success.email.marketing-group
-2025-10-29T16:32:08.688+01:00 DEBUG 37948 --- [marketing-service] [main] o.s.a.r.l.SimpleMessageListenerContainer : Changing consumers from 1 to 1
-2025-10-29T16:32:08.689+01:00 DEBUG 37948 --- [marketing-service] [main] o.s.a.r.l.SimpleMessageListenerContainer : No global properties bean
-2025-10-29T16:32:08.692+01:00  INFO 37948 --- [marketing-service] [main] o.s.c.stream.binder.BinderErrorChannel   : Channel 'rabbit-1329963164.orderEmail-in-0.errors' has 1 subscriber(s).
-2025-10-29T16:32:08.692+01:00  INFO 37948 --- [marketing-service] [main] o.s.c.stream.binder.BinderErrorChannel   : Channel 'rabbit-1329963164.orderEmail-in-0.errors' has 2 subscriber(s).
-2025-10-29T16:32:08.694+01:00 DEBUG 37948 --- [marketing-service] [main] o.s.a.r.l.SimpleMessageListenerContainer : Starting Rabbit listener container.
-2025-10-29T16:32:08.701+01:00 DEBUG 37948 --- [marketing-service] [order.success.email.marketing-group-1] o.s.a.r.listener.BlockingQueueConsumer   : Starting consumer Consumer@798673ea: tags=[[]], channel=null, acknowledgeMode=AUTO local queue size=0
-2025-10-29T16:32:08.709+01:00 DEBUG 37948 --- [marketing-service] [order.success.email.marketing-group-1] o.s.a.r.listener.BlockingQueueConsumer   : Started on queue 'order.success.email.marketing-group' with tag amq.ctag-iP7IDkrmaiXGdrDZOv-53w: Consumer@798673ea: tags=[[]], channel=Cached Rabbit Channel: AMQChannel(amqp://guest@127.0.0.1:5672/,2), conn: Proxy@32bd7445 Shared Rabbit Connection: SimpleConnection@497b783 [delegate=amqp://guest@127.0.0.1:5672/, localPort=57069], acknowledgeMode=AUTO local queue size=0
-2025-10-29T16:32:08.709+01:00 DEBUG 37948 --- [marketing-service] [pool-7-thread-4] o.s.a.r.listener.BlockingQueueConsumer   : ConsumeOK: Consumer@798673ea: tags=[[amq.ctag-iP7IDkrmaiXGdrDZOv-53w]], channel=Cached Rabbit Channel: AMQChannel(amqp://guest@127.0.0.1:5672/,2), conn: Proxy@32bd7445 Shared Rabbit Connection: SimpleConnection@497b783 [delegate=amqp://guest@127.0.0.1:5672/, localPort=57069], acknowledgeMode=AUTO local queue size=0
-2025-10-29T16:32:08.709+01:00  INFO 37948 --- [marketing-service] [main] o.s.i.a.i.AmqpInboundChannelAdapter      : started bean 'inbound.order.success.email.marketing-group'
-2025-10-29T16:32:08.718+01:00  INFO 37948 --- [marketing-service] [main] c.s.b.r.p.RabbitExchangeQueueProvisioner : declaring queue for inbound: springCloudBus.anonymous.ygcL8taeQMuZx3qgccpHeg, bound to: springCloudBus
-2025-10-29T16:32:08.722+01:00 DEBUG 37948 --- [marketing-service] [main] o.s.a.r.c.CachingConnectionFactory       : Creating cached Rabbit Channel from AMQChannel(amqp://guest@127.0.0.1:5672/,3)
-2025-10-29T16:32:08.722+01:00 DEBUG 37948 --- [marketing-service] [main] o.s.amqp.rabbit.core.RabbitTemplate      : Executing callback RabbitAdmin$$Lambda/0x0000021452ec0340 on RabbitMQ Channel: Cached Rabbit Channel: AMQChannel(amqp://guest@127.0.0.1:5672/,3), conn: Proxy@32bd7445 Shared Rabbit Connection: SimpleConnection@497b783 [delegate=amqp://guest@127.0.0.1:5672/, localPort=57069]
-2025-10-29T16:32:08.722+01:00 DEBUG 37948 --- [marketing-service] [main] o.s.amqp.rabbit.core.RabbitAdmin         : declaring Exchange 'springCloudBus'
-2025-10-29T16:32:08.725+01:00 DEBUG 37948 --- [marketing-service] [main] o.s.amqp.rabbit.core.RabbitTemplate      : Executing callback RabbitAdmin$$Lambda/0x0000021452ee5ce8 on RabbitMQ Channel: Cached Rabbit Channel: AMQChannel(amqp://guest@127.0.0.1:5672/,3), conn: Proxy@32bd7445 Shared Rabbit Connection: SimpleConnection@497b783 [delegate=amqp://guest@127.0.0.1:5672/, localPort=57069]
-2025-10-29T16:32:08.726+01:00 DEBUG 37948 --- [marketing-service] [main] o.s.amqp.rabbit.core.RabbitAdmin         : declaring Queue 'springCloudBus.anonymous.ygcL8taeQMuZx3qgccpHeg'
-2025-10-29T16:32:08.732+01:00 DEBUG 37948 --- [marketing-service] [main] o.s.amqp.rabbit.core.RabbitTemplate      : Executing callback RabbitAdmin$$Lambda/0x0000021452ee6d58 on RabbitMQ Channel: Cached Rabbit Channel: AMQChannel(amqp://guest@127.0.0.1:5672/,3), conn: Proxy@32bd7445 Shared Rabbit Connection: SimpleConnection@497b783 [delegate=amqp://guest@127.0.0.1:5672/, localPort=57069]
-2025-10-29T16:32:08.732+01:00 DEBUG 37948 --- [marketing-service] [main] o.s.amqp.rabbit.core.RabbitAdmin         : Binding destination [springCloudBus.anonymous.ygcL8taeQMuZx3qgccpHeg (QUEUE)] to exchange [springCloudBus] with routing key [#]
-2025-10-29T16:32:08.736+01:00 DEBUG 37948 --- [marketing-service] [main] o.s.a.r.l.SimpleMessageListenerContainer : Changing consumers from 1 to 1
-2025-10-29T16:32:08.736+01:00 DEBUG 37948 --- [marketing-service] [main] o.s.a.r.l.SimpleMessageListenerContainer : No global properties bean
-2025-10-29T16:32:08.742+01:00  INFO 37948 --- [marketing-service] [main] o.s.c.stream.binder.BinderErrorChannel   : Channel 'rabbit-1329963164.springCloudBusInput.errors' has 1 subscriber(s).
-2025-10-29T16:32:08.743+01:00  INFO 37948 --- [marketing-service] [main] o.s.c.stream.binder.BinderErrorChannel   : Channel 'rabbit-1329963164.springCloudBusInput.errors' has 2 subscriber(s).
-2025-10-29T16:32:08.744+01:00 DEBUG 37948 --- [marketing-service] [main] o.s.a.r.l.SimpleMessageListenerContainer : Starting Rabbit listener container.
-2025-10-29T16:32:08.750+01:00 DEBUG 37948 --- [marketing-service] [springCloudBus.anonymous.ygcL8taeQMuZx3qgccpHeg-1] o.s.a.r.listener.BlockingQueueConsumer   : Starting consumer Consumer@7f7de2d4: tags=[[]], channel=null, acknowledgeMode=AUTO local queue size=0
-2025-10-29T16:32:08.762+01:00 DEBUG 37948 --- [marketing-service] [springCloudBus.anonymous.ygcL8taeQMuZx3qgccpHeg-1] o.s.a.r.listener.BlockingQueueConsumer   : Started on queue 'springCloudBus.anonymous.ygcL8taeQMuZx3qgccpHeg' with tag amq.ctag--X-RvPIn0v0z7vDJVBgOPg: Consumer@7f7de2d4: tags=[[]], channel=Cached Rabbit Channel: AMQChannel(amqp://guest@127.0.0.1:5672/,3), conn: Proxy@32bd7445 Shared Rabbit Connection: SimpleConnection@497b783 [delegate=amqp://guest@127.0.0.1:5672/, localPort=57069], acknowledgeMode=AUTO local queue size=0
-2025-10-29T16:32:08.763+01:00  INFO 37948 --- [marketing-service] [main] o.s.i.a.i.AmqpInboundChannelAdapter      : started bean 'inbound.springCloudBus.anonymous.ygcL8taeQMuZx3qgccpHeg'
-2025-10-29T16:32:08.765+01:00 DEBUG 37948 --- [marketing-service] [main] o.s.c.support.DefaultLifecycleProcessor  : Successfully started bean 'inputBindingLifecycle'
-2025-10-29T16:32:08.766+01:00 DEBUG 37948 --- [marketing-service] [main] o.s.c.support.DefaultLifecycleProcessor  : Starting beans in phase 2147481599
-2025-10-29T16:32:08.766+01:00 DEBUG 37948 --- [marketing-service] [pool-7-thread-5] o.s.a.r.listener.BlockingQueueConsumer   : ConsumeOK: Consumer@7f7de2d4: tags=[[amq.ctag--X-RvPIn0v0z7vDJVBgOPg]], channel=Cached Rabbit Channel: AMQChannel(amqp://guest@127.0.0.1:5672/,3), conn: Proxy@32bd7445 Shared Rabbit Connection: SimpleConnection@497b783 [delegate=amqp://guest@127.0.0.1:5672/, localPort=57069], acknowledgeMode=AUTO local queue size=0
-2025-10-29T16:32:08.822+01:00  INFO 37948 --- [marketing-service] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8086 (http) with context path '/api/v1'
-2025-10-29T16:32:08.826+01:00  INFO 37948 --- [marketing-service] [main] .s.c.n.e.s.EurekaAutoServiceRegistration : Updating port to 8086
-2025-10-29T16:32:08.847+01:00 DEBUG 37948 --- [marketing-service] [main] o.s.c.support.DefaultLifecycleProcessor  : Successfully started bean 'webServerStartStop'
-2025-10-29T16:32:08.847+01:00 DEBUG 37948 --- [marketing-service] [main] o.s.c.support.DefaultLifecycleProcessor  : Starting beans in phase 2147482623
-2025-10-29T16:32:08.847+01:00 DEBUG 37948 --- [marketing-service] [main] o.s.c.support.DefaultLifecycleProcessor  : Successfully started bean 'webServerGracefulShutdown'
-2025-10-29T16:32:08.847+01:00 DEBUG 37948 --- [marketing-service] [main] o.s.c.support.DefaultLifecycleProcessor  : Starting beans in phase 2147483547
-2025-10-29T16:32:08.847+01:00 DEBUG 37948 --- [marketing-service] [main] o.s.c.support.DefaultLifecycleProcessor  : Successfully started bean 'org.springframework.kafka.config.internalKafkaListenerEndpointRegistry'
-2025-10-29T16:32:08.847+01:00 DEBUG 37948 --- [marketing-service] [main] o.s.c.support.DefaultLifecycleProcessor  : Starting beans in phase 2147483647
-2025-10-29T16:32:08.847+01:00 DEBUG 37948 --- [marketing-service] [main] o.s.c.support.DefaultLifecycleProcessor  : Successfully started bean 'org.springframework.amqp.rabbit.config.internalRabbitListenerEndpointRegistry'
-2025-10-29T16:32:08.848+01:00 DEBUG 37948 --- [marketing-service] [main] o.s.c.support.DefaultLifecycleProcessor  : Starting beans in phase -2147483648
-2025-10-29T16:32:08.849+01:00 DEBUG 37948 --- [marketing-service] [main] o.s.c.support.DefaultLifecycleProcessor  : Starting beans in phase 0
-2025-10-29T16:32:08.849+01:00 DEBUG 37948 --- [marketing-service] [main] o.s.c.support.DefaultLifecycleProcessor  : Successfully started bean 'rabbitTemplate'
-2025-10-29T16:32:08.852+01:00 DEBUG 37948 --- [marketing-service] [main] o.s.c.support.DefaultLifecycleProcessor  : Starting beans in phase -2147483648
-2025-10-29T16:32:08.852+01:00 DEBUG 37948 --- [marketing-service] [main] o.s.c.support.DefaultLifecycleProcessor  : Starting beans in phase -2147483647
-2025-10-29T16:32:08.852+01:00 DEBUG 37948 --- [marketing-service] [main] o.s.c.support.DefaultLifecycleProcessor  : Starting beans in phase -2147482648
-2025-10-29T16:32:08.852+01:00 DEBUG 37948 --- [marketing-service] [main] o.s.c.support.DefaultLifecycleProcessor  : Starting beans in phase 0
-2025-10-29T16:32:08.852+01:00 DEBUG 37948 --- [marketing-service] [main] o.s.c.support.DefaultLifecycleProcessor  : Successfully started bean 'rabbitTemplate'
-2025-10-29T16:32:08.855+01:00 DEBUG 37948 --- [marketing-service] [main] o.s.c.support.DefaultLifecycleProcessor  : Successfully started bean 'integrationHeaderChannelRegistry'
-2025-10-29T16:32:08.856+01:00 DEBUG 37948 --- [marketing-service] [main] o.s.c.support.DefaultLifecycleProcessor  : Starting beans in phase 1073741823
-2025-10-29T16:32:08.856+01:00 DEBUG 37948 --- [marketing-service] [main] o.s.c.support.DefaultLifecycleProcessor  : Starting beans in phase 2147480647
-2025-10-29T16:32:08.857+01:00 DEBUG 37948 --- [marketing-service] [main] o.s.c.support.DefaultLifecycleProcessor  : Starting beans in phase 2147481599
-2025-10-29T16:32:08.857+01:00 DEBUG 37948 --- [marketing-service] [main] o.s.c.support.DefaultLifecycleProcessor  : Starting beans in phase 2147482623
-2025-10-29T16:32:08.857+01:00 DEBUG 37948 --- [marketing-service] [main] o.s.c.support.DefaultLifecycleProcessor  : Starting beans in phase 2147483547
-2025-10-29T16:32:08.857+01:00 DEBUG 37948 --- [marketing-service] [main] o.s.c.support.DefaultLifecycleProcessor  : Starting beans in phase 2147483647
-2025-10-29T16:32:08.857+01:00 DEBUG 37948 --- [marketing-service] [main] o.s.c.support.DefaultLifecycleProcessor  : Successfully started bean 'org.springframework.amqp.rabbit.config.internalRabbitListenerEndpointRegistry'
-2025-10-29T16:32:08.858+01:00 DEBUG 37948 --- [marketing-service] [main] o.s.c.support.DefaultLifecycleProcessor  : Successfully started bean 'outerContext'
-2025-10-29T16:32:08.858+01:00 DEBUG 37948 --- [marketing-service] [main] o.s.c.support.DefaultLifecycleProcessor  : Successfully started bean 'binderFactory'
-2025-10-29T16:32:09.014+01:00  INFO 37948 --- [marketing-service] [main] c.e.marketing.MarketingApplication       : Started MarketingApplication in 13.768 seconds (process running for 21.688)
-2025-10-29T16:35:20.624+01:00  INFO 37948 --- [marketing-service] [SpringApplicationShutdownHook] o.s.c.n.e.s.EurekaServiceRegistry        : Unregistering application MARKETING-SERVICE with eureka with status DOWN
-2025-10-29T16:35:20.625+01:00  INFO 37948 --- [marketing-service] [SpringApplicationShutdownHook] com.netflix.discovery.DiscoveryClient    : Saw local status change event StatusChangeEvent [timestamp=1761752120625, current=DOWN, previous=UP]
-2025-10-29T16:35:20.625+01:00  INFO 37948 --- [marketing-service] [DiscoveryClient-InstanceInfoReplicator-%d] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_MARKETING-SERVICE/dominikPC:marketing-service:8086: registering service...
-2025-10-29T16:35:20.633+01:00 DEBUG 37948 --- [marketing-service] [SpringApplicationShutdownHook] o.s.c.support.DefaultLifecycleProcessor  : Stopping beans in phase 2147483647
-2025-10-29T16:35:20.635+01:00 DEBUG 37948 --- [marketing-service] [SpringApplicationShutdownHook] o.s.c.support.DefaultLifecycleProcessor  : Stopping beans in phase 0
-2025-10-29T16:35:20.637+01:00 DEBUG 37948 --- [marketing-service] [SpringApplicationShutdownHook] o.s.c.support.DefaultLifecycleProcessor  : Stopping beans in phase 2147483647
-2025-10-29T16:35:20.637+01:00 DEBUG 37948 --- [marketing-service] [SpringApplicationShutdownHook] o.s.c.support.DefaultLifecycleProcessor  : Stopping beans in phase 2147483547
-2025-10-29T16:35:20.638+01:00 DEBUG 37948 --- [marketing-service] [SpringApplicationShutdownHook] o.s.c.support.DefaultLifecycleProcessor  : Bean 'org.springframework.kafka.config.internalKafkaListenerEndpointRegistry' completed its stop procedure
-2025-10-29T16:35:20.638+01:00 DEBUG 37948 --- [marketing-service] [SpringApplicationShutdownHook] o.s.c.support.DefaultLifecycleProcessor  : Stopping beans in phase 2147482623
-2025-10-29T16:35:20.640+01:00  INFO 37948 --- [marketing-service] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
-2025-10-29T16:35:20.641+01:00  INFO 37948 --- [marketing-service] [DiscoveryClient-InstanceInfoReplicator-%d] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_MARKETING-SERVICE/dominikPC:marketing-service:8086 - registration status: 204
-2025-10-29T16:35:20.684+01:00  INFO 37948 --- [marketing-service] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
-2025-10-29T16:35:20.685+01:00 DEBUG 37948 --- [marketing-service] [tomcat-shutdown] o.s.c.support.DefaultLifecycleProcessor  : Bean 'webServerGracefulShutdown' completed its stop procedure
-2025-10-29T16:35:20.685+01:00 DEBUG 37948 --- [marketing-service] [SpringApplicationShutdownHook] o.s.c.support.DefaultLifecycleProcessor  : Stopping beans in phase 2147481599
-2025-10-29T16:35:20.686+01:00 DEBUG 37948 --- [marketing-service] [SpringApplicationShutdownHook] o.s.c.support.DefaultLifecycleProcessor  : Bean 'webServerStartStop' completed its stop procedure
-2025-10-29T16:35:20.688+01:00 DEBUG 37948 --- [marketing-service] [SpringApplicationShutdownHook] o.s.c.support.DefaultLifecycleProcessor  : Stopping beans in phase 2147480647
-2025-10-29T16:35:20.689+01:00 DEBUG 37948 --- [marketing-service] [SpringApplicationShutdownHook] o.s.a.r.l.SimpleMessageListenerContainer : Shutting down Rabbit listener container
-2025-10-29T16:35:20.717+01:00  INFO 37948 --- [marketing-service] [SpringApplicationShutdownHook] o.s.a.r.l.SimpleMessageListenerContainer : Waiting for workers to finish.
-2025-10-29T16:35:20.718+01:00 DEBUG 37948 --- [marketing-service] [pool-7-thread-6] o.s.a.r.listener.BlockingQueueConsumer   : Received cancelOk for tag amq.ctag-PvpzQgwsS4sVU2i7sH51dA (newsletter.queue.anonymous.2qWGA5RpSVSH_vyD5yvNig); Consumer@4e3db1c6: tags=[[amq.ctag-PvpzQgwsS4sVU2i7sH51dA]], channel=Cached Rabbit Channel: AMQChannel(amqp://guest@127.0.0.1:5672/,1), conn: Proxy@32bd7445 Shared Rabbit Connection: SimpleConnection@497b783 [delegate=amqp://guest@127.0.0.1:5672/, localPort=57069], acknowledgeMode=AUTO local queue size=0
-2025-10-29T16:35:21.013+01:00  INFO 37948 --- [marketing-service] [SpringApplicationShutdownHook] o.s.a.r.l.SimpleMessageListenerContainer : Successfully waited for workers to finish.
-2025-10-29T16:35:21.015+01:00 DEBUG 37948 --- [marketing-service] [newsletter.queue.anonymous.2qWGA5RpSVSH_vyD5yvNig-1] o.s.a.r.l.SimpleMessageListenerContainer : Cancelling Consumer@4e3db1c6: tags=[[amq.ctag-PvpzQgwsS4sVU2i7sH51dA]], channel=Cached Rabbit Channel: AMQChannel(amqp://guest@127.0.0.1:5672/,1), conn: Proxy@32bd7445 Shared Rabbit Connection: SimpleConnection@497b783 [delegate=amqp://guest@127.0.0.1:5672/, localPort=57069], acknowledgeMode=AUTO local queue size=0
-2025-10-29T16:35:21.015+01:00  INFO 37948 --- [marketing-service] [SpringApplicationShutdownHook] o.s.i.a.i.AmqpInboundChannelAdapter      : stopped bean 'inbound.newsletter.queue.anonymous.2qWGA5RpSVSH_vyD5yvNig'
-2025-10-29T16:35:21.015+01:00 DEBUG 37948 --- [marketing-service] [newsletter.queue.anonymous.2qWGA5RpSVSH_vyD5yvNig-1] o.s.a.r.listener.BlockingQueueConsumer   : Closing Rabbit Channel: Cached Rabbit Channel: AMQChannel(amqp://guest@127.0.0.1:5672/,1), conn: Proxy@32bd7445 Shared Rabbit Connection: SimpleConnection@497b783 [delegate=amqp://guest@127.0.0.1:5672/, localPort=57069]
-2025-10-29T16:35:21.016+01:00 DEBUG 37948 --- [marketing-service] [newsletter.queue.anonymous.2qWGA5RpSVSH_vyD5yvNig-1] o.s.a.r.c.CachingConnectionFactory       : Closing cached Channel: AMQChannel(amqp://guest@127.0.0.1:5672/,1)
-2025-10-29T16:35:21.029+01:00  INFO 37948 --- [marketing-service] [SpringApplicationShutdownHook] o.s.c.stream.binder.BinderErrorChannel   : Channel 'marketing-service.rabbit-1329963164.newsletterEmail-in-0.errors' has 1 subscriber(s).
-2025-10-29T16:35:21.031+01:00  INFO 37948 --- [marketing-service] [SpringApplicationShutdownHook] o.s.c.stream.binder.BinderErrorChannel   : Channel 'marketing-service.rabbit-1329963164.newsletterEmail-in-0.errors' has 0 subscriber(s).
-2025-10-29T16:35:21.032+01:00 DEBUG 37948 --- [marketing-service] [SpringApplicationShutdownHook] o.s.a.r.l.SimpleMessageListenerContainer : Shutting down Rabbit listener container
-2025-10-29T16:35:21.043+01:00  INFO 37948 --- [marketing-service] [SpringApplicationShutdownHook] o.s.a.r.l.SimpleMessageListenerContainer : Waiting for workers to finish.
-2025-10-29T16:35:21.044+01:00 DEBUG 37948 --- [marketing-service] [pool-7-thread-8] o.s.a.r.listener.BlockingQueueConsumer   : Received cancelOk for tag amq.ctag-iP7IDkrmaiXGdrDZOv-53w (order.success.email.marketing-group); Consumer@798673ea: tags=[[amq.ctag-iP7IDkrmaiXGdrDZOv-53w]], channel=Cached Rabbit Channel: AMQChannel(amqp://guest@127.0.0.1:5672/,2), conn: Proxy@32bd7445 Shared Rabbit Connection: SimpleConnection@497b783 [delegate=amqp://guest@127.0.0.1:5672/, localPort=57069], acknowledgeMode=AUTO local queue size=0
-2025-10-29T16:35:21.075+01:00  INFO 37948 --- [marketing-service] [SpringApplicationShutdownHook] o.s.a.r.l.SimpleMessageListenerContainer : Successfully waited for workers to finish.
-2025-10-29T16:35:21.075+01:00 DEBUG 37948 --- [marketing-service] [order.success.email.marketing-group-1] o.s.a.r.l.SimpleMessageListenerContainer : Cancelling Consumer@798673ea: tags=[[amq.ctag-iP7IDkrmaiXGdrDZOv-53w]], channel=Cached Rabbit Channel: AMQChannel(amqp://guest@127.0.0.1:5672/,2), conn: Proxy@32bd7445 Shared Rabbit Connection: SimpleConnection@497b783 [delegate=amqp://guest@127.0.0.1:5672/, localPort=57069], acknowledgeMode=AUTO local queue size=0
-2025-10-29T16:35:21.075+01:00  INFO 37948 --- [marketing-service] [SpringApplicationShutdownHook] o.s.i.a.i.AmqpInboundChannelAdapter      : stopped bean 'inbound.order.success.email.marketing-group'
-2025-10-29T16:35:21.075+01:00 DEBUG 37948 --- [marketing-service] [order.success.email.marketing-group-1] o.s.a.r.listener.BlockingQueueConsumer   : Closing Rabbit Channel: Cached Rabbit Channel: AMQChannel(amqp://guest@127.0.0.1:5672/,2), conn: Proxy@32bd7445 Shared Rabbit Connection: SimpleConnection@497b783 [delegate=amqp://guest@127.0.0.1:5672/, localPort=57069]
-2025-10-29T16:35:21.075+01:00 DEBUG 37948 --- [marketing-service] [order.success.email.marketing-group-1] o.s.a.r.c.CachingConnectionFactory       : Closing cached Channel: AMQChannel(amqp://guest@127.0.0.1:5672/,2)
-2025-10-29T16:35:21.077+01:00  INFO 37948 --- [marketing-service] [SpringApplicationShutdownHook] o.s.c.stream.binder.BinderErrorChannel   : Channel 'marketing-service.rabbit-1329963164.orderEmail-in-0.errors' has 1 subscriber(s).
-2025-10-29T16:35:21.079+01:00  INFO 37948 --- [marketing-service] [SpringApplicationShutdownHook] o.s.c.stream.binder.BinderErrorChannel   : Channel 'marketing-service.rabbit-1329963164.orderEmail-in-0.errors' has 0 subscriber(s).
-2025-10-29T16:35:21.080+01:00 DEBUG 37948 --- [marketing-service] [SpringApplicationShutdownHook] o.s.a.r.l.SimpleMessageListenerContainer : Shutting down Rabbit listener container
-2025-10-29T16:35:21.086+01:00  INFO 37948 --- [marketing-service] [SpringApplicationShutdownHook] o.s.a.r.l.SimpleMessageListenerContainer : Waiting for workers to finish.
-2025-10-29T16:35:21.086+01:00 DEBUG 37948 --- [marketing-service] [pool-7-thread-10] o.s.a.r.listener.BlockingQueueConsumer   : Received cancelOk for tag amq.ctag--X-RvPIn0v0z7vDJVBgOPg (springCloudBus.anonymous.ygcL8taeQMuZx3qgccpHeg); Consumer@7f7de2d4: tags=[[amq.ctag--X-RvPIn0v0z7vDJVBgOPg]], channel=Cached Rabbit Channel: AMQChannel(amqp://guest@127.0.0.1:5672/,3), conn: Proxy@32bd7445 Shared Rabbit Connection: SimpleConnection@497b783 [delegate=amqp://guest@127.0.0.1:5672/, localPort=57069], acknowledgeMode=AUTO local queue size=0
-2025-10-29T16:35:21.137+01:00  INFO 37948 --- [marketing-service] [SpringApplicationShutdownHook] o.s.a.r.l.SimpleMessageListenerContainer : Successfully waited for workers to finish.
-2025-10-29T16:35:21.137+01:00 DEBUG 37948 --- [marketing-service] [springCloudBus.anonymous.ygcL8taeQMuZx3qgccpHeg-1] o.s.a.r.l.SimpleMessageListenerContainer : Cancelling Consumer@7f7de2d4: tags=[[amq.ctag--X-RvPIn0v0z7vDJVBgOPg]], channel=Cached Rabbit Channel: AMQChannel(amqp://guest@127.0.0.1:5672/,3), conn: Proxy@32bd7445 Shared Rabbit Connection: SimpleConnection@497b783 [delegate=amqp://guest@127.0.0.1:5672/, localPort=57069], acknowledgeMode=AUTO local queue size=0
-2025-10-29T16:35:21.137+01:00  INFO 37948 --- [marketing-service] [SpringApplicationShutdownHook] o.s.i.a.i.AmqpInboundChannelAdapter      : stopped bean 'inbound.springCloudBus.anonymous.ygcL8taeQMuZx3qgccpHeg'
-2025-10-29T16:35:21.137+01:00 DEBUG 37948 --- [marketing-service] [springCloudBus.anonymous.ygcL8taeQMuZx3qgccpHeg-1] o.s.a.r.listener.BlockingQueueConsumer   : Closing Rabbit Channel: Cached Rabbit Channel: AMQChannel(amqp://guest@127.0.0.1:5672/,3), conn: Proxy@32bd7445 Shared Rabbit Connection: SimpleConnection@497b783 [delegate=amqp://guest@127.0.0.1:5672/, localPort=57069]
-2025-10-29T16:35:21.137+01:00 DEBUG 37948 --- [marketing-service] [springCloudBus.anonymous.ygcL8taeQMuZx3qgccpHeg-1] o.s.a.r.c.CachingConnectionFactory       : Closing cached Channel: AMQChannel(amqp://guest@127.0.0.1:5672/,3)
-2025-10-29T16:35:21.140+01:00  INFO 37948 --- [marketing-service] [SpringApplicationShutdownHook] o.s.c.stream.binder.BinderErrorChannel   : Channel 'marketing-service.rabbit-1329963164.springCloudBusInput.errors' has 1 subscriber(s).
-2025-10-29T16:35:21.140+01:00  INFO 37948 --- [marketing-service] [SpringApplicationShutdownHook] o.s.c.stream.binder.BinderErrorChannel   : Channel 'marketing-service.rabbit-1329963164.springCloudBusInput.errors' has 0 subscriber(s).
-2025-10-29T16:35:21.141+01:00 DEBUG 37948 --- [marketing-service] [SpringApplicationShutdownHook] o.s.c.support.DefaultLifecycleProcessor  : Bean 'inputBindingLifecycle' completed its stop procedure
-2025-10-29T16:35:21.141+01:00 DEBUG 37948 --- [marketing-service] [SpringApplicationShutdownHook] o.s.c.support.DefaultLifecycleProcessor  : Stopping beans in phase 1073741823
-2025-10-29T16:35:21.141+01:00 DEBUG 37948 --- [marketing-service] [SpringApplicationShutdownHook] o.s.c.support.DefaultLifecycleProcessor  : Bean 'applicationTaskExecutor' completed its stop procedure
-2025-10-29T16:35:21.141+01:00 DEBUG 37948 --- [marketing-service] [SpringApplicationShutdownHook] o.s.c.support.DefaultLifecycleProcessor  : Bean 'taskScheduler' completed its stop procedure
-2025-10-29T16:35:21.141+01:00 DEBUG 37948 --- [marketing-service] [SpringApplicationShutdownHook] o.s.c.support.DefaultLifecycleProcessor  : Stopping beans in phase 0
-2025-10-29T16:35:21.141+01:00 DEBUG 37948 --- [marketing-service] [SpringApplicationShutdownHook] o.s.c.support.DefaultLifecycleProcessor  : Successfully stopped bean 'refreshScopeLifecycle'
-2025-10-29T16:35:21.167+01:00 DEBUG 37948 --- [marketing-service] [SpringApplicationShutdownHook] o.s.c.support.DefaultLifecycleProcessor  : Bean 'reactorResourceFactory' completed its stop procedure
-2025-10-29T16:35:21.168+01:00 DEBUG 37948 --- [marketing-service] [SpringApplicationShutdownHook] o.s.c.support.DefaultLifecycleProcessor  : Successfully stopped bean 'integrationHeaderChannelRegistry'
-2025-10-29T16:35:21.168+01:00 DEBUG 37948 --- [marketing-service] [SpringApplicationShutdownHook] o.s.c.support.DefaultLifecycleProcessor  : Stopping beans in phase -2147482648
-2025-10-29T16:35:21.169+01:00 DEBUG 37948 --- [marketing-service] [SpringApplicationShutdownHook] o.s.c.support.DefaultLifecycleProcessor  : Bean 'outputBindingLifecycle' completed its stop procedure
-2025-10-29T16:35:21.169+01:00 DEBUG 37948 --- [marketing-service] [SpringApplicationShutdownHook] o.s.c.support.DefaultLifecycleProcessor  : Stopping beans in phase -2147483647
-2025-10-29T16:35:21.170+01:00 DEBUG 37948 --- [marketing-service] [SpringApplicationShutdownHook] o.s.c.support.DefaultLifecycleProcessor  : Bean 'springBootLoggingLifecycle' completed its stop procedure
-2025-10-29T16:35:21.170+01:00 DEBUG 37948 --- [marketing-service] [SpringApplicationShutdownHook] o.s.c.support.DefaultLifecycleProcessor  : Stopping beans in phase -2147483648
-2025-10-29T16:35:21.171+01:00 DEBUG 37948 --- [marketing-service] [SpringApplicationShutdownHook] o.s.c.support.DefaultLifecycleProcessor  : Bean 'rabbitConnectionFactory' completed its stop procedure
-2025-10-29T16:35:21.171+01:00 DEBUG 37948 --- [marketing-service] [SpringApplicationShutdownHook] o.s.c.support.DefaultLifecycleProcessor  : Bean 'kafkaProducerFactory' completed its stop procedure
-2025-10-29T16:35:21.172+01:00  INFO 37948 --- [marketing-service] [SpringApplicationShutdownHook] o.s.i.endpoint.EventDrivenConsumer       : Removing {logging-channel-adapter:_org.springframework.integration.errorLogger} as a subscriber to the 'errorChannel' channel
-2025-10-29T16:35:21.172+01:00  INFO 37948 --- [marketing-service] [SpringApplicationShutdownHook] o.s.i.channel.PublishSubscribeChannel    : Channel 'marketing-service.errorChannel' has 0 subscriber(s).
-2025-10-29T16:35:21.172+01:00 DEBUG 37948 --- [marketing-service] [SpringApplicationShutdownHook] o.s.c.support.DefaultLifecycleProcessor  : Bean '_org.springframework.integration.errorLogger' completed its stop procedure
-2025-10-29T16:35:21.172+01:00  INFO 37948 --- [marketing-service] [SpringApplicationShutdownHook] o.s.i.endpoint.EventDrivenConsumer       : stopped bean '_org.springframework.integration.errorLogger'
-2025-10-29T16:35:21.172+01:00 DEBUG 37948 --- [marketing-service] [SpringApplicationShutdownHook] o.s.c.support.DefaultLifecycleProcessor  : Bean 'applicationRunningController' completed its stop procedure
-2025-10-29T16:35:21.172+01:00 DEBUG 37948 --- [marketing-service] [SpringApplicationShutdownHook] o.s.c.support.DefaultLifecycleProcessor  : Successfully stopped bean 'outerContext'
-2025-10-29T16:35:21.173+01:00 DEBUG 37948 --- [marketing-service] [SpringApplicationShutdownHook] o.s.c.support.DefaultLifecycleProcessor  : Stopping beans in phase -2147483648
-2025-10-29T16:35:21.177+01:00 DEBUG 37948 --- [marketing-service] [SpringApplicationShutdownHook] o.s.c.support.DefaultLifecycleProcessor  : Bean 'rabbitConnectionFactory' completed its stop procedure
-2025-10-29T16:35:21.178+01:00 DEBUG 37948 --- [marketing-service] [SpringApplicationShutdownHook] o.s.c.support.DefaultLifecycleProcessor  : Bean 'binderFactory' completed its stop procedure
-2025-10-29T16:35:21.178+01:00 DEBUG 37948 --- [marketing-service] [SpringApplicationShutdownHook] o.s.c.support.DefaultLifecycleProcessor  : Stopping beans in phase 2147483547
-2025-10-29T16:35:21.178+01:00 DEBUG 37948 --- [marketing-service] [SpringApplicationShutdownHook] o.s.c.support.DefaultLifecycleProcessor  : Stopping beans in phase 2147482623
-2025-10-29T16:35:21.178+01:00 DEBUG 37948 --- [marketing-service] [SpringApplicationShutdownHook] o.s.c.support.DefaultLifecycleProcessor  : Stopping beans in phase 2147481599
-2025-10-29T16:35:21.178+01:00 DEBUG 37948 --- [marketing-service] [SpringApplicationShutdownHook] o.s.c.support.DefaultLifecycleProcessor  : Stopping beans in phase 2147480647
-2025-10-29T16:35:21.178+01:00 DEBUG 37948 --- [marketing-service] [SpringApplicationShutdownHook] o.s.c.support.DefaultLifecycleProcessor  : Stopping beans in phase 1073741823
-2025-10-29T16:35:21.178+01:00 DEBUG 37948 --- [marketing-service] [SpringApplicationShutdownHook] o.s.c.support.DefaultLifecycleProcessor  : Stopping beans in phase 0
-2025-10-29T16:35:21.179+01:00 DEBUG 37948 --- [marketing-service] [SpringApplicationShutdownHook] o.s.c.support.DefaultLifecycleProcessor  : Stopping beans in phase -2147482648
-2025-10-29T16:35:21.179+01:00 DEBUG 37948 --- [marketing-service] [SpringApplicationShutdownHook] o.s.c.support.DefaultLifecycleProcessor  : Stopping beans in phase -2147483647
-2025-10-29T16:35:21.179+01:00 DEBUG 37948 --- [marketing-service] [SpringApplicationShutdownHook] o.s.c.support.DefaultLifecycleProcessor  : Stopping beans in phase -2147483648
-2025-10-29T16:35:21.189+01:00 DEBUG 37948 --- [marketing-service] [SpringApplicationShutdownHook] s.c.a.AnnotationConfigApplicationContext : Closing rabbit_context, started on Wed Oct 29 16:32:08 CET 2025
-2025-10-29T16:35:21.189+01:00 DEBUG 37948 --- [marketing-service] [SpringApplicationShutdownHook] o.s.c.support.DefaultLifecycleProcessor  : Stopping beans in phase 0
-2025-10-29T16:35:21.189+01:00 DEBUG 37948 --- [marketing-service] [SpringApplicationShutdownHook] o.s.c.support.DefaultLifecycleProcessor  : Stopping beans in phase -2147483648
-2025-10-29T16:35:21.190+01:00 DEBUG 37948 --- [marketing-service] [SpringApplicationShutdownHook] s.c.a.AnnotationConfigApplicationContext : Closing FeignClientFactory-user-service, started on Wed Oct 29 16:32:02 CET 2025, parent: org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@78830d9a
-2025-10-29T16:35:21.191+01:00  INFO 37948 --- [marketing-service] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2025-10-29T16:35:21.193+01:00  INFO 37948 --- [marketing-service] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2025-10-29T16:35:21.200+01:00  INFO 37948 --- [marketing-service] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2025-10-29T16:35:21.203+01:00  INFO 37948 --- [marketing-service] [SpringApplicationShutdownHook] com.netflix.discovery.DiscoveryClient    : Shutting down DiscoveryClient ...
-2025-10-29T16:35:24.207+01:00  INFO 37948 --- [marketing-service] [SpringApplicationShutdownHook] com.netflix.discovery.DiscoveryClient    : Unregistering ...
-2025-10-29T16:35:24.217+01:00  INFO 37948 --- [marketing-service] [SpringApplicationShutdownHook] c.n.d.s.t.d.RedirectingEurekaHttpClient  : Request execution error. endpoint=DefaultEndpoint{ serviceUrl='http://localhost:8761/eureka/} exception=I/O error on DELETE request for "http://localhost:8761/eureka/apps/MARKETING-SERVICE/dominikPC:marketing-service:8086": Connect to http://localhost:8761 failed: Connection refused: getsockopt stacktrace=org.springframework.web.client.ResourceAccessException: I/O error on DELETE request for "http://localhost:8761/eureka/apps/MARKETING-SERVICE/dominikPC:marketing-service:8086": Connect to http://localhost:8761 failed: Connection refused: getsockopt
-	at org.springframework.web.client.RestTemplate.createResourceAccessException(RestTemplate.java:926)
-	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:906)
-	at org.springframework.web.client.RestTemplate.execute(RestTemplate.java:841)
-	at org.springframework.web.client.RestTemplate.exchange(RestTemplate.java:702)
-	at org.springframework.cloud.netflix.eureka.http.RestTemplateEurekaHttpClient.cancel(RestTemplateEurekaHttpClient.java:100)
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$2.execute(EurekaHttpClientDecorator.java:74)
-	at com.netflix.discovery.shared.transport.decorator.RedirectingEurekaHttpClient.execute(RedirectingEurekaHttpClient.java:91)
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.cancel(EurekaHttpClientDecorator.java:71)
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$2.execute(EurekaHttpClientDecorator.java:74)
-	at com.netflix.discovery.shared.transport.decorator.RetryableEurekaHttpClient.execute(RetryableEurekaHttpClient.java:120)
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.cancel(EurekaHttpClientDecorator.java:71)
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$2.execute(EurekaHttpClientDecorator.java:74)
-	at com.netflix.discovery.shared.transport.decorator.SessionedEurekaHttpClient.execute(SessionedEurekaHttpClient.java:76)
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.cancel(EurekaHttpClientDecorator.java:71)
-	at com.netflix.discovery.DiscoveryClient.unregister(DiscoveryClient.java:919)
-	at com.netflix.discovery.DiscoveryClient.shutdown(DiscoveryClient.java:900)
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleMethod.invoke(InitDestroyAnnotationBeanPostProcessor.java:457)
-	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleMetadata.invokeDestroyMethods(InitDestroyAnnotationBeanPostProcessor.java:415)
-	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor.postProcessBeforeDestruction(InitDestroyAnnotationBeanPostProcessor.java:239)
-	at org.springframework.beans.factory.support.DisposableBeanAdapter.destroy(DisposableBeanAdapter.java:202)
-	at org.springframework.beans.factory.support.DisposableBeanAdapter.run(DisposableBeanAdapter.java:195)
-	at org.springframework.cloud.context.scope.GenericScope$BeanLifecycleWrapper.destroy(GenericScope.java:387)
-	at org.springframework.cloud.context.scope.GenericScope.destroy(GenericScope.java:134)
-	at org.springframework.beans.factory.support.DisposableBeanAdapter.destroy(DisposableBeanAdapter.java:211)
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroyBean(DefaultSingletonBeanRegistry.java:798)
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingleton(DefaultSingletonBeanRegistry.java:748)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingleton(DefaultListableBeanFactory.java:1474)
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingletons(DefaultSingletonBeanRegistry.java:707)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingletons(DefaultListableBeanFactory.java:1467)
-	at org.springframework.context.support.AbstractApplicationContext.destroyBeans(AbstractApplicationContext.java:1219)
-	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:1180)
-	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.doClose(ServletWebServerApplicationContext.java:179)
-	at org.springframework.context.support.AbstractApplicationContext.close(AbstractApplicationContext.java:1126)
-	at org.springframework.boot.SpringApplicationShutdownHook.closeAndWait(SpringApplicationShutdownHook.java:147)
-	at java.base/java.lang.Iterable.forEach(Iterable.java:75)
-	at org.springframework.boot.SpringApplicationShutdownHook.run(SpringApplicationShutdownHook.java:116)
-	at java.base/java.lang.Thread.run(Thread.java:1570)
-Caused by: org.apache.hc.client5.http.HttpHostConnectException: Connect to http://localhost:8761 failed: Connection refused: getsockopt
-	at java.base/sun.nio.ch.Net.pollConnect(Native Method)
-	at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:682)
-	at java.base/sun.nio.ch.NioSocketImpl.timedFinishConnect(NioSocketImpl.java:542)
-	at java.base/sun.nio.ch.NioSocketImpl.connect(NioSocketImpl.java:592)
-	at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:327)
-	at java.base/java.net.Socket.connect(Socket.java:752)
-	at org.apache.hc.client5.http.impl.io.DefaultHttpClientConnectionOperator.connect(DefaultHttpClientConnectionOperator.java:205)
-	at org.apache.hc.client5.http.impl.io.PoolingHttpClientConnectionManager.connect(PoolingHttpClientConnectionManager.java:490)
-	at org.apache.hc.client5.http.impl.classic.InternalExecRuntime.connectEndpoint(InternalExecRuntime.java:164)
-	at org.apache.hc.client5.http.impl.classic.InternalExecRuntime.connectEndpoint(InternalExecRuntime.java:174)
-	at org.apache.hc.client5.http.impl.classic.ConnectExec.execute(ConnectExec.java:144)
-	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
-	at org.apache.hc.client5.http.impl.classic.ProtocolExec.execute(ProtocolExec.java:195)
-	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
-	at org.apache.hc.client5.http.impl.classic.ContentCompressionExec.execute(ContentCompressionExec.java:150)
-	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
-	at org.apache.hc.client5.http.impl.classic.HttpRequestRetryExec.execute(HttpRequestRetryExec.java:113)
-	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
-	at org.apache.hc.client5.http.impl.classic.RedirectExec.execute(RedirectExec.java:110)
-	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
-	at org.apache.hc.client5.http.impl.classic.InternalHttpClient.doExecute(InternalHttpClient.java:185)
-	at org.apache.hc.client5.http.impl.classic.CloseableHttpClient.execute(CloseableHttpClient.java:87)
-	at org.apache.hc.client5.http.impl.classic.CloseableHttpClient.execute(CloseableHttpClient.java:55)
-	at org.apache.hc.client5.http.classic.HttpClient.executeOpen(HttpClient.java:183)
-	at org.springframework.http.client.HttpComponentsClientHttpRequest.executeInternal(HttpComponentsClientHttpRequest.java:99)
-	at org.springframework.http.client.AbstractStreamingClientHttpRequest.executeInternal(AbstractStreamingClientHttpRequest.java:71)
-	at org.springframework.http.client.AbstractClientHttpRequest.execute(AbstractClientHttpRequest.java:81)
-	at org.springframework.http.client.InterceptingClientHttpRequest$InterceptingRequestExecution.execute(InterceptingClientHttpRequest.java:117)
-	at org.springframework.cloud.netflix.eureka.http.RestTemplateTransportClientFactory.lambda$restTemplate$2(RestTemplateTransportClientFactory.java:145)
-	at org.springframework.http.client.InterceptingClientHttpRequest$InterceptingRequestExecution.execute(InterceptingClientHttpRequest.java:88)
-	at org.springframework.http.client.InterceptingClientHttpRequest.executeInternal(InterceptingClientHttpRequest.java:72)
-	at org.springframework.http.client.AbstractBufferingClientHttpRequest.executeInternal(AbstractBufferingClientHttpRequest.java:48)
-	at org.springframework.http.client.AbstractClientHttpRequest.execute(AbstractClientHttpRequest.java:81)
-	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:900)
-	... 37 more
-
-2025-10-29T16:35:24.217+01:00  WARN 37948 --- [marketing-service] [SpringApplicationShutdownHook] c.n.d.s.t.d.RetryableEurekaHttpClient    : Request execution failed with message: I/O error on DELETE request for "http://localhost:8761/eureka/apps/MARKETING-SERVICE/dominikPC:marketing-service:8086": Connect to http://localhost:8761 failed: Connection refused: getsockopt
-2025-10-29T16:35:24.225+01:00  INFO 37948 --- [marketing-service] [SpringApplicationShutdownHook] c.n.d.s.t.d.RedirectingEurekaHttpClient  : Request execution error. endpoint=DefaultEndpoint{ serviceUrl='http://localhost:8761/eureka/}, exception=I/O error on DELETE request for "http://localhost:8761/eureka/apps/MARKETING-SERVICE/dominikPC:marketing-service:8086": Connect to http://localhost:8761 failed: Connection refused: getsockopt stacktrace=org.springframework.web.client.ResourceAccessException: I/O error on DELETE request for "http://localhost:8761/eureka/apps/MARKETING-SERVICE/dominikPC:marketing-service:8086": Connect to http://localhost:8761 failed: Connection refused: getsockopt
-	at org.springframework.web.client.RestTemplate.createResourceAccessException(RestTemplate.java:926)
-	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:906)
-	at org.springframework.web.client.RestTemplate.execute(RestTemplate.java:841)
-	at org.springframework.web.client.RestTemplate.exchange(RestTemplate.java:702)
-	at org.springframework.cloud.netflix.eureka.http.RestTemplateEurekaHttpClient.cancel(RestTemplateEurekaHttpClient.java:100)
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$2.execute(EurekaHttpClientDecorator.java:74)
-	at com.netflix.discovery.shared.transport.decorator.RedirectingEurekaHttpClient.executeOnNewServer(RedirectingEurekaHttpClient.java:121)
-	at com.netflix.discovery.shared.transport.decorator.RedirectingEurekaHttpClient.execute(RedirectingEurekaHttpClient.java:80)
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.cancel(EurekaHttpClientDecorator.java:71)
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$2.execute(EurekaHttpClientDecorator.java:74)
-	at com.netflix.discovery.shared.transport.decorator.RetryableEurekaHttpClient.execute(RetryableEurekaHttpClient.java:120)
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.cancel(EurekaHttpClientDecorator.java:71)
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$2.execute(EurekaHttpClientDecorator.java:74)
-	at com.netflix.discovery.shared.transport.decorator.SessionedEurekaHttpClient.execute(SessionedEurekaHttpClient.java:76)
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.cancel(EurekaHttpClientDecorator.java:71)
-	at com.netflix.discovery.DiscoveryClient.unregister(DiscoveryClient.java:919)
-	at com.netflix.discovery.DiscoveryClient.shutdown(DiscoveryClient.java:900)
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleMethod.invoke(InitDestroyAnnotationBeanPostProcessor.java:457)
-	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleMetadata.invokeDestroyMethods(InitDestroyAnnotationBeanPostProcessor.java:415)
-	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor.postProcessBeforeDestruction(InitDestroyAnnotationBeanPostProcessor.java:239)
-	at org.springframework.beans.factory.support.DisposableBeanAdapter.destroy(DisposableBeanAdapter.java:202)
-	at org.springframework.beans.factory.support.DisposableBeanAdapter.run(DisposableBeanAdapter.java:195)
-	at org.springframework.cloud.context.scope.GenericScope$BeanLifecycleWrapper.destroy(GenericScope.java:387)
-	at org.springframework.cloud.context.scope.GenericScope.destroy(GenericScope.java:134)
-	at org.springframework.beans.factory.support.DisposableBeanAdapter.destroy(DisposableBeanAdapter.java:211)
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroyBean(DefaultSingletonBeanRegistry.java:798)
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingleton(DefaultSingletonBeanRegistry.java:748)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingleton(DefaultListableBeanFactory.java:1474)
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingletons(DefaultSingletonBeanRegistry.java:707)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingletons(DefaultListableBeanFactory.java:1467)
-	at org.springframework.context.support.AbstractApplicationContext.destroyBeans(AbstractApplicationContext.java:1219)
-	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:1180)
-	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.doClose(ServletWebServerApplicationContext.java:179)
-	at org.springframework.context.support.AbstractApplicationContext.close(AbstractApplicationContext.java:1126)
-	at org.springframework.boot.SpringApplicationShutdownHook.closeAndWait(SpringApplicationShutdownHook.java:147)
-	at java.base/java.lang.Iterable.forEach(Iterable.java:75)
-	at org.springframework.boot.SpringApplicationShutdownHook.run(SpringApplicationShutdownHook.java:116)
-	at java.base/java.lang.Thread.run(Thread.java:1570)
-Caused by: org.apache.hc.client5.http.HttpHostConnectException: Connect to http://localhost:8761 failed: Connection refused: getsockopt
-	at java.base/sun.nio.ch.Net.pollConnect(Native Method)
-	at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:682)
-	at java.base/sun.nio.ch.NioSocketImpl.timedFinishConnect(NioSocketImpl.java:542)
-	at java.base/sun.nio.ch.NioSocketImpl.connect(NioSocketImpl.java:592)
-	at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:327)
-	at java.base/java.net.Socket.connect(Socket.java:752)
-	at org.apache.hc.client5.http.impl.io.DefaultHttpClientConnectionOperator.connect(DefaultHttpClientConnectionOperator.java:205)
-	at org.apache.hc.client5.http.impl.io.PoolingHttpClientConnectionManager.connect(PoolingHttpClientConnectionManager.java:490)
-	at org.apache.hc.client5.http.impl.classic.InternalExecRuntime.connectEndpoint(InternalExecRuntime.java:164)
-	at org.apache.hc.client5.http.impl.classic.InternalExecRuntime.connectEndpoint(InternalExecRuntime.java:174)
-	at org.apache.hc.client5.http.impl.classic.ConnectExec.execute(ConnectExec.java:144)
-	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
-	at org.apache.hc.client5.http.impl.classic.ProtocolExec.execute(ProtocolExec.java:195)
-	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
-	at org.apache.hc.client5.http.impl.classic.ContentCompressionExec.execute(ContentCompressionExec.java:150)
-	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
-	at org.apache.hc.client5.http.impl.classic.HttpRequestRetryExec.execute(HttpRequestRetryExec.java:113)
-	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
-	at org.apache.hc.client5.http.impl.classic.RedirectExec.execute(RedirectExec.java:110)
-	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
-	at org.apache.hc.client5.http.impl.classic.InternalHttpClient.doExecute(InternalHttpClient.java:185)
-	at org.apache.hc.client5.http.impl.classic.CloseableHttpClient.execute(CloseableHttpClient.java:87)
-	at org.apache.hc.client5.http.impl.classic.CloseableHttpClient.execute(CloseableHttpClient.java:55)
-	at org.apache.hc.client5.http.classic.HttpClient.executeOpen(HttpClient.java:183)
-	at org.springframework.http.client.HttpComponentsClientHttpRequest.executeInternal(HttpComponentsClientHttpRequest.java:99)
-	at org.springframework.http.client.AbstractStreamingClientHttpRequest.executeInternal(AbstractStreamingClientHttpRequest.java:71)
-	at org.springframework.http.client.AbstractClientHttpRequest.execute(AbstractClientHttpRequest.java:81)
-	at org.springframework.http.client.InterceptingClientHttpRequest$InterceptingRequestExecution.execute(InterceptingClientHttpRequest.java:117)
-	at org.springframework.cloud.netflix.eureka.http.RestTemplateTransportClientFactory.lambda$restTemplate$2(RestTemplateTransportClientFactory.java:145)
-	at org.springframework.http.client.InterceptingClientHttpRequest$InterceptingRequestExecution.execute(InterceptingClientHttpRequest.java:88)
-	at org.springframework.http.client.InterceptingClientHttpRequest.executeInternal(InterceptingClientHttpRequest.java:72)
-	at org.springframework.http.client.AbstractBufferingClientHttpRequest.executeInternal(AbstractBufferingClientHttpRequest.java:48)
-	at org.springframework.http.client.AbstractClientHttpRequest.execute(AbstractClientHttpRequest.java:81)
-	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:900)
-	... 38 more
-
-2025-10-29T16:35:24.225+01:00  WARN 37948 --- [marketing-service] [SpringApplicationShutdownHook] c.n.d.s.t.d.RetryableEurekaHttpClient    : Request execution failed with message: I/O error on DELETE request for "http://localhost:8761/eureka/apps/MARKETING-SERVICE/dominikPC:marketing-service:8086": Connect to http://localhost:8761 failed: Connection refused: getsockopt
-2025-10-29T16:35:24.226+01:00 ERROR 37948 --- [marketing-service] [SpringApplicationShutdownHook] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_MARKETING-SERVICE/dominikPC:marketing-service:8086 - de-registration failedCannot execute request on any known server
-
-com.netflix.discovery.shared.transport.TransportException: Cannot execute request on any known server
-	at com.netflix.discovery.shared.transport.decorator.RetryableEurekaHttpClient.execute(RetryableEurekaHttpClient.java:112) ~[eureka-client-2.0.4.jar:2.0.4]
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.cancel(EurekaHttpClientDecorator.java:71) ~[eureka-client-2.0.4.jar:2.0.4]
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$2.execute(EurekaHttpClientDecorator.java:74) ~[eureka-client-2.0.4.jar:2.0.4]
-	at com.netflix.discovery.shared.transport.decorator.SessionedEurekaHttpClient.execute(SessionedEurekaHttpClient.java:76) ~[eureka-client-2.0.4.jar:2.0.4]
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.cancel(EurekaHttpClientDecorator.java:71) ~[eureka-client-2.0.4.jar:2.0.4]
-	at com.netflix.discovery.DiscoveryClient.unregister(DiscoveryClient.java:919) ~[eureka-client-2.0.4.jar:2.0.4]
-	at com.netflix.discovery.DiscoveryClient.shutdown(DiscoveryClient.java:900) ~[eureka-client-2.0.4.jar:2.0.4]
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
-	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
-	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleMethod.invoke(InitDestroyAnnotationBeanPostProcessor.java:457) ~[spring-beans-6.2.9.jar:6.2.9]
-	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleMetadata.invokeDestroyMethods(InitDestroyAnnotationBeanPostProcessor.java:415) ~[spring-beans-6.2.9.jar:6.2.9]
-	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor.postProcessBeforeDestruction(InitDestroyAnnotationBeanPostProcessor.java:239) ~[spring-beans-6.2.9.jar:6.2.9]
-	at org.springframework.beans.factory.support.DisposableBeanAdapter.destroy(DisposableBeanAdapter.java:202) ~[spring-beans-6.2.9.jar:6.2.9]
-	at org.springframework.beans.factory.support.DisposableBeanAdapter.run(DisposableBeanAdapter.java:195) ~[spring-beans-6.2.9.jar:6.2.9]
-	at org.springframework.cloud.context.scope.GenericScope$BeanLifecycleWrapper.destroy(GenericScope.java:387) ~[spring-cloud-context-4.3.0-RC1.jar:4.3.0-RC1]
-	at org.springframework.cloud.context.scope.GenericScope.destroy(GenericScope.java:134) ~[spring-cloud-context-4.3.0-RC1.jar:4.3.0-RC1]
-	at org.springframework.beans.factory.support.DisposableBeanAdapter.destroy(DisposableBeanAdapter.java:211) ~[spring-beans-6.2.9.jar:6.2.9]
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroyBean(DefaultSingletonBeanRegistry.java:798) ~[spring-beans-6.2.9.jar:6.2.9]
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingleton(DefaultSingletonBeanRegistry.java:748) ~[spring-beans-6.2.9.jar:6.2.9]
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingleton(DefaultListableBeanFactory.java:1474) ~[spring-beans-6.2.9.jar:6.2.9]
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingletons(DefaultSingletonBeanRegistry.java:707) ~[spring-beans-6.2.9.jar:6.2.9]
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingletons(DefaultListableBeanFactory.java:1467) ~[spring-beans-6.2.9.jar:6.2.9]
-	at org.springframework.context.support.AbstractApplicationContext.destroyBeans(AbstractApplicationContext.java:1219) ~[spring-context-6.2.9.jar:6.2.9]
-	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:1180) ~[spring-context-6.2.9.jar:6.2.9]
-	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.doClose(ServletWebServerApplicationContext.java:179) ~[spring-boot-3.5.4.jar:3.5.4]
-	at org.springframework.context.support.AbstractApplicationContext.close(AbstractApplicationContext.java:1126) ~[spring-context-6.2.9.jar:6.2.9]
-	at org.springframework.boot.SpringApplicationShutdownHook.closeAndWait(SpringApplicationShutdownHook.java:147) ~[spring-boot-3.5.4.jar:3.5.4]
-	at java.base/java.lang.Iterable.forEach(Iterable.java:75) ~[na:na]
-	at org.springframework.boot.SpringApplicationShutdownHook.run(SpringApplicationShutdownHook.java:116) ~[spring-boot-3.5.4.jar:3.5.4]
-	at java.base/java.lang.Thread.run(Thread.java:1570) ~[na:na]
-
-2025-10-29T16:35:24.226+01:00  INFO 37948 --- [marketing-service] [SpringApplicationShutdownHook] com.netflix.discovery.DiscoveryClient    : Completed shut down of DiscoveryClient
+2025-10-30T18:52:15.448+01:00 DEBUG 31404 --- [marketing-service] [main] s.c.a.AnnotationConfigApplicationContext : Refreshing rabbit_context
+2025-10-30T18:52:15.485+01:00  INFO 31404 --- [marketing-service] [DiscoveryClient-InstanceInfoReplicator-%d] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_MARKETING-SERVICE/dominikPC:marketing-service:8086 - registration status: 204
+2025-10-30T18:52:15.527+01:00 DEBUG 31404 --- [marketing-service] [main] o.s.c.support.GenericApplicationContext  : Refreshing org.springframework.context.support.GenericApplicationContext@55f05a73
+2025-10-30T18:52:15.544+01:00 DEBUG 31404 --- [marketing-service] [main] o.s.c.support.GenericApplicationContext  : Refreshing org.springframework.context.support.GenericApplicationContext@5a374d71
+2025-10-30T18:52:15.547+01:00 DEBUG 31404 --- [marketing-service] [main] o.s.c.support.DefaultLifecycleProcessor  : Starting beans in phase -2147483648
+2025-10-30T18:52:15.547+01:00 DEBUG 31404 --- [marketing-service] [main] o.s.c.support.DefaultLifecycleProcessor  : Successfully started bean 'rabbitConnectionFactory'
+2025-10-30T18:52:15.548+01:00  INFO 31404 --- [marketing-service] [main] o.s.c.s.binder.DefaultBinderFactory      : Caching the binder: rabbit
+2025-10-30T18:52:15.568+01:00  INFO 31404 --- [marketing-service] [main] c.s.b.r.p.RabbitExchangeQueueProvisioner : declaring queue for inbound: newsletter.queue.anonymous.Lhs6FjIHQVOHAZBT49jQKA, bound to: newsletter.queue
+2025-10-30T18:52:15.576+01:00  INFO 31404 --- [marketing-service] [main] o.s.a.r.c.CachingConnectionFactory       : Attempting to connect to: [localhost:5672]
+2025-10-30T18:52:15.682+01:00  INFO 31404 --- [marketing-service] [main] o.s.a.r.c.CachingConnectionFactory       : Created new connection: rabbitConnectionFactory#22bd93ab:0/SimpleConnection@5d064bf [delegate=amqp://guest@127.0.0.1:5672/, localPort=52613]
+2025-10-30T18:52:15.691+01:00 DEBUG 31404 --- [marketing-service] [main] o.s.amqp.rabbit.core.RabbitAdmin         : Initializing declarations
+2025-10-30T18:52:15.692+01:00 DEBUG 31404 --- [marketing-service] [main] o.s.amqp.rabbit.core.RabbitAdmin         : Nothing to declare
+2025-10-30T18:52:15.692+01:00 DEBUG 31404 --- [marketing-service] [main] o.s.amqp.rabbit.core.RabbitAdmin         : Initializing declarations
+2025-10-30T18:52:15.693+01:00 DEBUG 31404 --- [marketing-service] [main] o.s.amqp.rabbit.core.RabbitAdmin         : Nothing to declare
+2025-10-30T18:52:15.714+01:00 DEBUG 31404 --- [marketing-service] [main] o.s.a.r.c.CachingConnectionFactory       : Creating cached Rabbit Channel from AMQChannel(amqp://guest@127.0.0.1:5672/,1)
+2025-10-30T18:52:15.729+01:00 DEBUG 31404 --- [marketing-service] [main] o.s.amqp.rabbit.core.RabbitTemplate      : Executing callback RabbitAdmin$$Lambda/0x000002261fecae28 on RabbitMQ Channel: Cached Rabbit Channel: AMQChannel(amqp://guest@127.0.0.1:5672/,1), conn: Proxy@63cf3153 Shared Rabbit Connection: SimpleConnection@5d064bf [delegate=amqp://guest@127.0.0.1:5672/, localPort=52613]
+2025-10-30T18:52:15.730+01:00 DEBUG 31404 --- [marketing-service] [main] o.s.amqp.rabbit.core.RabbitAdmin         : declaring Exchange 'newsletter.queue'
+2025-10-30T18:52:15.751+01:00 DEBUG 31404 --- [marketing-service] [main] o.s.amqp.rabbit.core.RabbitTemplate      : Executing callback RabbitAdmin$$Lambda/0x000002261fef3158 on RabbitMQ Channel: Cached Rabbit Channel: AMQChannel(amqp://guest@127.0.0.1:5672/,1), conn: Proxy@63cf3153 Shared Rabbit Connection: SimpleConnection@5d064bf [delegate=amqp://guest@127.0.0.1:5672/, localPort=52613]
+2025-10-30T18:52:15.752+01:00 DEBUG 31404 --- [marketing-service] [main] o.s.amqp.rabbit.core.RabbitAdmin         : declaring Queue 'newsletter.queue.anonymous.Lhs6FjIHQVOHAZBT49jQKA'
+2025-10-30T18:52:15.772+01:00 DEBUG 31404 --- [marketing-service] [main] o.s.amqp.rabbit.core.RabbitTemplate      : Executing callback RabbitAdmin$$Lambda/0x000002261fef8208 on RabbitMQ Channel: Cached Rabbit Channel: AMQChannel(amqp://guest@127.0.0.1:5672/,1), conn: Proxy@63cf3153 Shared Rabbit Connection: SimpleConnection@5d064bf [delegate=amqp://guest@127.0.0.1:5672/, localPort=52613]
+2025-10-30T18:52:15.772+01:00 DEBUG 31404 --- [marketing-service] [main] o.s.amqp.rabbit.core.RabbitAdmin         : Binding destination [newsletter.queue.anonymous.Lhs6FjIHQVOHAZBT49jQKA (QUEUE)] to exchange [newsletter.queue] with routing key [#]
+2025-10-30T18:52:15.796+01:00 DEBUG 31404 --- [marketing-service] [main] o.s.a.r.l.SimpleMessageListenerContainer : Changing consumers from 1 to 1
+2025-10-30T18:52:15.798+01:00 DEBUG 31404 --- [marketing-service] [main] o.s.a.r.l.SimpleMessageListenerContainer : No global properties bean
+2025-10-30T18:52:15.827+01:00  INFO 31404 --- [marketing-service] [main] o.s.c.stream.binder.BinderErrorChannel   : Channel 'rabbit-1060423035.newsletterEmail-in-0.errors' has 1 subscriber(s).
+2025-10-30T18:52:15.829+01:00  INFO 31404 --- [marketing-service] [main] o.s.c.stream.binder.BinderErrorChannel   : Channel 'rabbit-1060423035.newsletterEmail-in-0.errors' has 2 subscriber(s).
+2025-10-30T18:52:15.835+01:00 DEBUG 31404 --- [marketing-service] [main] o.s.a.r.l.SimpleMessageListenerContainer : Starting Rabbit listener container.
+2025-10-30T18:52:15.880+01:00 DEBUG 31404 --- [marketing-service] [newsletter.queue.anonymous.Lhs6FjIHQVOHAZBT49jQKA-1] o.s.a.r.listener.BlockingQueueConsumer   : Starting consumer Consumer@4091ccc2: tags=[[]], channel=null, acknowledgeMode=AUTO local queue size=0
+2025-10-30T18:52:15.942+01:00 DEBUG 31404 --- [marketing-service] [newsletter.queue.anonymous.Lhs6FjIHQVOHAZBT49jQKA-1] o.s.a.r.listener.BlockingQueueConsumer   : Started on queue 'newsletter.queue.anonymous.Lhs6FjIHQVOHAZBT49jQKA' with tag amq.ctag-naFl62zdoXE5V8k0F0pmyA: Consumer@4091ccc2: tags=[[]], channel=Cached Rabbit Channel: AMQChannel(amqp://guest@127.0.0.1:5672/,1), conn: Proxy@63cf3153 Shared Rabbit Connection: SimpleConnection@5d064bf [delegate=amqp://guest@127.0.0.1:5672/, localPort=52613], acknowledgeMode=AUTO local queue size=0
+2025-10-30T18:52:15.943+01:00  INFO 31404 --- [marketing-service] [main] o.s.i.a.i.AmqpInboundChannelAdapter      : started bean 'inbound.newsletter.queue.anonymous.Lhs6FjIHQVOHAZBT49jQKA'
+2025-10-30T18:52:15.943+01:00 DEBUG 31404 --- [marketing-service] [pool-7-thread-3] o.s.a.r.listener.BlockingQueueConsumer   : ConsumeOK: Consumer@4091ccc2: tags=[[amq.ctag-naFl62zdoXE5V8k0F0pmyA]], channel=Cached Rabbit Channel: AMQChannel(amqp://guest@127.0.0.1:5672/,1), conn: Proxy@63cf3153 Shared Rabbit Connection: SimpleConnection@5d064bf [delegate=amqp://guest@127.0.0.1:5672/, localPort=52613], acknowledgeMode=AUTO local queue size=0
+2025-10-30T18:52:15.955+01:00  INFO 31404 --- [marketing-service] [main] c.s.b.r.p.RabbitExchangeQueueProvisioner : declaring queue for inbound: order.success.email.marketing-group, bound to: order.success.email
+2025-10-30T18:52:15.958+01:00 DEBUG 31404 --- [marketing-service] [main] o.s.a.r.c.CachingConnectionFactory       : Creating cached Rabbit Channel from AMQChannel(amqp://guest@127.0.0.1:5672/,2)
+2025-10-30T18:52:15.958+01:00 DEBUG 31404 --- [marketing-service] [main] o.s.amqp.rabbit.core.RabbitTemplate      : Executing callback RabbitAdmin$$Lambda/0x000002261fecae28 on RabbitMQ Channel: Cached Rabbit Channel: AMQChannel(amqp://guest@127.0.0.1:5672/,2), conn: Proxy@63cf3153 Shared Rabbit Connection: SimpleConnection@5d064bf [delegate=amqp://guest@127.0.0.1:5672/, localPort=52613]
+2025-10-30T18:52:15.960+01:00 DEBUG 31404 --- [marketing-service] [main] o.s.amqp.rabbit.core.RabbitAdmin         : declaring Exchange 'order.success.email'
+2025-10-30T18:52:15.975+01:00 DEBUG 31404 --- [marketing-service] [main] o.s.amqp.rabbit.core.RabbitTemplate      : Executing callback RabbitAdmin$$Lambda/0x000002261fef3158 on RabbitMQ Channel: Cached Rabbit Channel: AMQChannel(amqp://guest@127.0.0.1:5672/,2), conn: Proxy@63cf3153 Shared Rabbit Connection: SimpleConnection@5d064bf [delegate=amqp://guest@127.0.0.1:5672/, localPort=52613]
+2025-10-30T18:52:15.975+01:00 DEBUG 31404 --- [marketing-service] [main] o.s.amqp.rabbit.core.RabbitAdmin         : declaring Queue 'order.success.email.marketing-group'
+2025-10-30T18:52:15.984+01:00 DEBUG 31404 --- [marketing-service] [main] o.s.amqp.rabbit.core.RabbitTemplate      : Executing callback RabbitAdmin$$Lambda/0x000002261fef8208 on RabbitMQ Channel: Cached Rabbit Channel: AMQChannel(amqp://guest@127.0.0.1:5672/,2), conn: Proxy@63cf3153 Shared Rabbit Connection: SimpleConnection@5d064bf [delegate=amqp://guest@127.0.0.1:5672/, localPort=52613]
+2025-10-30T18:52:15.984+01:00 DEBUG 31404 --- [marketing-service] [main] o.s.amqp.rabbit.core.RabbitAdmin         : Binding destination [order.success.email.marketing-group (QUEUE)] to exchange [order.success.email] with routing key [#]
+2025-10-30T18:52:15.992+01:00 DEBUG 31404 --- [marketing-service] [main] c.s.b.r.p.RabbitExchangeQueueProvisioner : autoBindDLQ=false for: order.success.email.marketing-group
+2025-10-30T18:52:15.992+01:00 DEBUG 31404 --- [marketing-service] [main] o.s.a.r.l.SimpleMessageListenerContainer : Changing consumers from 1 to 1
+2025-10-30T18:52:15.992+01:00 DEBUG 31404 --- [marketing-service] [main] o.s.a.r.l.SimpleMessageListenerContainer : No global properties bean
+2025-10-30T18:52:15.996+01:00  INFO 31404 --- [marketing-service] [main] o.s.c.stream.binder.BinderErrorChannel   : Channel 'rabbit-1060423035.orderEmail-in-0.errors' has 1 subscriber(s).
+2025-10-30T18:52:15.996+01:00  INFO 31404 --- [marketing-service] [main] o.s.c.stream.binder.BinderErrorChannel   : Channel 'rabbit-1060423035.orderEmail-in-0.errors' has 2 subscriber(s).
+2025-10-30T18:52:15.999+01:00 DEBUG 31404 --- [marketing-service] [main] o.s.a.r.l.SimpleMessageListenerContainer : Starting Rabbit listener container.
+2025-10-30T18:52:16.024+01:00 DEBUG 31404 --- [marketing-service] [order.success.email.marketing-group-1] o.s.a.r.listener.BlockingQueueConsumer   : Starting consumer Consumer@7879731a: tags=[[]], channel=null, acknowledgeMode=AUTO local queue size=0
+2025-10-30T18:52:16.050+01:00 DEBUG 31404 --- [marketing-service] [order.success.email.marketing-group-1] o.s.a.r.listener.BlockingQueueConsumer   : Started on queue 'order.success.email.marketing-group' with tag amq.ctag-Qi9DcoZQLSzFRbyP_M-wSg: Consumer@7879731a: tags=[[]], channel=Cached Rabbit Channel: AMQChannel(amqp://guest@127.0.0.1:5672/,2), conn: Proxy@63cf3153 Shared Rabbit Connection: SimpleConnection@5d064bf [delegate=amqp://guest@127.0.0.1:5672/, localPort=52613], acknowledgeMode=AUTO local queue size=0
+2025-10-30T18:52:16.050+01:00  INFO 31404 --- [marketing-service] [main] o.s.i.a.i.AmqpInboundChannelAdapter      : started bean 'inbound.order.success.email.marketing-group'
+2025-10-30T18:52:16.050+01:00 DEBUG 31404 --- [marketing-service] [pool-7-thread-4] o.s.a.r.listener.BlockingQueueConsumer   : ConsumeOK: Consumer@7879731a: tags=[[amq.ctag-Qi9DcoZQLSzFRbyP_M-wSg]], channel=Cached Rabbit Channel: AMQChannel(amqp://guest@127.0.0.1:5672/,2), conn: Proxy@63cf3153 Shared Rabbit Connection: SimpleConnection@5d064bf [delegate=amqp://guest@127.0.0.1:5672/, localPort=52613], acknowledgeMode=AUTO local queue size=0
+2025-10-30T18:52:16.058+01:00  INFO 31404 --- [marketing-service] [main] c.s.b.r.p.RabbitExchangeQueueProvisioner : declaring queue for inbound: springCloudBus.anonymous.4FHe7O6fQmO-GdXRsoo60A, bound to: springCloudBus
+2025-10-30T18:52:16.066+01:00 DEBUG 31404 --- [marketing-service] [main] o.s.a.r.c.CachingConnectionFactory       : Creating cached Rabbit Channel from AMQChannel(amqp://guest@127.0.0.1:5672/,3)
+2025-10-30T18:52:16.067+01:00 DEBUG 31404 --- [marketing-service] [main] o.s.amqp.rabbit.core.RabbitTemplate      : Executing callback RabbitAdmin$$Lambda/0x000002261fecae28 on RabbitMQ Channel: Cached Rabbit Channel: AMQChannel(amqp://guest@127.0.0.1:5672/,3), conn: Proxy@63cf3153 Shared Rabbit Connection: SimpleConnection@5d064bf [delegate=amqp://guest@127.0.0.1:5672/, localPort=52613]
+2025-10-30T18:52:16.067+01:00 DEBUG 31404 --- [marketing-service] [main] o.s.amqp.rabbit.core.RabbitAdmin         : declaring Exchange 'springCloudBus'
+2025-10-30T18:52:16.080+01:00 DEBUG 31404 --- [marketing-service] [main] o.s.amqp.rabbit.core.RabbitTemplate      : Executing callback RabbitAdmin$$Lambda/0x000002261fef3158 on RabbitMQ Channel: Cached Rabbit Channel: AMQChannel(amqp://guest@127.0.0.1:5672/,3), conn: Proxy@63cf3153 Shared Rabbit Connection: SimpleConnection@5d064bf [delegate=amqp://guest@127.0.0.1:5672/, localPort=52613]
+2025-10-30T18:52:16.080+01:00 DEBUG 31404 --- [marketing-service] [main] o.s.amqp.rabbit.core.RabbitAdmin         : declaring Queue 'springCloudBus.anonymous.4FHe7O6fQmO-GdXRsoo60A'
+2025-10-30T18:52:16.094+01:00 DEBUG 31404 --- [marketing-service] [main] o.s.amqp.rabbit.core.RabbitTemplate      : Executing callback RabbitAdmin$$Lambda/0x000002261fef8208 on RabbitMQ Channel: Cached Rabbit Channel: AMQChannel(amqp://guest@127.0.0.1:5672/,3), conn: Proxy@63cf3153 Shared Rabbit Connection: SimpleConnection@5d064bf [delegate=amqp://guest@127.0.0.1:5672/, localPort=52613]
+2025-10-30T18:52:16.095+01:00 DEBUG 31404 --- [marketing-service] [main] o.s.amqp.rabbit.core.RabbitAdmin         : Binding destination [springCloudBus.anonymous.4FHe7O6fQmO-GdXRsoo60A (QUEUE)] to exchange [springCloudBus] with routing key [#]
+2025-10-30T18:52:16.110+01:00 DEBUG 31404 --- [marketing-service] [main] o.s.a.r.l.SimpleMessageListenerContainer : Changing consumers from 1 to 1
+2025-10-30T18:52:16.111+01:00 DEBUG 31404 --- [marketing-service] [main] o.s.a.r.l.SimpleMessageListenerContainer : No global properties bean
+2025-10-30T18:52:16.114+01:00  INFO 31404 --- [marketing-service] [main] o.s.c.stream.binder.BinderErrorChannel   : Channel 'rabbit-1060423035.springCloudBusInput.errors' has 1 subscriber(s).
+2025-10-30T18:52:16.114+01:00  INFO 31404 --- [marketing-service] [main] o.s.c.stream.binder.BinderErrorChannel   : Channel 'rabbit-1060423035.springCloudBusInput.errors' has 2 subscriber(s).
+2025-10-30T18:52:16.118+01:00 DEBUG 31404 --- [marketing-service] [main] o.s.a.r.l.SimpleMessageListenerContainer : Starting Rabbit listener container.
+2025-10-30T18:52:16.123+01:00 DEBUG 31404 --- [marketing-service] [springCloudBus.anonymous.4FHe7O6fQmO-GdXRsoo60A-1] o.s.a.r.listener.BlockingQueueConsumer   : Starting consumer Consumer@1153ee42: tags=[[]], channel=null, acknowledgeMode=AUTO local queue size=0
+2025-10-30T18:52:16.138+01:00 DEBUG 31404 --- [marketing-service] [springCloudBus.anonymous.4FHe7O6fQmO-GdXRsoo60A-1] o.s.a.r.listener.BlockingQueueConsumer   : Started on queue 'springCloudBus.anonymous.4FHe7O6fQmO-GdXRsoo60A' with tag amq.ctag-9p-QqJk9Q_z1koMvUYEPYA: Consumer@1153ee42: tags=[[]], channel=Cached Rabbit Channel: AMQChannel(amqp://guest@127.0.0.1:5672/,3), conn: Proxy@63cf3153 Shared Rabbit Connection: SimpleConnection@5d064bf [delegate=amqp://guest@127.0.0.1:5672/, localPort=52613], acknowledgeMode=AUTO local queue size=0
+2025-10-30T18:52:16.139+01:00  INFO 31404 --- [marketing-service] [main] o.s.i.a.i.AmqpInboundChannelAdapter      : started bean 'inbound.springCloudBus.anonymous.4FHe7O6fQmO-GdXRsoo60A'
+2025-10-30T18:52:16.140+01:00 DEBUG 31404 --- [marketing-service] [main] o.s.c.support.DefaultLifecycleProcessor  : Successfully started bean 'inputBindingLifecycle'
+2025-10-30T18:52:16.140+01:00 DEBUG 31404 --- [marketing-service] [main] o.s.c.support.DefaultLifecycleProcessor  : Starting beans in phase 2147481599
+2025-10-30T18:52:16.140+01:00 DEBUG 31404 --- [marketing-service] [pool-7-thread-5] o.s.a.r.listener.BlockingQueueConsumer   : ConsumeOK: Consumer@1153ee42: tags=[[amq.ctag-9p-QqJk9Q_z1koMvUYEPYA]], channel=Cached Rabbit Channel: AMQChannel(amqp://guest@127.0.0.1:5672/,3), conn: Proxy@63cf3153 Shared Rabbit Connection: SimpleConnection@5d064bf [delegate=amqp://guest@127.0.0.1:5672/, localPort=52613], acknowledgeMode=AUTO local queue size=0
+2025-10-30T18:52:16.176+01:00  INFO 31404 --- [marketing-service] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8086 (http) with context path '/api/v1'
+2025-10-30T18:52:16.177+01:00  INFO 31404 --- [marketing-service] [main] .s.c.n.e.s.EurekaAutoServiceRegistration : Updating port to 8086
+2025-10-30T18:52:16.218+01:00 DEBUG 31404 --- [marketing-service] [main] o.s.c.support.DefaultLifecycleProcessor  : Successfully started bean 'webServerStartStop'
+2025-10-30T18:52:16.219+01:00 DEBUG 31404 --- [marketing-service] [main] o.s.c.support.DefaultLifecycleProcessor  : Starting beans in phase 2147482623
+2025-10-30T18:52:16.219+01:00 DEBUG 31404 --- [marketing-service] [main] o.s.c.support.DefaultLifecycleProcessor  : Successfully started bean 'webServerGracefulShutdown'
+2025-10-30T18:52:16.220+01:00 DEBUG 31404 --- [marketing-service] [main] o.s.c.support.DefaultLifecycleProcessor  : Starting beans in phase 2147483547
+2025-10-30T18:52:16.222+01:00 DEBUG 31404 --- [marketing-service] [main] o.s.c.support.DefaultLifecycleProcessor  : Successfully started bean 'org.springframework.kafka.config.internalKafkaListenerEndpointRegistry'
+2025-10-30T18:52:16.223+01:00 DEBUG 31404 --- [marketing-service] [main] o.s.c.support.DefaultLifecycleProcessor  : Starting beans in phase 2147483647
+2025-10-30T18:52:16.224+01:00 DEBUG 31404 --- [marketing-service] [main] o.s.c.support.DefaultLifecycleProcessor  : Successfully started bean 'org.springframework.amqp.rabbit.config.internalRabbitListenerEndpointRegistry'
+2025-10-30T18:52:16.226+01:00 DEBUG 31404 --- [marketing-service] [main] o.s.c.support.DefaultLifecycleProcessor  : Starting beans in phase -2147483648
+2025-10-30T18:52:16.226+01:00 DEBUG 31404 --- [marketing-service] [main] o.s.c.support.DefaultLifecycleProcessor  : Starting beans in phase 0
+2025-10-30T18:52:16.226+01:00 DEBUG 31404 --- [marketing-service] [main] o.s.c.support.DefaultLifecycleProcessor  : Successfully started bean 'rabbitTemplate'
+2025-10-30T18:52:16.228+01:00 DEBUG 31404 --- [marketing-service] [main] o.s.c.support.DefaultLifecycleProcessor  : Starting beans in phase -2147483648
+2025-10-30T18:52:16.228+01:00 DEBUG 31404 --- [marketing-service] [main] o.s.c.support.DefaultLifecycleProcessor  : Starting beans in phase -2147483647
+2025-10-30T18:52:16.228+01:00 DEBUG 31404 --- [marketing-service] [main] o.s.c.support.DefaultLifecycleProcessor  : Starting beans in phase -2147482648
+2025-10-30T18:52:16.228+01:00 DEBUG 31404 --- [marketing-service] [main] o.s.c.support.DefaultLifecycleProcessor  : Starting beans in phase 0
+2025-10-30T18:52:16.228+01:00 DEBUG 31404 --- [marketing-service] [main] o.s.c.support.DefaultLifecycleProcessor  : Successfully started bean 'rabbitTemplate'
+2025-10-30T18:52:16.232+01:00 DEBUG 31404 --- [marketing-service] [main] o.s.c.support.DefaultLifecycleProcessor  : Successfully started bean 'integrationHeaderChannelRegistry'
+2025-10-30T18:52:16.232+01:00 DEBUG 31404 --- [marketing-service] [main] o.s.c.support.DefaultLifecycleProcessor  : Starting beans in phase 1073741823
+2025-10-30T18:52:16.232+01:00 DEBUG 31404 --- [marketing-service] [main] o.s.c.support.DefaultLifecycleProcessor  : Starting beans in phase 2147480647
+2025-10-30T18:52:16.232+01:00 DEBUG 31404 --- [marketing-service] [main] o.s.c.support.DefaultLifecycleProcessor  : Starting beans in phase 2147481599
+2025-10-30T18:52:16.232+01:00 DEBUG 31404 --- [marketing-service] [main] o.s.c.support.DefaultLifecycleProcessor  : Starting beans in phase 2147482623
+2025-10-30T18:52:16.232+01:00 DEBUG 31404 --- [marketing-service] [main] o.s.c.support.DefaultLifecycleProcessor  : Starting beans in phase 2147483547
+2025-10-30T18:52:16.232+01:00 DEBUG 31404 --- [marketing-service] [main] o.s.c.support.DefaultLifecycleProcessor  : Starting beans in phase 2147483647
+2025-10-30T18:52:16.232+01:00 DEBUG 31404 --- [marketing-service] [main] o.s.c.support.DefaultLifecycleProcessor  : Successfully started bean 'org.springframework.amqp.rabbit.config.internalRabbitListenerEndpointRegistry'
+2025-10-30T18:52:16.233+01:00 DEBUG 31404 --- [marketing-service] [main] o.s.c.support.DefaultLifecycleProcessor  : Successfully started bean 'outerContext'
+2025-10-30T18:52:16.233+01:00 DEBUG 31404 --- [marketing-service] [main] o.s.c.support.DefaultLifecycleProcessor  : Successfully started bean 'binderFactory'
+2025-10-30T18:52:16.419+01:00  INFO 31404 --- [marketing-service] [main] c.e.marketing.MarketingApplication       : Started MarketingApplication in 25.647 seconds (process running for 34.686)

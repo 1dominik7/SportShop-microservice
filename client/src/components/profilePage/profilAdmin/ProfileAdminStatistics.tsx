@@ -198,7 +198,7 @@ const ProfileAdminStatistics = () => {
     0;
 
   return (
-    <div className="bg-gray-200 w-[full]">
+    <div className="bg-gray-200 w-full">
       <div className="w-full flex flex-col gap-4 p-4">
         {isErrorStatistics ? (
           <div className="flex flex-col items-center bg-white p-4 rounded-lg">
@@ -246,7 +246,7 @@ const ProfileAdminStatistics = () => {
                 <span className="max-md:text-sm">Total Incomes</span>
               </div>
               <span className="text-3xl max-xl:text-xl">
-                {statistics?.totalIncomes}$
+                {statistics?.totalIncomes.toFixed(2)}$
               </span>
             </div>
           </div>
@@ -323,7 +323,7 @@ const ProfileAdminStatistics = () => {
                       <span className="text-gray-500">This Month</span>
                       <div className="flex items-center gap-2">
                         <span className="text-lg font-bold">
-                          $ {salesRatioThisMonth}
+                          $ {salesRatioThisMonth.toFixed(2)}
                         </span>
                         <div className="flex items-center">
                           {percentOfSalesRatio > 0 ? (
@@ -394,7 +394,7 @@ const ProfileAdminStatistics = () => {
                   <span className="text-gray-500">This month</span>
                   <div className="flex gap-2 items-end">
                     <span className="text-3xl font-semibold text-blue-300">
-                      {salesRatioThisMonth}$
+                      {salesRatioThisMonth.toFixed(2)}$
                     </span>
                     <span
                       className={
@@ -558,9 +558,9 @@ const ProfileAdminStatistics = () => {
                       }
                     >
                       <td className="px-4 py-2">{item.productName}</td>
-                      <td className="px-4 py-2 align-middle">
+                      <td className="px-4 py-2 flex items-center justify-center">
                         <span
-                          className={`rounded-xl px-2 py-1 flex items-center justify-center text-white font-bold w-fit max-md:px-[2px] ${
+                          className={`rounded-xl px-2 text-center py-1 flex items-center justify-center text-white font-bold w-fit max-md:px-[2px] ${
                             item?.orderStatus === "shipped"
                               ? "bg-purple-300"
                               : item?.orderStatus === "delivered"
