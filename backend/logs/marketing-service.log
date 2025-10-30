@@ -438,3 +438,14 @@ java.lang.ClassNotFoundException: org.springframework.cloud.stream.binder.kafka.
 2025-10-30T18:52:16.233+01:00 DEBUG 31404 --- [marketing-service] [main] o.s.c.support.DefaultLifecycleProcessor  : Successfully started bean 'outerContext'
 2025-10-30T18:52:16.233+01:00 DEBUG 31404 --- [marketing-service] [main] o.s.c.support.DefaultLifecycleProcessor  : Successfully started bean 'binderFactory'
 2025-10-30T18:52:16.419+01:00  INFO 31404 --- [marketing-service] [main] c.e.marketing.MarketingApplication       : Started MarketingApplication in 25.647 seconds (process running for 34.686)
+2025-10-30T18:52:49.296+01:00  INFO 31404 --- [marketing-service] [http-nio-8086-exec-3] o.a.c.c.C.[.[localhost].[/api/v1]        : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-10-30T18:52:49.296+01:00  INFO 31404 --- [marketing-service] [http-nio-8086-exec-3] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-10-30T18:52:49.302+01:00  INFO 31404 --- [marketing-service] [http-nio-8086-exec-3] o.s.web.servlet.DispatcherServlet        : Completed initialization in 5 ms
+2025-10-30T18:57:15.061+01:00  INFO 31404 --- [marketing-service] [AsyncResolver-bootstrap-executor-%d] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2025-10-30T19:02:15.062+01:00  INFO 31404 --- [marketing-service] [AsyncResolver-bootstrap-executor-%d] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2025-10-30T19:07:15.068+01:00  INFO 31404 --- [marketing-service] [AsyncResolver-bootstrap-executor-%d] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2025-10-30T19:12:15.081+01:00  INFO 31404 --- [marketing-service] [AsyncResolver-bootstrap-executor-%d] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2025-10-30T20:23:08.423+01:00  WARN 31404 --- [marketing-service] [HikariPool-1:housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1h6m33s199ms100µs800ns).
+2025-10-30T20:23:18.269+01:00  INFO 31404 --- [marketing-service] [AsyncResolver-bootstrap-executor-%d] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2025-10-30T20:28:18.280+01:00  INFO 31404 --- [marketing-service] [AsyncResolver-bootstrap-executor-%d] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2025-10-30T20:33:18.294+01:00  INFO 31404 --- [marketing-service] [AsyncResolver-bootstrap-executor-%d] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration

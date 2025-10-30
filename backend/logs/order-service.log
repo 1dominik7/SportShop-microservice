@@ -66,3 +66,112 @@
 2025-10-30T18:52:49.294+01:00  INFO 41488 --- [order-service] [http-nio-8084-exec-1] o.a.c.c.C.[.[localhost].[/api/v1]        : Initializing Spring DispatcherServlet 'dispatcherServlet'
 2025-10-30T18:52:49.295+01:00  INFO 41488 --- [order-service] [http-nio-8084-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
 2025-10-30T18:52:49.300+01:00  INFO 41488 --- [order-service] [http-nio-8084-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 4 ms
+2025-10-30T18:56:49.780+01:00 DEBUG 41488 --- [order-service] [http-nio-8084-exec-4] feign.template.Template                  : Explicit slash decoding specified, decoding all slashes in uri
+2025-10-30T18:56:49.794+01:00 DEBUG 41488 --- [order-service] [http-nio-8084-exec-5] feign.template.Template                  : Explicit slash decoding specified, decoding all slashes in uri
+2025-10-30T18:57:19.463+01:00  INFO 41488 --- [order-service] [AsyncResolver-bootstrap-executor-%d] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2025-10-30T18:57:35.953+01:00 DEBUG 41488 --- [order-service] [http-nio-8084-exec-10] feign.template.Template                  : Explicit slash decoding specified, decoding all slashes in uri
+2025-10-30T18:57:35.953+01:00 DEBUG 41488 --- [order-service] [http-nio-8084-exec-9] feign.template.Template                  : Explicit slash decoding specified, decoding all slashes in uri
+2025-10-30T18:57:42.708+01:00 DEBUG 41488 --- [order-service] [http-nio-8084-exec-3] feign.template.Template                  : Explicit slash decoding specified, decoding all slashes in uri
+2025-10-30T18:57:42.711+01:00 DEBUG 41488 --- [order-service] [http-nio-8084-exec-6] feign.template.Template                  : Explicit slash decoding specified, decoding all slashes in uri
+2025-10-30T18:58:45.760+01:00 DEBUG 41488 --- [order-service] [http-nio-8084-exec-2] feign.template.Template                  : Explicit slash decoding specified, decoding all slashes in uri
+2025-10-30T18:58:45.762+01:00 DEBUG 41488 --- [order-service] [http-nio-8084-exec-10] feign.template.Template                  : Explicit slash decoding specified, decoding all slashes in uri
+2025-10-30T18:58:53.310+01:00 DEBUG 41488 --- [order-service] [http-nio-8084-exec-8] feign.template.Template                  : Explicit slash decoding specified, decoding all slashes in uri
+2025-10-30T18:58:53.311+01:00 DEBUG 41488 --- [order-service] [http-nio-8084-exec-5] feign.template.Template                  : Explicit slash decoding specified, decoding all slashes in uri
+2025-10-30T18:59:02.147+01:00 DEBUG 41488 --- [order-service] [http-nio-8084-exec-9] feign.template.Template                  : Explicit slash decoding specified, decoding all slashes in uri
+2025-10-30T18:59:02.147+01:00 DEBUG 41488 --- [order-service] [http-nio-8084-exec-2] feign.template.Template                  : Explicit slash decoding specified, decoding all slashes in uri
+2025-10-30T18:59:03.136+01:00 ERROR 41488 --- [order-service] [http-nio-8084-exec-6] c.e.o.clients.ProductItemCallerService   : Failed to getProductItemByIdsToOrdersFallback, product service, error: 
+2025-10-30T18:59:03.136+01:00 ERROR 41488 --- [order-service] [http-nio-8084-exec-1] c.e.o.clients.ProductItemCallerService   : Failed to getProductItemByIdsToOrdersFallback, product service, error: 
+2025-10-30T18:59:03.138+01:00 ERROR 41488 --- [order-service] [http-nio-8084-exec-1] c.e.o.clients.ProductItemCallerService   : Failed to getProductItemByIdsToOrdersFallback, product service, error: 
+2025-10-30T18:59:03.138+01:00 ERROR 41488 --- [order-service] [http-nio-8084-exec-6] c.e.o.clients.ProductItemCallerService   : Failed to getProductItemByIdsToOrdersFallback, product service, error: 
+2025-10-30T18:59:03.653+01:00 ERROR 41488 --- [order-service] [http-nio-8084-exec-1] c.e.o.clients.ProductItemCallerService   : Failed to getProductItemByIdsToOrdersFallback, product service, error: 
+2025-10-30T18:59:03.654+01:00 ERROR 41488 --- [order-service] [http-nio-8084-exec-1] c.e.o.clients.ProductItemCallerService   : Failed to getProductItemByIdsToOrdersFallback, product service, error: 
+2025-10-30T18:59:03.668+01:00 ERROR 41488 --- [order-service] [http-nio-8084-exec-6] c.e.o.clients.ProductItemCallerService   : Failed to getProductItemByIdsToOrdersFallback, product service, error: 
+2025-10-30T18:59:03.668+01:00 ERROR 41488 --- [order-service] [http-nio-8084-exec-6] c.e.o.clients.ProductItemCallerService   : Failed to getProductItemByIdsToOrdersFallback, product service, error: 
+2025-10-30T18:59:04.168+01:00 DEBUG 41488 --- [order-service] [http-nio-8084-exec-1] feign.template.Template                  : Explicit slash decoding specified, decoding all slashes in uri
+2025-10-30T18:59:04.184+01:00 DEBUG 41488 --- [order-service] [http-nio-8084-exec-6] feign.template.Template                  : Explicit slash decoding specified, decoding all slashes in uri
+2025-10-30T18:59:22.872+01:00 DEBUG 41488 --- [order-service] [http-nio-8084-exec-3] feign.template.Template                  : Explicit slash decoding specified, decoding all slashes in uri
+2025-10-30T18:59:22.872+01:00 DEBUG 41488 --- [order-service] [http-nio-8084-exec-4] feign.template.Template                  : Explicit slash decoding specified, decoding all slashes in uri
+2025-10-30T18:59:36.808+01:00 DEBUG 41488 --- [order-service] [http-nio-8084-exec-2] feign.template.Template                  : Explicit slash decoding specified, decoding all slashes in uri
+2025-10-30T18:59:36.808+01:00 DEBUG 41488 --- [order-service] [http-nio-8084-exec-5] feign.template.Template                  : Explicit slash decoding specified, decoding all slashes in uri
+2025-10-30T18:59:45.189+01:00 DEBUG 41488 --- [order-service] [http-nio-8084-exec-9] feign.template.Template                  : Explicit slash decoding specified, decoding all slashes in uri
+2025-10-30T18:59:45.191+01:00 DEBUG 41488 --- [order-service] [http-nio-8084-exec-4] feign.template.Template                  : Explicit slash decoding specified, decoding all slashes in uri
+2025-10-30T19:00:01.408+01:00 DEBUG 41488 --- [order-service] [http-nio-8084-exec-1] feign.template.Template                  : Explicit slash decoding specified, decoding all slashes in uri
+2025-10-30T19:00:01.409+01:00 DEBUG 41488 --- [order-service] [http-nio-8084-exec-3] feign.template.Template                  : Explicit slash decoding specified, decoding all slashes in uri
+2025-10-30T19:00:10.305+01:00 DEBUG 41488 --- [order-service] [http-nio-8084-exec-6] feign.template.Template                  : Explicit slash decoding specified, decoding all slashes in uri
+2025-10-30T19:00:10.307+01:00 DEBUG 41488 --- [order-service] [http-nio-8084-exec-7] feign.template.Template                  : Explicit slash decoding specified, decoding all slashes in uri
+2025-10-30T19:00:13.270+01:00 DEBUG 41488 --- [order-service] [http-nio-8084-exec-2] feign.template.Template                  : Explicit slash decoding specified, decoding all slashes in uri
+2025-10-30T19:00:13.275+01:00 DEBUG 41488 --- [order-service] [http-nio-8084-exec-5] feign.template.Template                  : Explicit slash decoding specified, decoding all slashes in uri
+2025-10-30T19:00:21.609+01:00 DEBUG 41488 --- [order-service] [http-nio-8084-exec-9] feign.template.Template                  : Explicit slash decoding specified, decoding all slashes in uri
+2025-10-30T19:00:21.609+01:00 DEBUG 41488 --- [order-service] [http-nio-8084-exec-4] feign.template.Template                  : Explicit slash decoding specified, decoding all slashes in uri
+2025-10-30T19:00:34.487+01:00 DEBUG 41488 --- [order-service] [http-nio-8084-exec-1] feign.template.Template                  : Explicit slash decoding specified, decoding all slashes in uri
+2025-10-30T19:00:34.487+01:00 DEBUG 41488 --- [order-service] [http-nio-8084-exec-8] feign.template.Template                  : Explicit slash decoding specified, decoding all slashes in uri
+2025-10-30T19:00:46.240+01:00 DEBUG 41488 --- [order-service] [http-nio-8084-exec-10] feign.template.Template                  : Explicit slash decoding specified, decoding all slashes in uri
+2025-10-30T19:00:46.244+01:00 DEBUG 41488 --- [order-service] [http-nio-8084-exec-6] feign.template.Template                  : Explicit slash decoding specified, decoding all slashes in uri
+2025-10-30T19:01:00.696+01:00 DEBUG 41488 --- [order-service] [http-nio-8084-exec-2] feign.template.Template                  : Explicit slash decoding specified, decoding all slashes in uri
+2025-10-30T19:01:00.696+01:00 DEBUG 41488 --- [order-service] [http-nio-8084-exec-5] feign.template.Template                  : Explicit slash decoding specified, decoding all slashes in uri
+2025-10-30T19:01:11.977+01:00 DEBUG 41488 --- [order-service] [http-nio-8084-exec-9] feign.template.Template                  : Explicit slash decoding specified, decoding all slashes in uri
+2025-10-30T19:01:11.981+01:00 DEBUG 41488 --- [order-service] [http-nio-8084-exec-7] feign.template.Template                  : Explicit slash decoding specified, decoding all slashes in uri
+2025-10-30T19:01:23.619+01:00 DEBUG 41488 --- [order-service] [http-nio-8084-exec-8] feign.template.Template                  : Explicit slash decoding specified, decoding all slashes in uri
+2025-10-30T19:01:23.621+01:00 DEBUG 41488 --- [order-service] [http-nio-8084-exec-1] feign.template.Template                  : Explicit slash decoding specified, decoding all slashes in uri
+2025-10-30T19:01:32.162+01:00 DEBUG 41488 --- [order-service] [http-nio-8084-exec-10] feign.template.Template                  : Explicit slash decoding specified, decoding all slashes in uri
+2025-10-30T19:01:32.162+01:00 DEBUG 41488 --- [order-service] [http-nio-8084-exec-4] feign.template.Template                  : Explicit slash decoding specified, decoding all slashes in uri
+2025-10-30T19:01:34.387+01:00 ERROR 41488 --- [order-service] [http-nio-8084-exec-2] c.e.o.clients.ProductItemCallerService   : Failed to getProductItemByIdsToOrdersFallback, product service, error: 
+2025-10-30T19:01:34.387+01:00 ERROR 41488 --- [order-service] [http-nio-8084-exec-2] c.e.o.clients.ProductItemCallerService   : Failed to getProductItemByIdsToOrdersFallback, product service, error: 
+2025-10-30T19:01:34.389+01:00 ERROR 41488 --- [order-service] [http-nio-8084-exec-5] c.e.o.clients.ProductItemCallerService   : Failed to getProductItemByIdsToOrdersFallback, product service, error: 
+2025-10-30T19:01:34.390+01:00 ERROR 41488 --- [order-service] [http-nio-8084-exec-5] c.e.o.clients.ProductItemCallerService   : Failed to getProductItemByIdsToOrdersFallback, product service, error: 
+2025-10-30T19:01:34.902+01:00 ERROR 41488 --- [order-service] [http-nio-8084-exec-2] c.e.o.clients.ProductItemCallerService   : Failed to getProductItemByIdsToOrdersFallback, product service, error: 
+2025-10-30T19:01:34.903+01:00 ERROR 41488 --- [order-service] [http-nio-8084-exec-2] c.e.o.clients.ProductItemCallerService   : Failed to getProductItemByIdsToOrdersFallback, product service, error: 
+2025-10-30T19:01:34.917+01:00 ERROR 41488 --- [order-service] [http-nio-8084-exec-5] c.e.o.clients.ProductItemCallerService   : Failed to getProductItemByIdsToOrdersFallback, product service, error: 
+2025-10-30T19:01:34.917+01:00 ERROR 41488 --- [order-service] [http-nio-8084-exec-5] c.e.o.clients.ProductItemCallerService   : Failed to getProductItemByIdsToOrdersFallback, product service, error: 
+2025-10-30T19:01:35.418+01:00 ERROR 41488 --- [order-service] [http-nio-8084-exec-5] c.e.o.clients.ProductItemCallerService   : Failed to getProductItemByIdsToOrdersFallback, product service, error: 
+2025-10-30T19:01:35.418+01:00 ERROR 41488 --- [order-service] [http-nio-8084-exec-2] c.e.o.clients.ProductItemCallerService   : Failed to getProductItemByIdsToOrdersFallback, product service, error: 
+2025-10-30T19:01:35.419+01:00 ERROR 41488 --- [order-service] [http-nio-8084-exec-2] c.e.o.clients.ProductItemCallerService   : Failed to getProductItemByIdsToOrdersFallback, product service, error: 
+2025-10-30T19:01:35.423+01:00 ERROR 41488 --- [order-service] [http-nio-8084-exec-5] c.e.o.clients.ProductItemCallerService   : Failed to getProductItemByIdsToOrdersFallback, product service, error: 
+2025-10-30T19:01:35.920+01:00 ERROR 41488 --- [order-service] [http-nio-8084-exec-2] c.e.o.clients.ProductItemCallerService   : Failed to getProductItemByIdsToOrdersFallback, product service, error: 
+2025-10-30T19:01:35.935+01:00 ERROR 41488 --- [order-service] [http-nio-8084-exec-5] c.e.o.clients.ProductItemCallerService   : Failed to getProductItemByIdsToOrdersFallback, product service, error: 
+2025-10-30T19:01:36.428+01:00 ERROR 41488 --- [order-service] [http-nio-8084-exec-2] c.e.o.clients.ProductItemCallerService   : Failed to getProductItemByIdsToOrdersFallback, product service, error: 
+2025-10-30T19:01:36.429+01:00 ERROR 41488 --- [order-service] [http-nio-8084-exec-2] c.e.o.clients.ProductItemCallerService   : Failed to getProductItemByIdsToOrdersFallback, product service, error: 
+2025-10-30T19:01:36.444+01:00 ERROR 41488 --- [order-service] [http-nio-8084-exec-5] c.e.o.clients.ProductItemCallerService   : Failed to getProductItemByIdsToOrdersFallback, product service, error: 
+2025-10-30T19:01:36.444+01:00 ERROR 41488 --- [order-service] [http-nio-8084-exec-5] c.e.o.clients.ProductItemCallerService   : Failed to getProductItemByIdsToOrdersFallback, product service, error: 
+2025-10-30T19:01:37.732+01:00 ERROR 41488 --- [order-service] [http-nio-8084-exec-6] c.e.o.clients.ProductItemCallerService   : Failed to getProductItemByIdsToOrdersFallback, product service, error: 
+2025-10-30T19:01:37.732+01:00 ERROR 41488 --- [order-service] [http-nio-8084-exec-7] c.e.o.clients.ProductItemCallerService   : Failed to getProductItemByIdsToOrdersFallback, product service, error: 
+2025-10-30T19:01:38.239+01:00 ERROR 41488 --- [order-service] [http-nio-8084-exec-6] c.e.o.clients.ProductItemCallerService   : Failed to getProductItemByIdsToOrdersFallback, product service, error: 
+2025-10-30T19:01:38.239+01:00 ERROR 41488 --- [order-service] [http-nio-8084-exec-7] c.e.o.clients.ProductItemCallerService   : Failed to getProductItemByIdsToOrdersFallback, product service, error: 
+2025-10-30T19:01:38.747+01:00 ERROR 41488 --- [order-service] [http-nio-8084-exec-6] c.e.o.clients.ProductItemCallerService   : Failed to getProductItemByIdsToOrdersFallback, product service, error: 
+2025-10-30T19:01:38.747+01:00 ERROR 41488 --- [order-service] [http-nio-8084-exec-7] c.e.o.clients.ProductItemCallerService   : Failed to getProductItemByIdsToOrdersFallback, product service, error: 
+2025-10-30T19:01:39.258+01:00 ERROR 41488 --- [order-service] [http-nio-8084-exec-7] c.e.o.clients.ProductItemCallerService   : Failed to getProductItemByIdsToOrdersFallback, product service, error: 
+2025-10-30T19:01:39.258+01:00 ERROR 41488 --- [order-service] [http-nio-8084-exec-6] c.e.o.clients.ProductItemCallerService   : Failed to getProductItemByIdsToOrdersFallback, product service, error: 
+2025-10-30T19:01:39.768+01:00 ERROR 41488 --- [order-service] [http-nio-8084-exec-6] c.e.o.clients.ProductItemCallerService   : Failed to getProductItemByIdsToOrdersFallback, product service, error: 
+2025-10-30T19:01:39.768+01:00 ERROR 41488 --- [order-service] [http-nio-8084-exec-7] c.e.o.clients.ProductItemCallerService   : Failed to getProductItemByIdsToOrdersFallback, product service, error: 
+2025-10-30T19:01:39.768+01:00 ERROR 41488 --- [order-service] [http-nio-8084-exec-6] c.e.o.clients.ProductItemCallerService   : Failed to getProductItemByIdsToOrdersFallback, product service, error: 
+2025-10-30T19:01:39.768+01:00 ERROR 41488 --- [order-service] [http-nio-8084-exec-7] c.e.o.clients.ProductItemCallerService   : Failed to getProductItemByIdsToOrdersFallback, product service, error: 
+2025-10-30T19:01:41.808+01:00 ERROR 41488 --- [order-service] [http-nio-8084-exec-9] c.e.o.clients.ProductItemCallerService   : Failed to getProductItemByIdsToOrdersFallback, product service, error: 
+2025-10-30T19:01:41.808+01:00 ERROR 41488 --- [order-service] [http-nio-8084-exec-4] c.e.o.clients.ProductItemCallerService   : Failed to getProductItemByIdsToOrdersFallback, product service, error: 
+2025-10-30T19:01:42.315+01:00 ERROR 41488 --- [order-service] [http-nio-8084-exec-4] c.e.o.clients.ProductItemCallerService   : Failed to getProductItemByIdsToOrdersFallback, product service, error: 
+2025-10-30T19:01:42.315+01:00 ERROR 41488 --- [order-service] [http-nio-8084-exec-9] c.e.o.clients.ProductItemCallerService   : Failed to getProductItemByIdsToOrdersFallback, product service, error: 
+2025-10-30T19:01:42.826+01:00 ERROR 41488 --- [order-service] [http-nio-8084-exec-9] c.e.o.clients.ProductItemCallerService   : Failed to getProductItemByIdsToOrdersFallback, product service, error: 
+2025-10-30T19:01:42.827+01:00 ERROR 41488 --- [order-service] [http-nio-8084-exec-4] c.e.o.clients.ProductItemCallerService   : Failed to getProductItemByIdsToOrdersFallback, product service, error: 
+2025-10-30T19:01:43.341+01:00 ERROR 41488 --- [order-service] [http-nio-8084-exec-9] c.e.o.clients.ProductItemCallerService   : Failed to getProductItemByIdsToOrdersFallback, product service, error: 
+2025-10-30T19:01:43.344+01:00 ERROR 41488 --- [order-service] [http-nio-8084-exec-4] c.e.o.clients.ProductItemCallerService   : Failed to getProductItemByIdsToOrdersFallback, product service, error: 
+2025-10-30T19:01:43.855+01:00 ERROR 41488 --- [order-service] [http-nio-8084-exec-4] c.e.o.clients.ProductItemCallerService   : Failed to getProductItemByIdsToOrdersFallback, product service, error: 
+2025-10-30T19:01:43.855+01:00 ERROR 41488 --- [order-service] [http-nio-8084-exec-9] c.e.o.clients.ProductItemCallerService   : Failed to getProductItemByIdsToOrdersFallback, product service, error: 
+2025-10-30T19:01:43.856+01:00 ERROR 41488 --- [order-service] [http-nio-8084-exec-4] c.e.o.clients.ProductItemCallerService   : Failed to getProductItemByIdsToOrdersFallback, product service, error: 
+2025-10-30T19:01:43.856+01:00 ERROR 41488 --- [order-service] [http-nio-8084-exec-9] c.e.o.clients.ProductItemCallerService   : Failed to getProductItemByIdsToOrdersFallback, product service, error: 
+2025-10-30T19:02:19.473+01:00  INFO 41488 --- [order-service] [AsyncResolver-bootstrap-executor-%d] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2025-10-30T19:07:19.486+01:00  INFO 41488 --- [order-service] [AsyncResolver-bootstrap-executor-%d] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2025-10-30T19:12:19.495+01:00  INFO 41488 --- [order-service] [AsyncResolver-bootstrap-executor-%d] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2025-10-30T20:23:16.391+01:00  WARN 41488 --- [order-service] [HikariPool-1:housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1h6m33s199ms303µs300ns).
+2025-10-30T20:23:22.669+01:00  INFO 41488 --- [order-service] [AsyncResolver-bootstrap-executor-%d] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2025-10-30T20:24:15.343+01:00 DEBUG 41488 --- [order-service] [http-nio-8084-exec-5] feign.template.Template                  : Explicit slash decoding specified, decoding all slashes in uri
+2025-10-30T20:24:15.343+01:00 DEBUG 41488 --- [order-service] [http-nio-8084-exec-2] feign.template.Template                  : Explicit slash decoding specified, decoding all slashes in uri
+2025-10-30T20:25:15.688+01:00 DEBUG 41488 --- [order-service] [http-nio-8084-exec-10] feign.template.Template                  : Explicit slash decoding specified, decoding all slashes in uri
+2025-10-30T20:25:15.691+01:00 ERROR 41488 --- [order-service] [http-nio-8084-exec-4] c.e.o.clients.ProductItemCallerService   : Failed to getProductItemByIdsToOrdersFallback, product service, error: 
+2025-10-30T20:25:16.208+01:00 DEBUG 41488 --- [order-service] [http-nio-8084-exec-4] feign.template.Template                  : Explicit slash decoding specified, decoding all slashes in uri
+2025-10-30T20:26:11.271+01:00 DEBUG 41488 --- [order-service] [http-nio-8084-exec-6] feign.template.Template                  : Explicit slash decoding specified, decoding all slashes in uri
+2025-10-30T20:26:11.321+01:00 DEBUG 41488 --- [order-service] [http-nio-8084-exec-7] feign.template.Template                  : Explicit slash decoding specified, decoding all slashes in uri
+2025-10-30T20:26:22.131+01:00 DEBUG 41488 --- [order-service] [http-nio-8084-exec-5] feign.template.Template                  : Explicit slash decoding specified, decoding all slashes in uri
+2025-10-30T20:26:22.137+01:00 DEBUG 41488 --- [order-service] [http-nio-8084-exec-3] feign.template.Template                  : Explicit slash decoding specified, decoding all slashes in uri
+2025-10-30T20:26:25.286+01:00 DEBUG 41488 --- [order-service] [http-nio-8084-exec-4] feign.template.Template                  : Explicit slash decoding specified, decoding all slashes in uri
+2025-10-30T20:26:25.287+01:00 DEBUG 41488 --- [order-service] [http-nio-8084-exec-2] feign.template.Template                  : Explicit slash decoding specified, decoding all slashes in uri
+2025-10-30T20:28:22.680+01:00  INFO 41488 --- [order-service] [AsyncResolver-bootstrap-executor-%d] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2025-10-30T20:33:22.685+01:00  INFO 41488 --- [order-service] [AsyncResolver-bootstrap-executor-%d] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
